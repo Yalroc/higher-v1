@@ -49,20 +49,26 @@
   </div>
   <br>
   <br>
-  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#TableModal">
-    create an offer
-  </button>
+  <!-- Button: Create Offer -->
+  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#CreateJobOfferModal">create an offer</button>
+  <br>
+  <br>
+  <!-- Button: Add Folder -->
+  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#AddFolderModal">add a folder</button>
+
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="TableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- SCRIPTS -->
+
+<!-- Modal: Create Offer -->
+<div class="modal fade" id="CreateJobOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Créez votre offre</h4>
+        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
       </div>
       <div class="modal-body">
         <%= simple_form_for([ @job_offer ]) do |form| %>
@@ -72,6 +78,26 @@
           <%= form.input :min_xp %>
           <%= form.input :max_xp %>
           <%= form.input :salary %>
+          <%= form.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Create Offer -->
+<div class="modal fade" id="AddFolderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for([ @job_offer_folder ]) do |form| %>
+          <%= form.input :name %>
           <%= form.button :submit %>
         <% end %>
       </div>

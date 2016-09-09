@@ -16,6 +16,8 @@
     end
 
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
+
+    @job_offer_folder = JobOfferFolder.new # for folder (job offers) creation
   end
 
   def show
