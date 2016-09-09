@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div id="job_offers_index_wrapper">
   <div class="row">
     <div class="tableau-offer">
       <% if @job_offers.any? == true %>
@@ -13,7 +13,7 @@
               <th class="column-3 text-center">Candidates</th>
               <th class="column-4 text-center">Contacted</th>
             </tr>
-          </thead>
+          </  >
           <tbody class="offers-body">
             <% @job_offers.each do |job_offer| %>
               <tr class= "border">

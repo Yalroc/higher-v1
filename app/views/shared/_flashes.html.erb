@@ -1,5 +1,6 @@
 
 <% if (params[:controller]) == "job_applications" && params[:action] == "index"  %>
+<% elsif (params[:controller]) == "job_offers" && params[:action] == "index"  %>
 <% else %>
   <% if notice %>
     <div class="alert alert-info alert-dismissible" role="alert">
