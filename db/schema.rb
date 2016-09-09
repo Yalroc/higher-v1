@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831002016) do
+ActiveRecord::Schema.define(version: 20160909201012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 20160831002016) do
     t.index ["job_offer_id"], name: "index_job_applications_on_job_offer_id", using: :btree
   end
 
+  create_table "job_offer_folders", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "parent_id"
+    t.index ["organization_id"], name: "index_job_offer_folders_on_organization_id", using: :btree
+    t.index ["parent_id"], name: "index_job_offer_folders_on_parent_id", using: :btree
+  end
+
   create_table "job_offers", force: :cascade do |t|
     t.integer  "recruiter_id"
     t.text     "description"
@@ -149,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160831002016) do
 
   add_foreign_key "educations", "job_applications"
   add_foreign_key "experiences", "job_applications"
+  add_foreign_key "job_offer_folders", "organizations"
   add_foreign_key "languages", "job_applications"
   add_foreign_key "messages", "job_applications"
   add_foreign_key "recruiters", "organizations"
