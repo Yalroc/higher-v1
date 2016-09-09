@@ -1,0 +1,82 @@
+<!-- NAVBAR FOR CANDIDATES (in the funnel)-->
+<div class="navbar-higher-funnel"></div><!-- spacer to compensate the 'fixed navbar offset' -->
+<div class="navbar-higher-funnel navbar-higher-fixed">
+
+  <!-- Logo Recruiter / relative<=>absolute to navbar-higher-funnel -->
+  <div class="navbar-higher-brand-recruiter">
+    <%= image_tag "LOreal_white_vector.png" %>
+  </div>
+
+  <!-- Logo Higher / relative<=>absolute to navbar-higher-funnel -->
+  <div class="navbar-higher-brand-funnel">
+    <%= image_tag "name-logo-small.png" %>
+  </div>
+
+  <!-- dropdown / relative<=>absolute to navbar-higher-funnel -->
+    <div class="dropdown" id="funnel-logout-triangle">
+      <i class="fa fa-caret-down navbar-higher-menu" data-toggle="dropdown" aria-hidden="true"></i>
+
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li>
+          <%= link_to candidate_path(current_candidate.id) do %>
+            <i class="fa fa-user"></i> <%= t(".profile", default: "Account") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_candidate_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </li>
+      </ul>
+    </div> <!-- end of dropdown -->
+
+  <!-- FUNNEL STEPS DASHBOARD + IMPORT DATA + VIEW AS EMPLOYER -->
+  <div class="container">
+    <div class="row">
+
+      <!-- import data button -->
+      <div class="col-xs-2 col-xs-offset-2">
+        <h6 class="funnel-title-options funnel-title-options-left font-23">import</h6>
+        <h6 class="funnel-title-options font-17"><i class="fa fa-linkedin-square" aria-hidden="true"></i> data <i class="fa fa-folder-open" aria-hidden="true"></i></h6>
+      </div>
+
+      <!-- flex dev with 3 circles -->
+      <div class="col-xs-4">
+        <div class="funnel-steps-flexbox" >
+
+          <!-- job -->
+          <div class="tabs" data-target="#job-offer">
+            <div class="circle">
+              <p class="circle-numbers">1</p>
+            </div>
+            <h6 class="funnel-titles">job</h6>
+          </div>
+          <!-- resume -->
+          <div class="tabs" data-target="#resume">
+            <div class="circle text-center">
+              <p class="circle-numbers">2</p>
+            </div>
+            <h6 class="funnel-titles">résumé</h6>
+          </div>
+          <!-- cover letter -->
+          <div class="tabs" data-target="#cover-letter">
+            <div class="circle text-center">
+              <p class="circle-numbers">3</p>
+            </div>
+            <h6 class="funnel-titles">details</h6>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- view as employer button -->
+      <a href="" data-toggle="modal" data-target="#ViewAsEmployerModal">
+        <div class="col-xs-2" id="button-view-as-employer">
+          <h6 class="funnel-title-options funnel-title-options-right text-right font-20"><i class="fa fa-eye" aria-hidden="true"></i> view as</h6>
+          <h6 class="funnel-title-options text-right font-21">employer</h6>
+        </div>
+      </a>
+    </div> <!-- end of row -->
+  </div> <!-- end of container -->
+
+</div> <!-- end of navbar -->

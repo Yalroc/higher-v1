@@ -1,0 +1,79 @@
+table {
+   background: #fff;
+}
+.tableau-offer table,thead,tbody,tfoot,tr, td,th {
+  margin: auto;
+  padding: 1rem;
+  justify-content: space-between;
+}
+.column-1 {
+  width: 50%;
+  color: #004080;
+}
+.column-2 {
+  width: 20%;
+  // border-bottom: 1px solid #E6E6E6;
+}
+.column-3 {
+  width: 15%;
+  // border-bottom: 1px solid #E6E6E6;
+}
+.column-4 {
+  width: 15%;
+  // border-bottom: 1px solid #E6E6E6;
+}
+.column-5 {
+  width: 0%;
+  // border-bottom: 1px solid #E6E6E6;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  background: #dedede;
+  text-align: center;
+}
+.head-fixed {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  top: 32px;
+  background-color: white;
+  border-bottom: 3px solid $blue-lighter;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 6px O;
+}
+.offers-body {
+  margin-top: 79px;
+  display: table;
+  width: 100%;
+  .border td:first-child {
+    text-align: left;
+    padding-left: 10%;
+  }
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.vw {
+  text-align: center;
+  width: 100vw;
+  margin-top: -25px !important;
+}
+.border {
+  border-bottom: 1px solid #E6E6E6;
+  border-top: 1px solid #E6E6E6;
+}
+.noun_job {
+  width: 30px;
+}
+
+.height-45px {
+  height: 45px;
+}
+
+#job_offer_description_field {
+  height: 25vh;
+}

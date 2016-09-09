@@ -1,0 +1,21 @@
+<!-- NAVBAR FOR RECRUITERS -->
+<% if recruiter_signed_in? %>
+  <%= render "shared/navbar_components/navbar_recruiters" %>
+
+<!-- NAVBAR FOR CANDIDATES (in the application funnel) -->
+<% elsif candidate_signed_in? && (params[:controller]) == "job_applications" && params[:action] == "edit" %>
+  <%= render "shared/navbar_components/navbar_candidates_funnel" %>
+
+<!-- NAVBAR FOR CANDIDATES (managing their past applications & profile) -->
+<% elsif candidate_signed_in? %>
+  <%= render "shared/navbar_components/navbar_candidates" %>
+
+<!-- NAVBAR FOR VISITORS (searching) -->
+<% elsif (params[:controller]) == "pages" && params[:action] == "search" %>
+  <%= render "shared/navbar_components/navbar_visitors_search" %>
+
+<!-- NAVBAR FOR VISITORS (log in & sign up) -->
+<% else %>
+  <%= render "shared/navbar_components/navbar_visitors" %>
+
+<% end %>

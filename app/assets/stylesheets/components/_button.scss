@@ -1,0 +1,116 @@
+.btn-show-application {
+  border: none;
+  background: none;
+}
+
+.btn-custom {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid $black;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow:hidden;
+  transition: .3s;
+  color: $black;
+  &:after {
+    position: absolute;
+    transition: .3s;
+    content: '';
+    width: 0;
+    bottom: 0;
+    height: 3px;
+    background: $black;
+    color: white;
+    height: 120%;
+    left: -10%;
+    transform: skewX(15deg);
+    z-index: -1;
+  }
+  &:hover {
+    cursor: pointer;
+    color: white;
+    &:after {
+      width: 100%;
+      left: -10%;
+      width: 120%;
+      color: white;
+    }
+  }
+}
+
+//  simple form button
+
+.btn-form {
+  border-radius: 5px;
+  padding: 8px 14px;
+  width: 100%;
+  border: 2px solid $black;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  transition: .3s;
+  color: white;
+  background: $black;
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  // margin-bottom: 20px;
+  &:hover {
+    cursor: pointer;
+    color: $black;
+    background: white;
+    border: 2px solid $black;
+  }
+}
+
+.btn-form-2 {
+  border-radius: 5px;
+  padding: 8px 14px;
+  width: 16%;
+  border: 2px solid $black;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  transition: .3s;
+  color: white;
+  background: $black;
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  // margin-bottom: 20px;
+  &:hover {
+    cursor: pointer;
+    color: $black;
+    background: white;
+    border: 2px solid $black;
+  }
+}
+
+#btn-linkedin {
+  display: block;
+  border-radius: 5px;
+  // margin-top: 20px;
+  padding: 8px 14px;
+  width: 100%;
+  border: 2px solid $brand-color;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  transition: .3s;
+  color: white;
+  background: $brand-color;
+  text-align: justify;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  // margin-bottom: 20px;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    color: $brand-color;
+    background: white;
+    border: 2px solid $brand-color;
+    text-decoration: none;
+  }
+}
+

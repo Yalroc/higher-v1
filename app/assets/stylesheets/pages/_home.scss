@@ -1,0 +1,46 @@
+.banner {
+  color: white;
+  text-align: center;
+  min-height: 95vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-inscription{
+  padding-top: 100px;
+}
+
+#btn-recruiter {
+  margin-bottom: 1px;
+  border: none;
+  background-color: $gray-mid-light;
+  transition: all 0.5s ease;
+    &:hover {
+    background-color: $gray-mid-light;
+    color: white;
+    text-decoration: none;
+    }
+}
+
+#btn-candidate {
+  border: none;
+  transition: all 0.5s ease;
+  margin-left: 3px;
+  margin-bottom: 1px;
+    &:hover {
+      background-color: $blue-lighter;
+      color: white;
+      text-decoration: none;
+    }
+}
+
+.banner-core {
+  padding-bottom: 50px;
+}
+
+.banner-title {
+  padding-bottom: 15px;
+  color: white;
+}
