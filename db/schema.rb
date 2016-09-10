@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160910084520) do
+ActiveRecord::Schema.define(version: 20160910113404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,9 @@ ActiveRecord::Schema.define(version: 20160910084520) do
     t.decimal  "max_xp"
     t.integer  "salary"
     t.integer  "job_offer_folder_id"
+    t.integer  "organization_id"
     t.index ["job_offer_folder_id"], name: "index_job_offers_on_job_offer_folder_id", using: :btree
+    t.index ["organization_id"], name: "index_job_offers_on_organization_id", using: :btree
     t.index ["recruiter_id"], name: "index_job_offers_on_recruiter_id", using: :btree
   end
 
@@ -163,6 +165,7 @@ ActiveRecord::Schema.define(version: 20160910084520) do
   add_foreign_key "experiences", "job_applications"
   add_foreign_key "job_offer_folders", "organizations"
   add_foreign_key "job_offers", "job_offer_folders"
+  add_foreign_key "job_offers", "organizations"
   add_foreign_key "languages", "job_applications"
   add_foreign_key "messages", "job_applications"
   add_foreign_key "recruiters", "organizations"

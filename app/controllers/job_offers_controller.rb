@@ -1,23 +1,17 @@
   class JobOffersController < ApplicationController
-  before_action :set_job_offers, only: [:show, :edit, :update]
+  before_action :set_job_offer, only: [:show, :edit, :update]
   skip_before_action :authenticate_candidate!
 
   skip_before_action :authenticate_recruiter!, only: [:show]
 
   def index
-    @job_offer = JobOffer.new # for job_offer creation
-    @job_offers = policy_scope(JobOffer)
-    @job_offers = JobOffer.where(recruiter: current_recruiter)
+    @job_offers = policy_scope(JobOffer) # Pundit authorization
+    @job_offers = JobOffer.where(organization: current_recruiter.organization)
     @job_offer_folders = JobOfferFolder.where(organization: current_recruiter.organization)
-
-    if @job_offers.any?
-      @organization = @job_offers.first.recruiter.organization
-    else
-      @organization = nil
-    end
-
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
 
+    # MODAL DATA
+    @job_offer = JobOffer.new # for job_offer creation
     @job_offer_folder = JobOfferFolder.new # for folder (job offers) creation
   end
 
@@ -65,7 +59,7 @@
     params.require(:job_offer).permit(:description, :title)
   end
 
-  def set_job_offers
+  def set_job_offer
     @job_offer = JobOffer.find(params[:id])
   end
 end
