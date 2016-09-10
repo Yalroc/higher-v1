@@ -8,6 +8,7 @@
     @job_offer = JobOffer.new # for job_offer creation
     @job_offers = policy_scope(JobOffer)
     @job_offers = JobOffer.where(recruiter: current_recruiter)
+    @job_offer_folders = JobOfferFolder.where(organization: current_recruiter.organization)
 
     if @job_offers.any?
       @organization = @job_offers.first.recruiter.organization

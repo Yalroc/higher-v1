@@ -14,15 +14,35 @@
             <th class="column-4 text-center">Contacted</th>
           </tr>
         </thead>
+
         <!-- table body -->
-        <% if @job_offers.any? == true %>
+        <% if @job_offers.any? || @job_offer_folders.any? %>
           <tbody class="offers-body">
+            <!-- iterate of job offer folders -->
+            <% @job_offer_folders.each do |job_offer_folder| %>
+              <tr class="border">
+                <td class="column-1">
+                  <%= link_to root_path do %>
+                    <%= image_tag "noun_job.png", width: '25' %>
+                    <span class="noun_job"><%= job_offer_folder.name %><i class="fa fa-folder-open" aria-hidden="true"></i></span>
+                 <% end %>
+                </td>
+                <td class="column-2">
+                  <%= job_offer_folder.job_offers.count %>
+                </td>
+                <td class="column-3"><%= job_offer_folder.job_offers.count %></td>
+                <td class="column-4"><%= job_offer_folder.job_offers.count %></td>
+              </tr>
+            <%end%> <!-- enf of iteration over @job_offer_folders -->
+
+
+            <!-- iterate over job_offers -->
             <% @job_offers.each do |job_offer| %>
-              <tr class= "border">
+              <tr class="border">
                 <td class="column-1">
                   <%= link_to job_offer_job_applications_path(job_offer) do %>
                     <%= image_tag "noun_job.png", :width => '25' %>
-                    <span class="noun_job"><%= job_offer.title %></span>
+                    <span class="noun_job"><%= job_offer.title %><i class="fa fa-folder-open" aria-hidden="true"></i><i class="fa fa-folder" aria-hidden="true"></i></span>
                  <% end %>
                 </td>
                 <td class="column-2">
@@ -41,8 +61,10 @@
                 </td>
                 <td class="column-3"><%= job_offer.job_applications.where(submit: true, rejected: nil).count %></td>
                 <td class="column-4"><%= job_offer.job_applications.where(contact: true, rejected: nil).count %></td>
-            <%end%>
               </tr>
+            <%end%> <!-- enf of iteration over @job_offers -->
+
+
           </tbody>
         <% else %> <!-- if table is empty don't iterate -->
         <% end %>  <!-- end of if function -->
