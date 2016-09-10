@@ -8,6 +8,8 @@
     @job_offers = policy_scope(JobOffer) # Pundit authorization
     @job_offers = JobOffer.where(organization: current_recruiter.organization)
     @job_offer_folders = JobOfferFolder.where(organization: current_recruiter.organization)
+    @job_offer_folders_without_parent = @job_offer_folders.where(parent: nil)
+    @job_offers_without_folders = @job_offers.where(job_offer_folder: nil)
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
 
     # MODAL DATA

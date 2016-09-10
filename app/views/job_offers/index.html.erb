@@ -24,7 +24,7 @@
               <td class="column-1">
                 <%= link_to root_path do %>
                   <span class="noun_job">Holding</span>
-               <% end %>
+                <% end %>
               </td>
               <td class="column-2">
                 <%= @job_offers.count %>
@@ -34,13 +34,13 @@
             </tr> <!-- end of iteration over @job_offer_folders -->
 
 
-            <!-- iterate of job offer folders -->
-            <% @job_offer_folders.each do |job_offer_folder| %>
+            <!-- PARENT FOLDERS: iterate of job offer folders without parent -->
+            <% @job_offer_folders_without_parent.each do |job_offer_folder| %>
               <tr class="border">
                 <td class="column-1">
                   <%= link_to root_path do %>
                     <span class="noun_job"><i class="fa fa-folder-open" aria-hidden="true"></i><i class="fa fa-folder" aria-hidden="true"></i> <%= job_offer_folder.name %></span>
-                 <% end %>
+                  <% end %>
                 </td>
                 <td class="column-2">
                   <%= job_offer_folder.job_offers.count %>
@@ -48,17 +48,67 @@
                 <td class="column-3"><%= job_offer_folder.job_offers.count %></td>
                 <td class="column-4"><%= job_offer_folder.job_offers.count %></td>
               </tr>
-            <%end%> <!-- end of iteration over @job_offer_folders -->
+
+              <!-- CHILDREN FOLDERS: iterate over folders inside folders -->
+              <% if job_offer_folder.job_offer_folders %>
+                <% job_offer_folder.job_offer_folders.each do |job_offer_folder_child| %>
+                  <tr class="border">
+                    <td class="column-1">
+                      <%= link_to root_path do %>
+                        <span class="noun_job"><i class="fa fa-folder-open" aria-hidden="true"></i><i class="fa fa-folder" aria-hidden="true"></i> <%= job_offer_folder_child.name %></span>
+                      <% end %>
+                    </td>
+                    <td class="column-2">
+                      <%= job_offer_folder_child.job_offers.count %>
+                    </td>
+                    <td class="column-3"><%= job_offer_folder_child.job_offers.count %></td>
+                    <td class="column-4"><%= job_offer_folder_child.job_offers.count %></td>
+                  </tr>
+
+                  <!-- iterate over job_offers inside child folder -->
+                  <% if job_offer_folder_child.job_offers %>
+                    <% job_offer_folder_child.job_offers.each do |job_offer| %>
+                      <tr class="border">
+                        <td class="column-1">
+                          <%= link_to job_offer_job_applications_path(job_offer) do %>
+                            <%= image_tag "noun_job.png", width: '25' %>
+                            <span class="noun_job"><%= job_offer.title %></span>
+                          <% end %>
+                        </td>
+                        <td class="column-2">
+                        <% date = ((Time.now - job_offer.created_at) / (24 * 60 * 60)).to_i %>
+                          <% if I18n.l(job_offer.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
+                            <% date = "Today"%>
+                          <% else %>
+                            <% if date <= 1 %>
+                              <% date = "1 day ago" %>
+                            <% else %>
+                            <% date = "#{((Time.now - job_offer.created_at) / (24 * 60 * 60)).to_i} day ago" %>
+                            <% end %>
+                          <% end %>
+                          <%= date %>
+                          <div>(<%= job_offer.created_at.strftime('%x') %>)</div>
+                        </td>
+                        <td class="column-3"><%= job_offer.job_applications.where(submit: true, rejected: nil).count %></td>
+                        <td class="column-4"><%= job_offer.job_applications.where(contact: true, rejected: nil).count %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                <% end %> <!-- end of folders inside folders iteration (each) -->
+              <% else %>
+              <% end %> <!-- end of folders inside folders iteration (if) -->
+
+            <%end%> <!-- end of iteration over @job_offer_folders_without parents -->
 
 
-            <!-- iterate over job_offers -->
-            <% @job_offers.each do |job_offer| %>
+            <!-- iterate over job_offers which are not in folders  -->
+            <% @job_offers_without_folders.each do |job_offer| %>
               <tr class="border">
                 <td class="column-1">
                   <%= link_to job_offer_job_applications_path(job_offer) do %>
-                    <%= image_tag "noun_job.png", :width => '25' %>
+                    <%= image_tag "noun_job.png", width: '25' %>
                     <span class="noun_job"><%= job_offer.title %></span>
-                 <% end %>
+                  <% end %>
                 </td>
                 <td class="column-2">
                 <% date = ((Time.now - job_offer.created_at) / (24 * 60 * 60)).to_i %>
@@ -77,7 +127,7 @@
                 <td class="column-3"><%= job_offer.job_applications.where(submit: true, rejected: nil).count %></td>
                 <td class="column-4"><%= job_offer.job_applications.where(contact: true, rejected: nil).count %></td>
               </tr>
-            <%end%> <!-- end of iteration over @job_offers -->
+            <%end%> <!-- end of iteration over @job_offers_without_folders -->
 
 
           </tbody>
