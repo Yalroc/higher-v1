@@ -31,7 +31,7 @@
   end
 
   def create
-    @job_offer = JobOffer.new(offer_params)
+    @job_offer = JobOffer.new(job_offer_params)
     @job_offer.recruiter = current_recruiter
     authorize @job_offer
     if @job_offer.save
@@ -47,7 +47,7 @@
 
   def update
     authorize @job_offer
-    if @job_offer.update(offer_params)
+    if @job_offer.update(job_offer_params)
       redirect_to job_offers
     else
       render :edit
@@ -60,7 +60,7 @@
     current_recruiter
   end
 
-  def offer_params
+  def job_offer_params
     params.require(:job_offer).permit(:description, :title)
   end
 
