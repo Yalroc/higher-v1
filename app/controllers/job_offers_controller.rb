@@ -12,6 +12,9 @@
     @job_offers_without_folders = @job_offers.where(job_offer_folder: nil)
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
 
+    # DRY recursive tree-structure
+    @parent_folders = current_recruiter.organization.job_offer_folders.where(parent: nil)
+
     # MODAL DATA
     @job_offer = JobOffer.new # for job_offer creation
     @job_offer_folder = JobOfferFolder.new # for folder (job offers) creation
