@@ -7,7 +7,8 @@
           <div class="navbar-higher-brand-recruiter2">
             <%= image_tag "LOreal_black_vector.png" %>
           </div>
-          <tr class="flex height-45px">
+          <tr class="flex height-45px bold">
+            <th class="column-0"></th>
             <th class="column-1 text-center"></th>
             <th class="column-2 text-center">Offers</th>
             <th class="column-3 text-center">Candidates</th>
@@ -22,10 +23,11 @@
           <tbody class="offers-body">
 
             <!-- first row: HOLDING -->
-            <tr class="border">
-              <td class="column-1">
+            <tr class="border bold">
+              <td class="column-0"></td>
+              <td class="column-1 text-left folder">
                 <%= link_to root_path do %>
-                  <span class="noun_job">Holding</span>
+                  <span id="organization_overhead_name">Holding</span>
                 <% end %>
               </td>
               <td class="column-2">
@@ -34,8 +36,19 @@
               <td class="column-3"><%= @job_offers.count %></td>
               <td class="column-4"><%= @job_offers.count %></td>
               <td class="column-5">65%</td>
-
             </tr> <!-- end of iteration over @job_offer_folders -->
+
+            <!-- Method to calculate folder and job_offer indentation -->
+            <% def folder_tree_level(node) %>
+              <% no_parent = false %>
+              <% level = -1 %>
+              <% while no_parent == false do %>
+                <% node = node.parent %>
+                <% no_parent = node.nil? %>
+                <% level = level + 1 %>
+              <% end %>
+              <% return level %>
+            <% end %>
 
 
             <!-- RECURSIVE METHOD (TREE STRUCTURE) -->
@@ -43,7 +56,7 @@
                <% parent_folder.job_offer_folders.each do |folder| %>
                   <%= folder_html(folder) %>
                   <% if folder.job_offer_folders.any? %>
-                    <%= draw_tree(folder) %>
+                    <% draw_tree(folder) %>
                   <% end %>
                   <% if folder.job_offers.any? %>
                     <% folder.job_offers.each do |offer| %>
@@ -55,13 +68,11 @@
 
 
             <%  def folder_html(folder) %>
-                  <tr class="border <%= folder.parent ? "" : "parent-folder" %>">
-                    <td class="column-1">
+                  <tr class="border <%= folder.parent ? "" : "parent-folder-row" %>">
+                    <td class="column-0"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star hidden" aria-hidden="true"></i></td>
+                    <td class="column-1 text-left bold <%= 'folder-indentation-' + folder_tree_level(folder).to_s %>">
                       <%= link_to root_path do %>
-                      <% if folder.parent %>
-                        <div class="inline padding-left-30px"></div>
-                      <% end %>
-                        <span class="noun_job"><i class="fa fa-folder-open" aria-hidden="true"></i><i class="fa fa-folder" aria-hidden="true"></i><%= " " + folder.name %></span>
+                        <span><i class="fa fa-folder-open hidden" aria-hidden="true"></i><i class="fa fa-folder" aria-hidden="true"></i><%= " " + folder.name %></span>
                       <% end %>
                     </td>
                     <td class="column-2">
@@ -76,10 +87,11 @@
 
             <%  def offer_html(offer) %>
                   <tr class="border">
-                    <td class="column-1">
+                    <td class="column-0"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star hidden" aria-hidden="true"></i></td>
+                    <td class="column-1 text-left">
                       <%= link_to root_path do %>
                         <%= image_tag "noun_job.png", width: '25' %>
-                        <span class="noun_job"><%= offer.title %></span>
+                        <span><%= offer.title %></span>
                       <% end %>
                     </td>
                     <td class="column-2">
@@ -87,7 +99,7 @@
                     </td>
                     <td class="column-3"><%= 3.to_s %></td>
                     <td class="column-4"><%= 4.to_s %></td>
-                    <td class="column-4"><%= 4.to_s %></td>
+                    <td class="column-5"><%= 4.to_s %></td>
                   </tr>
             <%  end %>
 
@@ -100,7 +112,7 @@
                   <%= offer_html(offer) %>
                 <% end %>
               <% end %>
-              <%= draw_tree(folder) %>
+              <% draw_tree(folder) %>
             <% end %>
 
 
@@ -167,6 +179,15 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 
 
