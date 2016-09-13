@@ -29,11 +29,9 @@
                   <span id="organization_overhead_name">Holding</span>
                 <% end %>
               </td>
-              <td class="column-2">
-                <%= @job_offers.count %>
-              </td>
-              <td class="column-3"><%= @job_offers.count %></td>
-              <td class="column-4"><%= @job_offers.count %></td>
+              <td class="column-2"><%= @job_offers.count %></td>
+              <td class="column-3"><%= @job_applications.select { |job_application| job_application.submit == true && job_application.rejected == nil }.count %></td>
+              <td class="column-4"><%= @job_applications.select { |job_application| job_application.contact == true && job_application.rejected == nil }.count %></td>
               <td class="column-5"><%= rand(75..85).round(1).to_s + "%" %></td>
             </tr> <!-- end of iteration over @job_offer_folders -->
 
@@ -58,7 +56,7 @@
             <% def count_offers_inside_folder(folder) %>
               <% sum = 0 %>
               <% if folder.job_offers.any? %>
-                <% sum = sum + folder.job_offers.count %>
+                <% sum += folder.job_offers.count %>
               <% end %>
               <% return sum %>
             <% end %>
@@ -66,7 +64,7 @@
             <% def dive_inside_folder_for_offers(folder, sum) %>
               <% if folder.job_offer_folders.any? %>
                 <% folder.job_offer_folders.each do |child_folder| %>
-                  <% sum = sum + count_offers_inside_folder(child_folder).to_i %>
+                  <% sum += count_offers_inside_folder(child_folder).to_i %>
                   <% dive_inside_folder_for_offers(child_folder, sum) %>
                 <% end %>
               <% end %>
@@ -75,7 +73,7 @@
 
             <% def count_down_tree_for_offers(folder) %> <!-- condition = submit or contact -->
               <% sum = 0 %>
-              <% sum = sum + count_offers_inside_folder(folder).to_i %>
+              <% sum += count_offers_inside_folder(folder).to_i %>
               <% sum = dive_inside_folder_for_offers(folder, sum) %>
               <% return sum %>
             <% end %>
@@ -86,7 +84,7 @@
               <% sum = 0 %>
               <% if folder.job_offers.any? %>
                 <% folder.job_offers.each do |offer| %>
-                  <% sum = sum + offer.job_applications.where(submit: true, rejected: nil).count %>
+                  <% sum += offer.job_applications.where(submit: true, rejected: nil).count %>
                 <% end %>
               <% end %>
               <% return sum %>
@@ -95,7 +93,7 @@
             <% def dive_inside_folder(folder, sum) %>
               <% if folder.job_offer_folders.any? %>
                 <% folder.job_offer_folders.each do |child_folder| %>
-                  <% sum = sum + count_applications_inside_folder(child_folder).to_i %>
+                  <% sum += count_applications_inside_folder(child_folder).to_i %>
                   <% dive_inside_folder(child_folder, sum) %>
                 <% end %>
               <% end %>
@@ -133,7 +131,7 @@
 
             <% def count_down_tree_for_contacted(folder) %> <!-- condition = submit or contact -->
               <% sum = 0 %>
-              <% sum = sum + count_contacted_applications_inside_folder(folder).to_i %>
+              <% sum += count_contacted_applications_inside_folder(folder).to_i %>
               <% sum = dive_inside_folder_for_contacted(folder, sum) %>
               <% return sum %>
             <% end %>
@@ -163,13 +161,28 @@
                       <% end %>
                     </td>
                     <td class="column-2">
-                      <%= count_down_tree_for_offers(folder).to_s %>
+                        <%= count_down_tree_for_offers(folder).to_s %>
                     </td>
                     <td class="column-3">
-                      <%= count_down_tree(folder).to_s %>
+                      <% if folder.job_offer_folders.empty? && folder.job_offers.count == 1 && folder.parent %>
+                        <%= "-" %>
+                      <% else %>
+                        <%= count_down_tree(folder).to_s %>
+                      <% end %>
                     </td>
-                    <td class="column-4"><%= count_down_tree_for_contacted(folder).to_s %></td>
-                    <td class="column-5"><%= rand(60..90).round(1).to_s + "%" %></td>
+                    <td class="column-4">
+                      <% if folder.job_offer_folders.empty? && folder.job_offers.count == 1 && folder.parent %>
+                        <%= "-" %>
+                      <% else %>
+                        <%= count_down_tree_for_contacted(folder).to_s %>
+                      <% end %>
+                    </td>
+                    <td class="column-5">
+                      <% if folder.job_offer_folders.empty? && folder.job_offers.count == 1 && folder.parent %>
+                        <%= "-" %>
+                      <% else %>
+                        <%= rand(60..90).round(1).to_s + "%" %></td>
+                      <% end %>
                   </tr>
             <%  end %>
 
@@ -250,11 +263,7 @@
       <div class="modal-body">
         <%= simple_form_for([ @job_offer ]) do |form| %>
           <%= form.input :title %>
-          <%= form.input :description, input_html: { id: 'job_offer_description_field' } %>
-          <%= form.input :location %>
-          <%= form.input :min_xp %>
-          <%= form.input :max_xp %>
-          <%= form.input :salary %>
+          <%= form.input :job_offer_folder_id, label: 'In which folder?', hint: 'Select the folder in which you want the job offer to go.', collection: @all_folders, class: 'String' %>
           <%= form.button :submit %>
         <% end %>
       </div>
@@ -262,7 +271,7 @@
   </div>
 </div>
 
-<!-- Modal: Create Offer -->
+<!-- Modal: Create a Folder -->
 <div class="modal fade" id="AddFolderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -275,6 +284,7 @@
       <div class="modal-body">
         <%= simple_form_for([ @job_offer_folder ]) do |form| %>
           <%= form.input :name %>
+          <%= form.input :parent_id, label: 'In which folder?', hint: 'Don\'t make a selection if you want your folder to stand alone.', collection: @all_folders, class: 'String' %>
           <%= form.button :submit %>
         <% end %>
       </div>
@@ -282,3 +292,28 @@
   </div>
 </div>
 
+
+<!-- Modal: Edit a Job Offer -->
+<div class="modal fade" id="EditJobOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for([ @job_offer ]) do |form| %>
+          <%= form.input :title %>
+          <%= form.input :description, input_html: { id: 'job_offer_description_field' } %>
+          <%= form.input :location %>
+          <%= form.input :min_xp %>
+          <%= form.input :max_xp %>
+          <%= form.input :salary %>
+          <%= form.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

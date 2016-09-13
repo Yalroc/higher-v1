@@ -6,15 +6,16 @@
 
   def index
     @job_offers = policy_scope(JobOffer) # Pundit authorization
-    @job_offers = JobOffer.where(organization: current_recruiter.organization)
-    @job_offer_folders = JobOfferFolder.where(organization: current_recruiter.organization)
-    @job_offer_folders_without_parent = @job_offer_folders.where(parent: nil)
-    @job_offers_without_folders = @job_offers.where(job_offer_folder: nil)
-    @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
-
+    @job_offers = JobOffer.where(organization: current_recruiter.organization).sort_by { |job_offer| job_offer.title }
+    @job_offer_folders = JobOfferFolder.where(organization: current_recruiter.organization).sort_by { |folder| folder.name }
+    @job_applications = []
+    @job_offers.each do |job_offer|
+      @job_applications << job_offer.job_applications
+    end
+    @job_applications.flatten!
     # DRY recursive tree-structure
-    @parent_folders = current_recruiter.organization.job_offer_folders.where(parent: nil)
-
+    @parent_folders = current_recruiter.organization.job_offer_folders.where(parent: nil).sort_by { |folder| folder.name }
+    @all_folders = JobOfferFolder.where(organization: current_recruiter.organization).all.sort_by { |folder| folder.name }
     # MODAL DATA
     @job_offer = JobOffer.new # for job_offer creation
     @job_offer_folder = JobOfferFolder.new # for folder (job offers) creation
@@ -33,6 +34,7 @@
   def create
     @job_offer = JobOffer.new(job_offer_params)
     @job_offer.recruiter = current_recruiter
+    @job_offer.organization = current_recruiter.organization
     authorize @job_offer
     if @job_offer.save
       redirect_to job_offers_path
@@ -61,7 +63,7 @@
   end
 
   def job_offer_params
-    params.require(:job_offer).permit(:description, :title)
+    params.require(:job_offer).permit(:description, :title, :job_offer_folder_id)
   end
 
   def set_job_offer

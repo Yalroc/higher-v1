@@ -74,6 +74,7 @@ table {
 .border {
   border-bottom: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+  line-height: 1vh;
 }
 #organization_overhead_name {
   margin-left: -50px;
@@ -81,6 +82,8 @@ table {
 
 .holding-row {
   border-bottom: 1px solid $gray-mid-lighter;
+  line-height: 2.5vh;
+  font-size: 16px;
 }
 
 .height-45px {
@@ -122,46 +125,52 @@ table {
 
 .folder-indentation-0 {
   padding-left: 0;
+  font-size: 16px;
 }
 
 .folder-indentation-1 {
   padding-left: 35px;
+  font-size: 16px;
 }
 
 .folder-indentation-2 {
   padding-left: 70px;
+  font-size: 16px;
 }
 
 .folder-indentation-3 {
   padding-left: 105px;
+  font-size: 16px;
 }
 
 .folder-indentation-4 {
   padding-left: 140px;
+  font-size: 16px;
 }
 
 .folder-indentation-5 {
   padding-left: 175px;
+  font-size: 16px;
 }
 
 .folder-indentation-6 {
   padding-left: 210px;
+  font-size: 16px;
 }
 
 .folder-indentation-7 {
   padding-left: 245px;
+  font-size: 16px;
 }
 
 .folder-indentation-8 {
   padding-left: 280px;
+  font-size: 16px;
 }
 
 .folder-indentation-9 {
   padding-left: 315px;
-}
-
-.folder-indentation-0 {
-  padding-left: 0;
+  font-size: 16px;
 }
 
 .tree-folder-level-1 {

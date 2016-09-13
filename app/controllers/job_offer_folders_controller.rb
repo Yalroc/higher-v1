@@ -16,6 +16,6 @@ skip_before_action :authenticate_candidate!
    private
 
   def job_offer_folder_params
-    params.require(:job_offer_folder).permit(:name)
+    params.require(:job_offer_folder).permit(:name, :parent_id)
   end
 end
