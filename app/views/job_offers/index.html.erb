@@ -7,7 +7,11 @@
           <div class="navbar-higher-brand-recruiter2">
             <%= image_tag "LOreal_black_vector.png" %>
           </div>
-          <tr class="flex height-45px bold table-head">
+          <div class="btn-group navbar-higher-btn-group-recruiter" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><%= image_tag "noun_job.png", class: "cv-icon" %>+</button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><i class="fa fa-folder folder-icon" aria-hidden="true"></i>+</button>
+          </div>
+          <tr class="flex height-40px bold table-head">
             <th class="column-0"></th>
             <th class="column-1 text-center"></th>
             <th class="column-2 text-center">Offers</th>
@@ -193,7 +197,7 @@
                     <td class="column-1 text-left <%= 'folder-indentation-' + tree_level(offer).to_s %>">
                       <%= link_to job_offer_job_applications_path(offer) do %>
                         <%= image_tag "noun_job.png", class: "cv-icon" %>
-                        <span><%= offer.title %></span>
+                        <span><%= offer.title %><i class="fa fa-question-circle-o" aria-hidden="true"></i></span>
                       <% end %>
                     </td>
                     <td class="column-2">
@@ -237,15 +241,6 @@
       </table>
     </div>
   </div>
-  <br>
-  <br>
-  <!-- Button: Create Offer -->
-  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#CreateJobOfferModal">create an offer</button>
-  <br>
-  <br>
-  <!-- Button: Add Folder -->
-  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#AddFolderModal">add a folder</button>
-
 </div>
 
 <!-- SCRIPTS -->
@@ -279,7 +274,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
+        <h4 class="modal-title" id="myModalLabel">Add a Folder</h4>
       </div>
       <div class="modal-body">
         <%= simple_form_for([ @job_offer_folder ]) do |form| %>

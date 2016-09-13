@@ -50,7 +50,7 @@ table {
   padding: 6px O;
 }
 .offers-body {
-  margin-top: 57px;
+  margin-top: 52px;
   display: table;
   width: 100%;
   .border td:first-child {
@@ -86,8 +86,8 @@ table {
   font-size: 16px;
 }
 
-.height-45px {
-  height: 45px;
+.height-40px {
+  height: 40px;
 }
 
 #job_offer_description_field {
@@ -100,7 +100,9 @@ table {
 
 .table-head {
   width: 97vw;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1vh;
+  padding-top: 14px;
 }
 
 .star-icon {
