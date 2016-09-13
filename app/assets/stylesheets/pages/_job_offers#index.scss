@@ -6,24 +6,30 @@ table {
   padding: 1rem;
   justify-content: space-between;
 }
+
+.column-0 {
+  width: 3.5%;
+  text-align: left;
+}
+
 .column-1 {
-  width: 50%;
+  width: 42.5%;
   color: #004080;
 }
 .column-2 {
-  width: 20%;
+  width: 13.5%;
   // border-bottom: 1px solid #E6E6E6;
 }
 .column-3 {
-  width: 15%;
+  width: 13.5%;
   // border-bottom: 1px solid #E6E6E6;
 }
 .column-4 {
-  width: 15%;
+  width: 13.5%;
   // border-bottom: 1px solid #E6E6E6;
 }
 .column-5 {
-  width: 0%;
+  width: 13.5%;
   // border-bottom: 1px solid #E6E6E6;
 }
 
@@ -44,29 +50,37 @@ table {
   padding: 6px O;
 }
 .offers-body {
-  margin-top: 79px;
+  margin-top: 57px;
   display: table;
   width: 100%;
   .border td:first-child {
     text-align: left;
-    padding-left: 10%;
+    padding-left: 1%;
   }
 }
 .flex {
   display: flex;
   justify-content: space-between;
 }
+
 .vw {
   text-align: center;
-  width: 100vw;
+  width: 97vw;
+  margin: auto;
+  font-size: 14px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   margin-top: -25px !important;
 }
 .border {
   border-bottom: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
-.noun_job {
-  width: 30px;
+#organization_overhead_name {
+  margin-left: -50px;
+}
+
+.holding-row {
+  border-bottom: 1px solid $gray-mid-lighter;
 }
 
 .height-45px {
@@ -75,4 +89,113 @@ table {
 
 #job_offer_description_field {
   height: 25vh;
+}
+
+.parent-folder-row {
+  background-color: $gray-lighter;
+}
+
+.table-head {
+  width: 97vw;
+  font-size: 15px;
+}
+
+.star-icon {
+  color: $gray-light;
+}
+
+.folder-icon {
+  font-size: 18px;
+  color: $black;
+  padding-right: 7px;
+}
+
+.cv-icon {
+  width: 26px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.folder-indentation-0 {
+  padding-left: 0;
+}
+
+.folder-indentation-1 {
+  padding-left: 35px;
+}
+
+.folder-indentation-2 {
+  padding-left: 70px;
+}
+
+.folder-indentation-3 {
+  padding-left: 105px;
+}
+
+.folder-indentation-4 {
+  padding-left: 140px;
+}
+
+.folder-indentation-5 {
+  padding-left: 175px;
+}
+
+.folder-indentation-6 {
+  padding-left: 210px;
+}
+
+.folder-indentation-7 {
+  padding-left: 245px;
+}
+
+.folder-indentation-8 {
+  padding-left: 280px;
+}
+
+.folder-indentation-9 {
+  padding-left: 315px;
+}
+
+.folder-indentation-0 {
+  padding-left: 0;
+}
+
+.tree-folder-level-1 {
+  color: $blue-lighter;
+}
+
+.tree-folder-level-2 {
+
+}
+
+.tree-folder-level-3 {
+
+}
+
+.tree-folder-level-4 {
+
+}
+
+.tree-folder-level-5 {
+
+}
+
+.tree-folder-level-6 {
+
+}
+
+.tree-folder-level-7 {
+
+}
+
+.tree-folder-level-8 {
+
+}
+
+.tree-folder-level-9 {
+
 }

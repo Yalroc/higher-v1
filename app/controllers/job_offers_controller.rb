@@ -1,21 +1,23 @@
   class JobOffersController < ApplicationController
-  before_action :set_job_offers, only: [:show, :edit, :update]
+  before_action :set_job_offer, only: [:show, :edit, :update]
   skip_before_action :authenticate_candidate!
 
   skip_before_action :authenticate_recruiter!, only: [:show]
 
   def index
-    @job_offer = JobOffer.new # for job_offer creation
-    @job_offers = policy_scope(JobOffer)
-    @job_offers = JobOffer.where(recruiter: current_recruiter)
-
-    if @job_offers.any?
-      @organization = @job_offers.first.recruiter.organization
-    else
-      @organization = nil
-    end
-
+    @job_offers = policy_scope(JobOffer) # Pundit authorization
+    @job_offers = JobOffer.where(organization: current_recruiter.organization)
+    @job_offer_folders = JobOfferFolder.where(organization: current_recruiter.organization)
+    @job_offer_folders_without_parent = @job_offer_folders.where(parent: nil)
+    @job_offers_without_folders = @job_offers.where(job_offer_folder: nil)
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
+
+    # DRY recursive tree-structure
+    @parent_folders = current_recruiter.organization.job_offer_folders.where(parent: nil)
+
+    # MODAL DATA
+    @job_offer = JobOffer.new # for job_offer creation
+    @job_offer_folder = JobOfferFolder.new # for folder (job offers) creation
   end
 
   def show
@@ -29,7 +31,7 @@
   end
 
   def create
-    @job_offer = JobOffer.new(offer_params)
+    @job_offer = JobOffer.new(job_offer_params)
     @job_offer.recruiter = current_recruiter
     authorize @job_offer
     if @job_offer.save
@@ -45,7 +47,7 @@
 
   def update
     authorize @job_offer
-    if @job_offer.update(offer_params)
+    if @job_offer.update(job_offer_params)
       redirect_to job_offers
     else
       render :edit
@@ -58,11 +60,11 @@
     current_recruiter
   end
 
-  def offer_params
+  def job_offer_params
     params.require(:job_offer).permit(:description, :title)
   end
 
-  def set_job_offers
+  def set_job_offer
     @job_offer = JobOffer.find(params[:id])
   end
 end

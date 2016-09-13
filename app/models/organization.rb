@@ -3,4 +3,5 @@ class Organization < ApplicationRecord
   has_many :recruiters
   has_many :experiences
   has_many :job_offer_folders
+  has_many :job_offers
 end

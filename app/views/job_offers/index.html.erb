@@ -1,68 +1,251 @@
 <div id="job_offers_index_wrapper">
   <div class="row">
     <div class="tableau-offer">
-      <% if @job_offers.any? == true %>
-        <table class="vw">
-          <thead class="head-fixed text-center">
-            <div class="navbar-higher-brand-recruiter2">
-              <%= image_tag "LOreal_black_vector.png" %>
-            </div>
-            <tr class="flex height-45px">
-              <th class="column-1 text-center"></th>
-              <th class="column-2 text-center">Offers</th>
-              <th class="column-3 text-center">Candidates</th>
-              <th class="column-4 text-center">Contacted</th>
-            </tr>
-          </  >
+      <table class="vw">
+        <!-- table headline -->
+        <thead class="head-fixed text-center">
+          <div class="navbar-higher-brand-recruiter2">
+            <%= image_tag "LOreal_black_vector.png" %>
+          </div>
+          <tr class="flex height-45px bold table-head">
+            <th class="column-0"></th>
+            <th class="column-1 text-center"></th>
+            <th class="column-2 text-center">Offers</th>
+            <th class="column-3 text-center">Candidates</th>
+            <th class="column-4 text-center">Contacted</th>
+            <td class="column-5 text-center">Average Fit</td>
+          </tr>
+        </thead>
+
+        <!-- table body -->
+        <% if @job_offers.any? || @job_offer_folders.any? %>
           <tbody class="offers-body">
-            <% @job_offers.each do |job_offer| %>
-              <tr class= "border">
-                <td class="column-1">
-                  <%= link_to job_offer_job_applications_path(job_offer) do %>
-                    <%= image_tag "noun_job.png", :width => '25' %>
-                    <span class="noun_job"><%= job_offer.title %></span>
-                 <% end %>
-                </td>
-                <td class="column-2">
-                <% date = ((Time.now - job_offer.created_at) / (24 * 60 * 60)).to_i %>
-                  <% if I18n.l(job_offer.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
-                    <% date = "Today"%>
-                  <% else %>
-                    <% if date <= 1 %>
-                      <% date = "1 day ago" %>
-                    <% else %>
-                    <% date = "#{((Time.now - job_offer.created_at) / (24 * 60 * 60)).to_i} day ago" %>
+
+            <!-- first row: HOLDING -->
+            <tr class="border bold holding-row">
+              <td class="column-0"></td>
+              <td class="column-1 text-left folder">
+                <%= link_to root_path do %>
+                  <span id="organization_overhead_name">Holding</span>
+                <% end %>
+              </td>
+              <td class="column-2">
+                <%= @job_offers.count %>
+              </td>
+              <td class="column-3"><%= @job_offers.count %></td>
+              <td class="column-4"><%= @job_offers.count %></td>
+              <td class="column-5"><%= rand(75..85).round(1).to_s + "%" %></td>
+            </tr> <!-- end of iteration over @job_offer_folders -->
+
+            <!-- Method to calculate folder and job_offer indentation -->
+            <% def tree_level(node) %>
+              <% no_parent = false %>
+              <% level = -1 %>
+              <% if node.class == JobOffer %>
+                <% level = level + 1 %>
+                <% node = node.job_offer_folder %>
+              <% end %>
+              <% while no_parent == false do %>
+                <% node = node.parent %>
+                <% no_parent = node.nil? %>
+                <% level = level + 1 %>
+              <% end %>
+              <% return level %>
+            <% end %>
+
+
+            <!-- Methods to count job_offers inside folders -->
+            <% def count_offers_inside_folder(folder) %>
+              <% sum = 0 %>
+              <% if folder.job_offers.any? %>
+                <% sum = sum + folder.job_offers.count %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def dive_inside_folder_for_offers(folder, sum) %>
+              <% if folder.job_offer_folders.any? %>
+                <% folder.job_offer_folders.each do |child_folder| %>
+                  <% sum = sum + count_offers_inside_folder(child_folder).to_i %>
+                  <% dive_inside_folder_for_offers(child_folder, sum) %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def count_down_tree_for_offers(folder) %> <!-- condition = submit or contact -->
+              <% sum = 0 %>
+              <% sum = sum + count_offers_inside_folder(folder).to_i %>
+              <% sum = dive_inside_folder_for_offers(folder, sum) %>
+              <% return sum %>
+            <% end %>
+
+
+            <!-- Methods to count submitted job_applications -->
+            <% def count_applications_inside_folder(folder) %>
+              <% sum = 0 %>
+              <% if folder.job_offers.any? %>
+                <% folder.job_offers.each do |offer| %>
+                  <% sum = sum + offer.job_applications.where(submit: true, rejected: nil).count %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def dive_inside_folder(folder, sum) %>
+              <% if folder.job_offer_folders.any? %>
+                <% folder.job_offer_folders.each do |child_folder| %>
+                  <% sum = sum + count_applications_inside_folder(child_folder).to_i %>
+                  <% dive_inside_folder(child_folder, sum) %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def count_down_tree(folder) %> <!-- condition = submit or contact -->
+              <% sum = 0 %>
+              <% sum = sum + count_applications_inside_folder(folder).to_i %>
+              <% sum = dive_inside_folder(folder, sum) %>
+              <% return sum %>
+            <% end %>
+
+
+            <!-- Methods to count contact job_applications -->
+            <% def count_contacted_applications_inside_folder(folder) %>
+              <% sum = 0 %>
+              <% if folder.job_offers.any? %>
+                <% folder.job_offers.each do |offer| %>
+                  <% sum = sum + offer.job_applications.where(contact: true, rejected: nil).count %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def dive_inside_folder_for_contacted(folder, sum) %>
+              <% if folder.job_offer_folders.any? %>
+                <% folder.job_offer_folders.each do |child_folder| %>
+                  <% sum = sum + count_contacted_applications_inside_folder(child_folder).to_i %>
+                  <% dive_inside_folder_for_contacted(child_folder, sum) %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def count_down_tree_for_contacted(folder) %> <!-- condition = submit or contact -->
+              <% sum = 0 %>
+              <% sum = sum + count_contacted_applications_inside_folder(folder).to_i %>
+              <% sum = dive_inside_folder_for_contacted(folder, sum) %>
+              <% return sum %>
+            <% end %>
+
+
+            <!-- RECURSIVE METHOD (TREE STRUCTURE) -->
+            <%  def draw_tree(parent_folder) %>
+               <% parent_folder.job_offer_folders.each do |folder| %>
+                  <%= folder_html(folder) %>
+                  <% if folder.job_offers.any? %>
+                    <% folder.job_offers.each do |offer| %>
+                      <%= offer_html(offer) %>
                     <% end %>
                   <% end %>
-                  <%= date %>
-                  <div>(<%= job_offer.created_at.strftime('%x') %>)</div>
-                </td>
-                <td class="column-3"><%= job_offer.job_applications.where(submit: true, rejected: nil).count %></td>
-                <td class="column-4"><%= job_offer.job_applications.where(contact: true, rejected: nil).count %></td>
-            <%end%>
-              </tr>
+                  <% if folder.job_offer_folders.any? %>
+                    <% draw_tree(folder) %>
+                  <% end %>
+               <% end %>
+            <%  end %>
+
+            <%  def folder_html(folder) %>
+                  <tr class="border <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %>">
+                    <td class="column-0"><i class="fa fa-star-o star-icon" aria-hidden="true"></i><i class="fa fa-star star-icon hidden" aria-hidden="true"></i></td>
+                    <td class="column-1 text-left bold <%= 'folder-indentation-' + tree_level(folder).to_s %>">
+                      <%= link_to root_path do %>
+                        <span><i class="fa fa-folder-open folder-icon hidden" aria-hidden="true"></i><i class="fa fa-folder folder-icon" aria-hidden="true"></i><%= " " + folder.name %></span>
+                      <% end %>
+                    </td>
+                    <td class="column-2">
+                      <%= count_down_tree_for_offers(folder).to_s %>
+                    </td>
+                    <td class="column-3">
+                      <%= count_down_tree(folder).to_s %>
+                    </td>
+                    <td class="column-4"><%= count_down_tree_for_contacted(folder).to_s %></td>
+                    <td class="column-5"><%= rand(60..90).round(1).to_s + "%" %></td>
+                  </tr>
+            <%  end %>
+
+
+            <%  def offer_html(offer) %>
+                  <tr class="border">
+                    <td class="column-0"><i class="fa fa-star-o star-icon" aria-hidden="true"></i><i class="fa fa-star star-icon hidden" aria-hidden="true"></i></td>
+                    <td class="column-1 text-left <%= 'folder-indentation-' + tree_level(offer).to_s %>">
+                      <%= link_to job_offer_job_applications_path(offer) do %>
+                        <%= image_tag "noun_job.png", class: "cv-icon" %>
+                        <span><%= offer.title %></span>
+                      <% end %>
+                    </td>
+                    <td class="column-2">
+                      <% days_ago = ((Time.now - offer.created_at) / (24 * 60 * 60)).to_i %>
+                      <% if I18n.l(offer.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
+                        <% days_ago = "Today"%>
+                      <% else %>
+                        <% if days_ago <= 1 %>
+                          <% days_ago = "1 day ago" %>
+                        <% else %>
+                        <% days_ago = "#{((Time.now - offer.created_at) / (24 * 60 * 60)).to_i} days ago" %>
+                        <% end %>
+                      <% end %>
+                      <% months_array = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]%>
+                      <% creation_date = "(" + (offer.created_at.day > 9 ? "" : "0") + offer.created_at.day.to_s + "-" + months_array[offer.created_at.month - 1] + ")" %>
+                      <%= days_ago + " " + creation_date %>
+                    </td>
+                    <td class="column-3"><%= offer.job_applications.where(submit: true, rejected: nil).count %></td>
+                    <td class="column-4"><%= offer.job_applications.where(contact: true, rejected: nil).count %></td>
+
+                    <td class="column-5"><%= rand(50..100).round(1).to_s + "%" %></td>
+                  </tr>
+            <%  end %>
+
+
+            <!-- draw tree -->
+            <% @parent_folders.each do |folder| %>
+              <%= folder_html(folder) %>
+              <% if folder.job_offers.any? %>
+                <% folder.job_offers.each do |offer| %>
+                  <%= offer_html(offer) %>
+                <% end %>
+              <% end %>
+              <% draw_tree(folder) %>
+            <% end %>
+
+
           </tbody>
-        </table>
-      <% else %>
-      <% end %>
+        <% else %> <!-- if table is empty don't iterate -->
+        <% end %>  <!-- end of if function -->
+      </table>
     </div>
   </div>
   <br>
   <br>
-  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#TableModal">
-    create an offer
-  </button>
+  <!-- Button: Create Offer -->
+  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#CreateJobOfferModal">create an offer</button>
+  <br>
+  <br>
+  <!-- Button: Add Folder -->
+  <button type="button" class="btn-form-2" data-toggle="modal" data-target="#AddFolderModal">add a folder</button>
+
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="TableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- SCRIPTS -->
+
+<!-- Modal: Create Offer -->
+<div class="modal fade" id="CreateJobOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Créez votre offre</h4>
+        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
       </div>
       <div class="modal-body">
         <%= simple_form_for([ @job_offer ]) do |form| %>
@@ -78,3 +261,24 @@
     </div>
   </div>
 </div>
+
+<!-- Modal: Create Offer -->
+<div class="modal fade" id="AddFolderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for([ @job_offer_folder ]) do |form| %>
+          <%= form.input :name %>
+          <%= form.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
