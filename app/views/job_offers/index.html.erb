@@ -143,13 +143,13 @@
             <%  def draw_tree(parent_folder) %>
                <% parent_folder.job_offer_folders.each do |folder| %>
                   <%= folder_html(folder) %>
-                  <% if folder.job_offer_folders.any? %>
-                    <% draw_tree(folder) %>
-                  <% end %>
                   <% if folder.job_offers.any? %>
                     <% folder.job_offers.each do |offer| %>
                       <%= offer_html(offer) %>
                     <% end %>
+                  <% end %>
+                  <% if folder.job_offer_folders.any? %>
+                    <% draw_tree(folder) %>
                   <% end %>
                <% end %>
             <%  end %>
