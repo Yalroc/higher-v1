@@ -14,7 +14,6 @@
             <th class="column-3 text-center">Candidates</th>
             <th class="column-4 text-center">Contacted</th>
             <td class="column-5 text-center">Average Fit</td>
-
           </tr>
         </thead>
 
@@ -35,7 +34,7 @@
               </td>
               <td class="column-3"><%= @job_offers.count %></td>
               <td class="column-4"><%= @job_offers.count %></td>
-              <td class="column-5">65%</td>
+              <td class="column-5"><%= rand(75..85).to_s + "%" %></td>
             </tr> <!-- end of iteration over @job_offer_folders -->
 
             <!-- Method to calculate folder and job_offer indentation -->
@@ -52,6 +51,91 @@
                 <% level = level + 1 %>
               <% end %>
               <% return level %>
+            <% end %>
+
+
+            <!-- Methods to count job_offers inside folders -->
+            <% def count_offers_inside_folder(folder) %>
+              <% sum = 0 %>
+              <% if folder.job_offers.any? %>
+                <% sum = sum + folder.job_offers.count %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def dive_inside_folder_for_offers(folder, sum) %>
+              <% if folder.job_offer_folders.any? %>
+                <% folder.job_offer_folders.each do |child_folder| %>
+                  <% sum = sum + count_offers_inside_folder(child_folder).to_i %>
+                  <% dive_inside_folder_for_offers(child_folder, sum) %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def count_down_tree_for_offers(folder) %> <!-- condition = submit or contact -->
+              <% sum = 0 %>
+              <% sum = sum + count_offers_inside_folder(folder).to_i %>
+              <% sum = dive_inside_folder_for_offers(folder, sum) %>
+              <% return sum %>
+            <% end %>
+
+
+            <!-- Methods to count submitted job_applications -->
+            <% def count_applications_inside_folder(folder) %>
+              <% sum = 0 %>
+              <% if folder.job_offers.any? %>
+                <% folder.job_offers.each do |offer| %>
+                  <% sum = sum + offer.job_applications.where(submit: true, rejected: nil).count %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def dive_inside_folder(folder, sum) %>
+              <% if folder.job_offer_folders.any? %>
+                <% folder.job_offer_folders.each do |child_folder| %>
+                  <% sum = sum + count_applications_inside_folder(child_folder).to_i %>
+                  <% dive_inside_folder(child_folder, sum) %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def count_down_tree(folder) %> <!-- condition = submit or contact -->
+              <% sum = 0 %>
+              <% sum = sum + count_applications_inside_folder(folder).to_i %>
+              <% sum = dive_inside_folder(folder, sum) %>
+              <% return sum %>
+            <% end %>
+
+
+            <!-- Methods to count contact job_applications -->
+            <% def count_contacted_applications_inside_folder(folder) %>
+              <% sum = 0 %>
+              <% if folder.job_offers.any? %>
+                <% folder.job_offers.each do |offer| %>
+                  <% sum = sum + offer.job_applications.where(contact: true, rejected: nil).count %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def dive_inside_folder_for_contacted(folder, sum) %>
+              <% if folder.job_offer_folders.any? %>
+                <% folder.job_offer_folders.each do |child_folder| %>
+                  <% sum = sum + count_contacted_applications_inside_folder(child_folder).to_i %>
+                  <% dive_inside_folder_for_contacted(child_folder, sum) %>
+                <% end %>
+              <% end %>
+              <% return sum %>
+            <% end %>
+
+            <% def count_down_tree_for_contacted(folder) %> <!-- condition = submit or contact -->
+              <% sum = 0 %>
+              <% sum = sum + count_contacted_applications_inside_folder(folder).to_i %>
+              <% sum = dive_inside_folder_for_contacted(folder, sum) %>
+              <% return sum %>
             <% end %>
 
 
@@ -80,11 +164,13 @@
                       <% end %>
                     </td>
                     <td class="column-2">
-                      <%= 3.to_s %>
+                      <%= count_down_tree_for_offers(folder).to_s %>
                     </td>
-                    <td class="column-3"><%= 3.to_s %></td>
-                    <td class="column-4"><%= 4.to_s %></td>
-                    <td class="column-5"><%= 4.to_s %></td>
+                    <td class="column-3">
+                      <%= count_down_tree(folder).to_s %>
+                    </td>
+                    <td class="column-4"><%= count_down_tree_for_contacted(folder).to_s %></td>
+                    <td class="column-5"><%= rand(60..90).to_s + "%" %></td>
                   </tr>
             <%  end %>
 
@@ -93,7 +179,7 @@
                   <tr class="border">
                     <td class="column-0"><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star hidden" aria-hidden="true"></i></td>
                     <td class="column-1 text-left <%= 'folder-indentation-' + tree_level(offer).to_s %>">
-                      <%= link_to root_path do %>
+                      <%= link_to job_offer_job_applications_path(offer) do %>
                         <%= image_tag "noun_job.png", width: '25' %>
                         <span><%= offer.title %></span>
                       <% end %>
@@ -111,27 +197,22 @@
                       <% end %>
                       <% months_array = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]%>
                       <% creation_date = "(" + (offer.created_at.day > 9 ? "" : "0") + offer.created_at.day.to_s + "-" + months_array[offer.created_at.month - 1] + ")" %>
-
-
-
-
-
                       <%= days_ago + " " + creation_date %>
-
                     </td>
-                    <td class="column-3"><%= 3.to_s %></td>
-                    <td class="column-4"><%= 4.to_s %></td>
-                    <td class="column-5"><%= 4.to_s %></td>
+                    <td class="column-3"><%= offer.job_applications.where(submit: true, rejected: nil).count %></td>
+                    <td class="column-4"><%= offer.job_applications.where(contact: true, rejected: nil).count %></td>
+
+                    <td class="column-5"><%= rand(50..100).to_s + "%" %></td>
                   </tr>
             <%  end %>
 
 
             <!-- draw tree -->
             <% @parent_folders.each do |folder| %>
-              <%= folder_html(folder) %> SHOW YOURSELF
+              <%= folder_html(folder) %>
               <% if folder.job_offers.any? %>
                 <% folder.job_offers.each do |offer| %>
-                  <%= offer_html(offer) %> SHOW YOUR OFFERS
+                  <%= offer_html(offer) %>
                 <% end %>
               <% end %>
               <% draw_tree(folder) %>
