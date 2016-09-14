@@ -160,8 +160,11 @@
                   <tr class="border <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %>">
                     <td class="column-0"><i class="fa fa-star-o star-icon" aria-hidden="true"></i><i class="fa fa-star star-icon hidden" aria-hidden="true"></i></td>
                     <td class="column-1 text-left bold <%= 'folder-indentation-' + tree_level(folder).to_s %>">
-                      <%= link_to root_path do %>
-                        <span><i class="fa fa-folder-open folder-icon hidden" aria-hidden="true"></i><i class="fa fa-folder folder-icon" aria-hidden="true"></i><%= " " + folder.name %></span>
+                      <%= link_to root_path, class: "folder-link" do %>
+                        <i class="fa fa-folder-open folder-icon hidden" aria-hidden="true"></i><i class="fa fa-folder folder-icon" aria-hidden="true"></i><%= " " + folder.name %>
+                      <% end %>
+                      <%= link_to root_path , class: "offer_settings_icon" do %>
+                        <i class="fa fa-cog aria-hidden="true"></i>
                       <% end %>
                     </td>
                     <td class="column-2">
@@ -195,9 +198,12 @@
                   <tr class="border">
                     <td class="column-0"><i class="fa fa-star-o star-icon" aria-hidden="true"></i><i class="fa fa-star star-icon hidden" aria-hidden="true"></i></td>
                     <td class="column-1 text-left <%= 'folder-indentation-' + tree_level(offer).to_s %>">
-                      <%= link_to job_offer_job_applications_path(offer) do %>
+                      <%= link_to job_offer_job_applications_path(offer), class: "offer-link" do %>
                         <%= image_tag "noun_job.png", class: "cv-icon" %>
-                        <span><%= offer.title %><i class="fa fa-question-circle-o" aria-hidden="true"></i></span>
+                        <%= offer.title %>
+                      <% end %>
+                      <%= link_to job_offer_job_applications_path(offer), class: "offer_settings_icon" do %>
+                        <i class="fa fa-cog aria-hidden="true"></i>
                       <% end %>
                     </td>
                     <td class="column-2">
@@ -258,8 +264,8 @@
       <div class="modal-body">
         <%= simple_form_for([ @job_offer ]) do |form| %>
           <%= form.input :title %>
-          <%= form.input :job_offer_folder_id, label: 'In which folder?', hint: 'Select the folder in which you want the job offer to go.', collection: @all_folders, class: 'String' %>
-          <%= form.button :submit %>
+          <%= form.input :job_offer_folder_id, label: 'In which folder?', hint: 'Select the folder in which you want the job offer to go. Can\'t be blank.', collection: @all_folders, class: 'String' %>
+          <%= form.button :submit, value: "CREATE JOB OFFER" %>
         <% end %>
       </div>
     </div>
@@ -279,8 +285,8 @@
       <div class="modal-body">
         <%= simple_form_for([ @job_offer_folder ]) do |form| %>
           <%= form.input :name %>
-          <%= form.input :parent_id, label: 'In which folder?', hint: 'Don\'t make a selection if you want your folder to stand alone.', collection: @all_folders, class: 'String' %>
-          <%= form.button :submit %>
+          <%= form.input :parent_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders, class: 'String' %>
+          <%= form.button :submit, value: 'ADD FOLDER' %>
         <% end %>
       </div>
     </div>

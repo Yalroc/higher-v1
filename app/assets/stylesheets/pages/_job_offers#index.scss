@@ -1,6 +1,7 @@
 table {
    background: #fff;
 }
+
 .tableau-offer table,thead,tbody,tfoot,tr, td,th {
   margin: auto;
   padding: 1rem;
@@ -15,6 +16,7 @@ table {
 .column-1 {
   width: 42.5%;
   color: #004080;
+  text-decoration: none;
 }
 .column-2 {
   width: 13.5%;
@@ -121,6 +123,42 @@ table {
   padding-bottom: 2px;
 }
 
+.folder-link {
+  text-decoration: none !important;
+  padding: 16px;
+  margin: -16px;
+}
+
+.offer-link {
+  text-decoration: none !important;
+  padding: 16px;
+  margin: -16px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.offer_settings_icon {
+  padding-right: 15px;
+  padding-top: 15px;
+  margin-top: -15px;
+  padding-bottom: 15px;
+  margin-bottom: -15px;
+  padding-left: 15px;
+  display: none;
+   &:hover {
+    display: inline-block;
+    -webkit-animation:spin 0.5s linear infinite;
+    -moz-animation:spin 0.5s linear infinite;
+    animation:spin 0.5s linear infinite;
+   }
+}
+
+a:hover + .offer_settings_icon {
+    display: inline-block;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -210,3 +248,4 @@ table {
 .tree-folder-level-9 {
 
 }
+
