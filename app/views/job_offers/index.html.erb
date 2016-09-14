@@ -8,8 +8,8 @@
             <%= image_tag "LOreal_black_vector.png" %>
           </div>
           <div class="btn-group navbar-higher-btn-group-recruiter" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job.png", class: "cv-icon" %>+</div></button>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><div><i class="fa fa-folder folder-icon" aria-hidden="true"></i>+</div></button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job.png", class: "cv-icon" %>+</div></button>
           </div>
           <tr class="flex height-40px bold table-head">
             <th class="column-0"></th>
@@ -167,7 +167,7 @@
                       <div class="dropdown offer_settings_icon">
                         <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
                         <!-- dropdown list -->
-                        <ul class="dropdown-menu dropdown-menu-folder pull-right dropdown-menu-right">
+                        <ul class="dropdown-menu dropdown-offer-folder-js dropdown-menu-folder pull-right dropdown-menu-right">
                           <li>
                             <%= link_to "#" do %>
                               <i class="fa fa-arrows"></i> <%= t(".profile", default: "rename & move") %>
@@ -220,9 +220,9 @@
                       <div class="dropdown offer_settings_icon">
                         <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
                         <!-- dropdown list -->
-                        <ul class="dropdown-menu dropdown-menu-offer pull-right dropdown-menu-right">
+                        <ul class="dropdown-menu dropdown-offer-folder-js dropdown-menu-offer pull-right dropdown-menu-right">
                           <li>
-                            <%= link_to "#" do %>
+                            <%= link_to edit_job_offer_path(offer) do %>
                               <i class="fa fa-eye"></i> <%= t(".profile", default: "view") %>
                             <% end %>
                           </li>
@@ -321,8 +321,8 @@
         <h4 class="modal-title" id="myModalLabel">Move offer</h4>
       </div>
       <div class="modal-body">
-        <% if @job_offer %>
-          <%= simple_form_for(@job_offer) do |form| %>
+      <% if @job_offer.title != nil %>
+          <%= simple_form_for(offer) do |form| %>
             <%= form.input :job_offer_folder_id, label: 'In which folder?', hint: 'Select the folder in which you want the job offer to go. Can\'t be blank.', collection: @all_folders, class: 'String' %>
             <%= form.button :submit, value: "MOVE JOB OFFER" %>
           <% end %>
