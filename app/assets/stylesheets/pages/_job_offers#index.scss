@@ -135,23 +135,34 @@ table {
   margin: -16px;
 }
 
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
-.offer_settings_icon {
+.cog-icon {
   padding-right: 15px;
   padding-top: 15px;
   margin-top: -15px;
   padding-bottom: 15px;
   margin-bottom: -15px;
   padding-left: 15px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.offer_settings_icon {
   display: none;
-   &:hover {
+  color: $gray-light;
+    &:hover {
+    color: $blue;
     display: inline-block;
-    -webkit-animation:spin 0.5s linear infinite;
-    -moz-animation:spin 0.5s linear infinite;
-    animation:spin 0.5s linear infinite;
+   }
+   &:active {
+      i.cog-icon {
+        color: $blue;
+        display: inline-block;
+        -webkit-animation:spin 1.7s linear infinite;
+        -moz-animation:spin 1.7s linear infinite;
+        animation:spin 1.7s linear infinite;
+      }
    }
 }
 

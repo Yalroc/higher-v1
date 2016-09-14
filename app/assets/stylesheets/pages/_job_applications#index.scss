@@ -40,8 +40,12 @@
   top: 55px;
   left: 200px;
     button {
+      background-color: $gray-lighter;
       height: 26px;
-      width: 70px;
+      width: 90px;
+      div {
+        margin-top: -4px;
+      }
     }
 }
 

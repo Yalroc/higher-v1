@@ -8,8 +8,8 @@
             <%= image_tag "LOreal_black_vector.png" %>
           </div>
           <div class="btn-group navbar-higher-btn-group-recruiter" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><%= image_tag "noun_job.png", class: "cv-icon" %>+</button>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><i class="fa fa-folder folder-icon" aria-hidden="true"></i>+</button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job.png", class: "cv-icon" %>+</div></button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><div><i class="fa fa-folder folder-icon" aria-hidden="true"></i>+</div></button>
           </div>
           <tr class="flex height-40px bold table-head">
             <th class="column-0"></th>
@@ -163,9 +163,31 @@
                       <%= link_to root_path, class: "folder-link" do %>
                         <i class="fa fa-folder-open folder-icon hidden" aria-hidden="true"></i><i class="fa fa-folder folder-icon" aria-hidden="true"></i><%= " " + folder.name %>
                       <% end %>
-                      <%= link_to root_path , class: "offer_settings_icon" do %>
-                        <i class="fa fa-cog aria-hidden="true"></i>
-                      <% end %>
+
+                      <div class="dropdown offer_settings_icon">
+                        <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
+
+                        <ul class="dropdown-menu pull-right dropdown-menu-right">
+                          <li>
+                            <%= link_to "#" do %>
+                              <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to destroy_candidate_session_path, method: :delete do %>
+                              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                            <% end %>
+                          </li>
+                        </ul>
+
+                      </div>
+
+
+
+
+
+
+
                     </td>
                     <td class="column-2">
                         <%= count_down_tree_for_offers(folder).to_s %>
