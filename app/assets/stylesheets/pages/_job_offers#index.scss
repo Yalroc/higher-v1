@@ -121,6 +121,7 @@ table {
   width: 26px;
   padding-right: 8px;
   padding-bottom: 2px;
+  margin-bottom: -1px;
 }
 
 .folder-link {
@@ -136,11 +137,12 @@ table {
 }
 
 .cog-icon {
+  font-size: 19px;
   padding-right: 15px;
   padding-top: 15px;
-  margin-top: -15px;
+  margin-top: -17px;
   padding-bottom: 15px;
-  margin-bottom: -15px;
+  margin-bottom: -17px;
   padding-left: 15px;
 }
 
@@ -151,11 +153,13 @@ table {
 .offer_settings_icon {
   display: none;
   color: $gray-light;
+  margin-left: -5px;
+  cursor: pointer;
     &:hover {
     color: $blue;
     display: inline-block;
    }
-   &:active {
+   &:hover {
       i.cog-icon {
         color: $blue;
         display: inline-block;
@@ -168,6 +172,16 @@ table {
 
 a:hover + .offer_settings_icon {
     display: inline-block;
+}
+
+.dropdown-menu-offer {
+  top: -16px;
+  left: 40px !important;
+}
+
+.dropdown-menu-folder {
+  top: -16px;
+  left: 40px !important;
 }
 
 .bold {

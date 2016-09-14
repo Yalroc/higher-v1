@@ -163,31 +163,23 @@
                       <%= link_to root_path, class: "folder-link" do %>
                         <i class="fa fa-folder-open folder-icon hidden" aria-hidden="true"></i><i class="fa fa-folder folder-icon" aria-hidden="true"></i><%= " " + folder.name %>
                       <% end %>
-
+                      <!-- settings dropdown -->
                       <div class="dropdown offer_settings_icon">
                         <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
-
-                        <ul class="dropdown-menu pull-right dropdown-menu-right">
+                        <!-- dropdown list -->
+                        <ul class="dropdown-menu dropdown-menu-folder pull-right dropdown-menu-right">
                           <li>
                             <%= link_to "#" do %>
-                              <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                              <i class="fa fa-arrows"></i> <%= t(".profile", default: "rename & move") %>
                             <% end %>
                           </li>
                           <li>
-                            <%= link_to destroy_candidate_session_path, method: :delete do %>
-                              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                            <%= link_to "#" do %>
+                              <i class="fa fa-times"></i> <%= t(".profile", default: "delete") %>
                             <% end %>
                           </li>
                         </ul>
-
                       </div>
-
-
-
-
-
-
-
                     </td>
                     <td class="column-2">
                         <%= count_down_tree_for_offers(folder).to_s %>
@@ -224,9 +216,33 @@
                         <%= image_tag "noun_job.png", class: "cv-icon" %>
                         <%= offer.title %>
                       <% end %>
-                      <%= link_to job_offer_job_applications_path(offer), class: "offer_settings_icon" do %>
-                        <i class="fa fa-cog aria-hidden="true"></i>
-                      <% end %>
+                      <!-- settings dropdown -->
+                      <div class="dropdown offer_settings_icon">
+                        <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
+                        <!-- dropdown list -->
+                        <ul class="dropdown-menu dropdown-menu-offer pull-right dropdown-menu-right">
+                          <li>
+                            <%= link_to "#" do %>
+                              <i class="fa fa-eye"></i> <%= t(".profile", default: "view") %>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to "#" do %>
+                              <i class="fa fa-cogs"></i> <%= t(".profile", default: "edit") %>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to "", :data => {toggle: "modal", target: "#MoveJobOfferModal"} do %>
+                              <i class="fa fa-arrows"></i> <%= t(".profile", default: "move") %>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to "#" do %>
+                              <i class="fa fa-times"></i> <%= t(".profile", default: "delete") %>
+                            <% end %>
+                          </li>
+                        </ul>
+                      </div>
                     </td>
                     <td class="column-2">
                       <% days_ago = ((Time.now - offer.created_at) / (24 * 60 * 60)).to_i %>
@@ -294,6 +310,28 @@
   </div>
 </div>
 
+<!-- Modal: Move a Job Offer -->
+<div class="modal fade" id="MoveJobOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Move offer</h4>
+      </div>
+      <div class="modal-body">
+        <% if @job_offer %>
+          <%= simple_form_for(@job_offer) do |form| %>
+            <%= form.input :job_offer_folder_id, label: 'In which folder?', hint: 'Select the folder in which you want the job offer to go. Can\'t be blank.', collection: @all_folders, class: 'String' %>
+            <%= form.button :submit, value: "MOVE JOB OFFER" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal: Create a Folder -->
 <div class="modal fade" id="AddFolderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -317,26 +355,4 @@
 
 
 <!-- Modal: Edit a Job Offer -->
-<div class="modal fade" id="EditJobOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for([ @job_offer ]) do |form| %>
-          <%= form.input :title %>
-          <%= form.input :description, input_html: { id: 'job_offer_description_field' } %>
-          <%= form.input :location %>
-          <%= form.input :min_xp %>
-          <%= form.input :max_xp %>
-          <%= form.input :salary %>
-          <%= form.button :submit %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render "shared/modals/edit_job_offer_modal" %>

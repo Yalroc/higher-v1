@@ -26,11 +26,6 @@
     authorize @job_offer
   end
 
-  def new
-    @job_offer = JobOffer.new
-    authorize(@job_offer) # va voir dans Pundit la policy => JobOffer#new & record = @job_offer
-  end
-
   def create
     @job_offer = JobOffer.new(job_offer_params)
     @job_offer.recruiter = current_recruiter
@@ -43,14 +38,10 @@
     end
   end
 
-  def edit
-    authorize @job_offer
-  end
-
   def update
     authorize @job_offer
     if @job_offer.update(job_offer_params)
-      redirect_to job_offers
+      redirect_to job_offers_path
     else
       render :edit
     end
