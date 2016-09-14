@@ -3,10 +3,19 @@
 $(document).ready(function() {
 
   $('.offer_settings_icon').on('click', function() {
-      if ($(this).hasClass("active-settings-icon")) {
-        $(this).removeClass("active-settings-icon");
+      if ($('.offer_settings_icon').hasClass("active-settings-icon")) {
+        $('.offer_settings_icon').removeClass("active-settings-icon");
+        $(this).addClass("active-settings-icon");
+
+        $(document).click(function() {
+          $('.offer_settings_icon').removeClass("active-settings-icon");
+        });
       } else {
         $(this).addClass("active-settings-icon");
+
+        $(document).click(function() {
+          $('.offer_settings_icon').removeClass("active-settings-icon");
+        });
       }
     })
 }) // end of doc.function
