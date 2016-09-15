@@ -4,7 +4,7 @@ table {
 
 .tableau-offer table,thead,tbody,tfoot,tr,td,th {
   margin: auto;
-  padding: 0.8rem;
+  padding: 1.0rem;
   justify-content: space-between;
 }
 
@@ -129,10 +129,18 @@ table {
 }
 
 .cv-icon {
-  width: 26px;
-  padding-right: 8px;
+  width: 29px;
+  padding-right: 5px;
   padding-bottom: 2px;
-  margin-bottom: -1px;
+  margin-left: -4px;
+  margin-right: -1px;
+  margin-bottom: -14px;
+  margin-top: -14px;
+}
+
+.cv-icon-navbar {
+  width: 22px;
+  margin-top: -3px;
 }
 
 .folder-link {

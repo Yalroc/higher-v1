@@ -9,7 +9,7 @@
           </div>
           <div class="btn-group navbar-higher-btn-group-recruiter" role="group" aria-label="...">
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><div><i class="fa fa-folder folder-icon" aria-hidden="true"></i>+</div></button>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job.png", class: "cv-icon" %>+</div></button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job.svg", class: "cv-icon-navbar" %>+</div></button>
           </div>
           <tr class="flex height-40px bold table-head">
             <th class="column-0"></th>
@@ -216,7 +216,7 @@
                     <td class="column-0"><i class="fa <%= offer.star == true ? "fa-star yellow" : "fa-star-o gray-light" %> star-icon" aria-hidden="true"></i></td>
                     <td class="column-1 text-left <%= 'folder-indentation-' + tree_level(offer).to_s %>">
                       <%= link_to job_offer_job_applications_path(offer), class: "offer-link" do %>
-                        <%= image_tag "noun_job.png", class: "cv-icon" %>
+                        <%= image_tag "noun_job.svg", class: "cv-icon" %>
                         <%= offer.title %>
                       <% end %>
                       <!-- settings dropdown -->
