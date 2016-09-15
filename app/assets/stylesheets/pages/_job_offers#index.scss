@@ -108,7 +108,17 @@ table {
 }
 
 .star-icon {
-  color: $gray-light;
+  padding: 4px;
+  margin: -4px;
+  font-size: 16px;
+}
+
+.gray-light {
+  color: $gray-light !important;
+}
+
+.yellow {
+  color: #FFD92D !important;
 }
 
 .folder-icon {
@@ -152,22 +162,13 @@ table {
 
 .offer_settings_icon {
   display: none;
-  color: $gray-light;
+  color: $gray-mid-lighter;
   margin-left: -6px;
   cursor: pointer;
     &:hover {
     color: $blue;
     display: inline-block;
    }
-   // &:hover {
-   //    i.cog-icon {
-   //      color: $blue;
-   //      display: inline-block;
-   //      -webkit-animation:spin 1.7s linear infinite;
-   //      -moz-animation:spin 1.7s linear infinite;
-   //      animation:spin 1.7s linear infinite;
-   //    }
-   // }
 }
 
 
