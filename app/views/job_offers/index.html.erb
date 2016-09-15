@@ -17,7 +17,7 @@
             <th class="column-2 text-center">Offers</th>
             <th class="column-3 text-center">Candidates</th>
             <th class="column-4 text-center">Contacted</th>
-            <td class="column-5 text-center">Average Fit</td>
+            <th class="column-5 text-center">Average Fit</th>
           </tr>
         </thead>
 
@@ -143,9 +143,10 @@
 
             <!-- RECURSIVE METHOD (TREE STRUCTURE) -->
             <%  def draw_tree(parent_folder) %>
-               <% parent_folder.job_offer_folders.each do |folder| %>
+               <% parent_folder.job_offer_folders.sort_by { |folder| folder.name }.each do |folder| %>
                   <%= folder_html(folder) %>
                   <% if folder.job_offers.any? %>
+                    <% folder.job_offers.sort_by { |job_offer| job_offer.title } %>
                     <% folder.job_offers.each do |offer| %>
                       <%= offer_html(offer) %>
                     <% end %>
@@ -262,7 +263,7 @@
                         <% creation_date = "(" + (offer.created_at.day > 9 ? "" : "0") + offer.created_at.day.to_s + "-" + months_array[offer.created_at.month - 1] + ")" %>
                         <%= days_ago + " " + creation_date %>
                       <% else %>
-                        <%= link_to "not published", root_path %>
+                        <%= link_to "(not published)", root_path %>
                       <% end %>
                     </td>
                     <td class="column-3"><%= offer.job_applications.where(submit: true, rejected: nil).count %></td>
@@ -277,7 +278,7 @@
             <% @parent_folders.each do |folder| %>
               <%= folder_html(folder) %>
               <% if folder.job_offers.any? %>
-                <% folder.job_offers.each do |offer| %>
+                <% folder.job_offers.sort_by { |job_offer| job_offer.title }.each do |offer| %>
                   <%= offer_html(offer) %>
                 <% end %>
               <% end %>
