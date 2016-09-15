@@ -166,11 +166,10 @@ table {
   margin-left: -6px;
   cursor: pointer;
     &:hover {
-    color: $blue-lighter;
+    color: $gray-mid-light;
     display: inline-block;
    }
 }
-
 
 .active-settings-icon {
     display: inline-block;

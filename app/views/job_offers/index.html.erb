@@ -234,7 +234,7 @@
                             <% end %>
                           </li>
                           <li>
-                            <%= link_to "", :data => {toggle: "modal", target: "#MoveJobOfferModal"} do %>
+                            <%= link_to "", :data => {toggle: "modal", target: "#MoveJobOfferModal" } do %>
                               <i class="fa fa-arrows"></i> <%= t(".profile", default: "move") %>
                             <% end %>
                           </li>
@@ -247,19 +247,23 @@
                       </div>
                     </td>
                     <td class="column-2">
-                      <% days_ago = ((Time.now - offer.created_at) / (24 * 60 * 60)).to_i %>
-                      <% if I18n.l(offer.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
-                        <% days_ago = "Today"%>
-                      <% else %>
-                        <% if days_ago <= 1 %>
-                          <% days_ago = "1 day ago" %>
+                      <% if offer.published %>
+                        <% days_ago = ((Time.now - offer.created_at) / (24 * 60 * 60)).to_i %>
+                        <% if I18n.l(offer.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
+                          <% days_ago = "Today"%>
                         <% else %>
-                        <% days_ago = "#{((Time.now - offer.created_at) / (24 * 60 * 60)).to_i} days ago" %>
+                          <% if days_ago <= 1 %>
+                            <% days_ago = "1 day ago" %>
+                          <% else %>
+                          <% days_ago = "#{((Time.now - offer.created_at) / (24 * 60 * 60)).to_i} days ago" %>
+                          <% end %>
                         <% end %>
+                        <% months_array = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]%>
+                        <% creation_date = "(" + (offer.created_at.day > 9 ? "" : "0") + offer.created_at.day.to_s + "-" + months_array[offer.created_at.month - 1] + ")" %>
+                        <%= days_ago + " " + creation_date %>
+                      <% else %>
+                        <%= link_to "not published", root_path %>
                       <% end %>
-                      <% months_array = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]%>
-                      <% creation_date = "(" + (offer.created_at.day > 9 ? "" : "0") + offer.created_at.day.to_s + "-" + months_array[offer.created_at.month - 1] + ")" %>
-                      <%= days_ago + " " + creation_date %>
                     </td>
                     <td class="column-3"><%= offer.job_applications.where(submit: true, rejected: nil).count %></td>
                     <td class="column-4"><%= offer.job_applications.where(contact: true, rejected: nil).count %></td>

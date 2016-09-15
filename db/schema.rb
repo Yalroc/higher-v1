@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915080755) do
+ActiveRecord::Schema.define(version: 20160915113750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20160915080755) do
     t.integer  "job_offer_folder_id"
     t.integer  "organization_id"
     t.boolean  "star"
+    t.boolean  "published"
     t.index ["job_offer_folder_id"], name: "index_job_offers_on_job_offer_folder_id", using: :btree
     t.index ["organization_id"], name: "index_job_offers_on_organization_id", using: :btree
     t.index ["recruiter_id"], name: "index_job_offers_on_recruiter_id", using: :btree
