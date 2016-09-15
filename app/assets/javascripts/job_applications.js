@@ -37,6 +37,4 @@ $(document).ready(function() {
     }
   })
 
-  // call AJAX somewhere here
-
 }) // end of doc.function

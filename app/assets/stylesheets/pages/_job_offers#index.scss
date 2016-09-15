@@ -2,9 +2,9 @@ table {
    background: #fff;
 }
 
-.tableau-offer table,thead,tbody,tfoot,tr, td,th {
+.tableau-offer table,thead,tbody,tfoot,tr,td,th {
   margin: auto;
-  padding: 1rem;
+  padding: 0.8rem;
   justify-content: space-between;
 }
 
@@ -71,7 +71,8 @@ table {
   margin: auto;
   font-size: 14px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  margin-top: -25px !important;
+  margin-top: -27px !important;
+  padding: 0.8rem;
 }
 .border {
   border-bottom: 1px solid #E6E6E6;
@@ -84,7 +85,7 @@ table {
 
 .holding-row {
   border-bottom: 1px solid $gray-mid-lighter;
-  line-height: 2.5vh;
+  line-height: 2.6vh;
   font-size: 16px;
 }
 
