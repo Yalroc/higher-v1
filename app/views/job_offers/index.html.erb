@@ -263,7 +263,7 @@
                         <% creation_date = "(" + (offer.created_at.day > 9 ? "" : "0") + offer.created_at.day.to_s + "-" + months_array[offer.created_at.month - 1] + ")" %>
                         <%= days_ago + " " + creation_date %>
                       <% else %>
-                        <%= link_to "(not published)", root_path %>
+                        <%= link_to "(not published)", root_path, class: "text-decoration-none" %>
                       <% end %>
                     </td>
                     <td class="column-3"><%= offer.job_applications.where(submit: true, rejected: nil).count %></td>
