@@ -151,8 +151,8 @@ table {
 
 .offer-link {
   text-decoration: none !important;
-  padding: 16px;
-  margin: -16px;
+  padding: 17px;
+  margin: -17px;
 }
 
 .cog-icon {
@@ -170,13 +170,12 @@ table {
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 .offer_settings_icon {
-  display: none;
-  color: $gray-mid-lighter;
+  display: inline;
+  color: white;
   margin-left: -6px;
   cursor: pointer;
     &:hover {
     color: $gray-mid-light;
-    display: inline-block;
    }
 }
 
@@ -190,8 +189,19 @@ table {
       }
 }
 
+a + .offer_settings_icon {
+  color: white;
+}
+
+.folder-indentation-0 > .offer_settings_icon {
+  color: $gray-lighter; // basis color
+    &:hover {
+      color: $gray-mid-light;
+     }
+}
+
 a:hover + .offer_settings_icon {
-    display: inline-block;
+  color: $gray-mid-lighter;
 }
 
 .dropdown-menu-offer {
