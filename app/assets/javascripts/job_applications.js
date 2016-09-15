@@ -4,7 +4,11 @@ $(document).ready(function() {
 
   // make the settings-icon turn on click
   $('.offer_settings_icon').on('click', function() {
-      if ($('.offer_settings_icon').hasClass("active-settings-icon")) {
+
+      if ($(this).hasClass("active-settings-icon")) {
+        $(this).removeClass("active-settings-icon");
+
+      } else if ($('.offer_settings_icon').hasClass("active-settings-icon")) {
         $('.offer_settings_icon').removeClass("active-settings-icon");
         $(this).addClass("active-settings-icon");
 
