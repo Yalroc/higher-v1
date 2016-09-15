@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915113750) do
+ActiveRecord::Schema.define(version: 20160915210223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160915113750) do
     t.datetime "updated_at",      null: false
     t.integer  "parent_id"
     t.boolean  "star"
+    t.boolean  "open"
     t.index ["organization_id"], name: "index_job_offer_folders_on_organization_id", using: :btree
     t.index ["parent_id"], name: "index_job_offer_folders_on_parent_id", using: :btree
   end
