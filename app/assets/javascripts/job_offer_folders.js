@@ -17,6 +17,12 @@ $(document).ready(function() {
     // make the folders at level 0 collapsable
     $('.tree-folder-level-0').on('click', function() {
 
+
+          if ($(this).hasClass("cog-icon")) {
+            alert('The wheel was clicked');
+          };
+
+
         if ($(this).hasClass("folder-open")) {
           $(this).removeClass("folder-open").addClass("folder-closed");
           $(this).find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
@@ -24,9 +30,12 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-0" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-0" ).show()
         }
+
   });
 
     // make the folders at level 1 collapsable
@@ -39,7 +48,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-1" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-1" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-1" ).show()
         }
     });
@@ -54,7 +65,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-2" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-2" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-2" ).show()
         }
     });
@@ -69,7 +82,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-3" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-3" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-3" ).show()
         }
     });
@@ -84,7 +99,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-4" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-4" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-4" ).show()
         }
     });
@@ -99,7 +116,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-5" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-5" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-5" ).show()
         }
     });
@@ -114,7 +133,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-6" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-6" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-6" ).show()
         }
     });
@@ -129,7 +150,9 @@ $(document).ready(function() {
 
         } else if ($(this).hasClass("folder-closed")) {
           $(this).removeClass("folder-closed").addClass("folder-open");
+          $(this).nextUntil( ".tree-folder-level-7" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-7" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
           $(this).nextUntil( ".tree-folder-level-7" ).show()
         }
     });
