@@ -1,9 +1,10 @@
 table {
    background: #fff;
 }
-.tableau-offer table,thead,tbody,tfoot,tr, td,th {
+
+.tableau-offer table,thead,tbody,tfoot,tr,td,th {
   margin: auto;
-  padding: 1rem;
+  padding: 1.0rem;
   justify-content: space-between;
 }
 
@@ -15,6 +16,7 @@ table {
 .column-1 {
   width: 42.5%;
   color: #004080;
+  text-decoration: none;
 }
 .column-2 {
   width: 13.5%;
@@ -50,7 +52,7 @@ table {
   padding: 6px O;
 }
 .offers-body {
-  margin-top: 57px;
+  margin-top: 52px;
   display: table;
   width: 100%;
   .border td:first-child {
@@ -69,22 +71,26 @@ table {
   margin: auto;
   font-size: 14px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  margin-top: -25px !important;
+  margin-top: -27px !important;
+  padding: 0.8rem;
 }
 .border {
   border-bottom: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+  line-height: 1vh;
 }
 #organization_overhead_name {
-  margin-left: -50px;
+  margin-left: -45px;
 }
 
 .holding-row {
   border-bottom: 1px solid $gray-mid-lighter;
+  line-height: 21px;
+  font-size: 16px;
 }
 
-.height-45px {
-  height: 45px;
+.height-40px {
+  height: 40px;
 }
 
 #job_offer_description_field {
@@ -97,11 +103,23 @@ table {
 
 .table-head {
   width: 97vw;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1vh;
+  padding-top: 14px;
 }
 
 .star-icon {
-  color: $gray-light;
+  padding: 4px;
+  margin: -4px;
+  font-size: 16px;
+}
+
+.gray-light {
+  color: $gray-light !important;
+}
+
+.yellow {
+  color: #FFD92D !important;
 }
 
 .folder-icon {
@@ -111,57 +129,139 @@ table {
 }
 
 .cv-icon {
-  width: 26px;
-  padding-right: 8px;
+  width: 29px;
+  padding-right: 5px;
   padding-bottom: 2px;
+  margin-left: -4px;
+  margin-right: -1px;
+  margin-bottom: -14px;
+  margin-top: -14px;
 }
 
-.bold {
-  font-weight: bold;
+.cv-icon-navbar {
+  width: 22px;
+  margin-top: -3px;
+}
+
+.folder-link {
+  text-decoration: none !important;
+  padding: 16px;
+  margin: -16px;
+}
+
+.offer-link {
+  text-decoration: none !important;
+  padding: 17px;
+  margin: -17px;
+}
+
+.cog-icon {
+  font-size: 19px;
+  padding-right: 15px;
+  padding-top: 15px;
+  margin-top: -17px;
+  padding-bottom: 15px;
+  margin-bottom: -17px;
+  padding-left: 15px;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.offer_settings_icon {
+  display: inline;
+  color: white;
+  margin-left: -6px;
+  cursor: pointer;
+    &:hover {
+    color: $gray-mid-light;
+   }
+}
+
+.active-settings-icon {
+    display: inline-block;
+       i.cog-icon {
+        color: $blue !important;
+        -webkit-animation:spin 1.7s linear infinite;
+        -moz-animation:spin 1.7s linear infinite;
+        animation:spin 1.7s linear infinite;
+      }
+}
+
+a + .offer_settings_icon {
+  color: white;
+}
+
+.folder-indentation-0 > .offer_settings_icon {
+  color: $gray-lighter; // basis color
+    &:hover {
+      color: $gray-mid-light;
+     }
+}
+
+a:hover + .offer_settings_icon {
+  color: $gray-mid-lighter;
+}
+
+.dropdown-menu-offer {
+  top: -16px;
+  left: 40px !important;
+}
+
+.dropdown-menu-folder {
+  top: -16px;
+  left: 40px !important;
 }
 
 .folder-indentation-0 {
   padding-left: 0;
+  font-size: 16px;
 }
 
 .folder-indentation-1 {
   padding-left: 35px;
+  font-size: 16px;
 }
 
 .folder-indentation-2 {
   padding-left: 70px;
+  font-size: 16px;
 }
 
 .folder-indentation-3 {
   padding-left: 105px;
+  font-size: 16px;
 }
 
 .folder-indentation-4 {
   padding-left: 140px;
+  font-size: 16px;
 }
 
 .folder-indentation-5 {
   padding-left: 175px;
+  font-size: 16px;
 }
 
 .folder-indentation-6 {
   padding-left: 210px;
+  font-size: 16px;
 }
 
 .folder-indentation-7 {
   padding-left: 245px;
+  font-size: 16px;
 }
 
 .folder-indentation-8 {
   padding-left: 280px;
+  font-size: 16px;
 }
 
 .folder-indentation-9 {
   padding-left: 315px;
-}
-
-.folder-indentation-0 {
-  padding-left: 0;
+  font-size: 16px;
 }
 
 .tree-folder-level-1 {
@@ -199,3 +299,10 @@ table {
 .tree-folder-level-9 {
 
 }
+
+.folder-closed + .tree-folder-level-1 {
+  display: none;
+}
+
+
+
