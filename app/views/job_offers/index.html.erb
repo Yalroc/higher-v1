@@ -30,7 +30,7 @@
               <td class="column-0"></td>
               <td class="column-1 text-left folder">
                 <%= link_to root_path do %>
-                  <span id="organization_overhead_name">Holding</span>
+                  <span id="organization_overhead_name">Active</span>
                 <% end %>
               </td>
               <td class="column-2"><%= @job_offers.select { |job_offer| job_offer.published == true }.count %></td>
@@ -216,7 +216,7 @@
                     <td class="column-1 text-left <%= 'folder-indentation-' + tree_level(offer).to_s %>">
                       <%= link_to job_offer_job_applications_path(offer), class: "offer-link" do %>
                         <%= image_tag "noun_job.svg", class: "cv-icon" %>
-                        <%= offer.title %>
+                        <%= offer.title + (offer.location ? " | " + offer.location : "") %>
                       <% end %>
                       <!-- settings dropdown -->
                       <div class="dropdown offer_settings_icon">
