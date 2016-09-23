@@ -39,6 +39,7 @@
   transition: all 0.3s ease;
   height: 80px;
   border-bottom: 4px solid $blue-lighter;
+  min-width: 900px;
 }
 
 /* Text on visitor navbar */
@@ -146,7 +147,9 @@
   outline: none;
 }
 .navbar-higher-search-input {
-  flex: 0 1 100%;
+  left: 200px;
+  width: 30vw;
+  min-width: 15vw;
   transition: all 0.15s ease;
   line-height: 45px;
   font-weight: lighter;
@@ -355,4 +358,8 @@
 }
 .dropdown-toggle {
   color: white;
+}
+
+.min-width-800px {
+  min-width: 800px;
 }

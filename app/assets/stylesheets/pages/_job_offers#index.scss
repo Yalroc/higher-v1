@@ -50,7 +50,9 @@ table {
   border-bottom: 3px solid $blue-lighter;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   padding: 6px O;
+  min-width: 1040px;
 }
+
 .offers-body {
   margin-top: 52px;
   display: table;
@@ -73,6 +75,7 @@ table {
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   margin-top: -27px !important;
   padding: 0.8rem;
+  min-width: 1040px;
 }
 .border {
   border-bottom: 1px solid #E6E6E6;

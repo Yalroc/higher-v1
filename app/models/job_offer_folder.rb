@@ -1,5 +1,5 @@
 class JobOfferFolder < ApplicationRecord
-  belongs_to :organization
+  belongs_to :organization, required: false
   has_many :job_offers
 
   # self-referential tree structure for Folders
