@@ -4,6 +4,8 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante  -->
+          <br>
+          <br>
           <% if  @job_offer %>
             <h4 class="text-center"><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h4>
             <div class="job-offer-icons-div">
@@ -33,15 +35,24 @@
 
         <div class="cv-wrapper"> <!-- div englobbante  -->
 
-          <!-- experiences  -->
+          <!-- hide first grey separator bar -->
+
+          <% if @job_application.experiences.any? || @job_application.educations.any? || @job_application.languages.any? %>
+            <div class="hide-cv-separator"></div>
+          <% else %>
+            <h2 id="title-shy-margin" >Don't be shy !</h2>
+          <% end %>
+
+          <!-- EXPERIENCES  -->
           <% if @experiences_sorted.empty? %>
           <% else %>
+            <div class="cv-separator"></div>
             <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCES</h3>
               <div class="margin-left">
                 <% @experiences_sorted.each do |experience| %>
-                  <div class="">
+                  <div class="cv-tab">
                     <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
-                    <a href="" data-toggle="modal" data-target="#EditExperienceModal" class="inline margin-left-20px">Edit /</a>  <!-- button de modal: Edit XP -->
+                    <a href="" data-toggle="modal" data-target="#EditExperienceModal" class="inline margin-left-20px no-decoration">Edit /</a>  <!-- button de modal: Edit XP -->
                      <%= link_to experience_path(experience), method: :delete do %>
                       <i class="fa fa-times" aria-hidden="true"></i>
                     <% end %>
@@ -63,7 +74,7 @@
                       <% end %>
                       <%= experience.location ? "| #{experience.location}" : "" %>
                     </p>
-                    <p><%= experience.description %></p>
+                    <p class="tab-description"><%= experience.description %></p>
 
                     <!-- modal Edit Experience -->
                     <div class="modal fade" id="EditExperienceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -96,11 +107,6 @@
               </div>
           <% end %>
 
-          <% if @job_application.experiences.empty? && @job_application.educations.empty? && @job_application.languages.empty? %>
-
-           <h2 id="title-shy-margin" >Don't be shy !</h2>
-          <% end %>
-
           <% if @job_application.experiences.empty? %>
             <div id="inline-link-resume">
               <i class="fa fa-file-text" aria-hidden="true"> </i> <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><strong>Add</strong> a first Experience</a>
@@ -112,7 +118,8 @@
             </div>
           <% end %>
 
-          <div class="modal fade" id="AddExperienceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">  <!-- modal Add Experience -->
+          <!-- modal Add Experience -->
+          <div class="modal fade" id="AddExperienceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -137,20 +144,21 @@
             </div>
           </div> <!-- fin de experiences -->
 
-          <!-- educations -->
+          <!-- EDUCATIONS -->
           <% if @educations_sorted.empty? %>
           <% else %>
+            <div class="cv-separator"></div>
             <h3><i class="fa fa-graduation-cap" aria-hidden="true"></i> EDUCATION</h3>
               <div class="margin-left">
                 <% @educations_sorted.each do |education| %>
-                  <div class="">
+                  <div class="cv-tab">
                     <h4 class="inline"><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h4>
                     <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditEducationModal" id="links-modal-resume">Edit /</a>   <!-- button de modal: Edit Education -->
                     <%= link_to education_path(education), method: :delete do %>
                       <i class="fa fa-times" aria-hidden="true"></i>
                     <% end %>
                     <p class="color-mid-gray margin-top-1px"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></p>
-                    <p><%= education.description %></p>
+                    <p class="tab-description"><%= education.description %></p>
 
                     <!-- modal Edit Education -->
                     <div class="modal fade" id="EditEducationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -175,6 +183,7 @@
                         </div>
                       </div>
                     </div>  <!-- end of modal -->
+
                   </div>
                 <% end %>
               </div>
@@ -191,8 +200,8 @@
             </div>
           <% end %>
 
-
-          <div class="modal fade" id="AddEducationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <!-- modal Add Education-->
+          <!-- modal Add Education-->
+          <div class="modal fade" id="AddEducationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -215,9 +224,10 @@
             </div>
           </div> <!-- fin de educations -->
 
-          <!-- Languages -->
+          <!-- LANGUAGES -->
           <% if @languages.empty? %>
           <% else %>
+            <div class="cv-separator"></div>
             <div class="">
               <h3><i class="fa fa-globe" aria-hidden="true"></i> LANGUAGES</h3>
 
@@ -225,7 +235,6 @@
                   <% @languages.each do |language| %>
 
                     <div class="col-xs-6">
-
                       <h4 class="inline"><%= language.name %></h4>
                       <p class="inline">
                         <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditLanguageModal">Edit /</a> <!-- button de modal: Edit Education -->
@@ -233,7 +242,7 @@
                             <i class="fa fa-times" aria-hidden="true"></i>
                           <% end %>
                       </p>
-                      <p><%= language.proficiency %></p>
+                      <p class="small-text"><%= language.proficiency %></p>
 
 
                       <!-- modal Edit Education -->
@@ -302,6 +311,8 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante -->
+          <br>
+          <br>
           <%= simple_form_for([@job_offer, @job_application]) do |field| %>
             <%= field.input :motivation_letter, input_html: { id: 'motivation_letter_field', placeholder: @sample_letter } %>
             <%= field.button :submit, "Save", class: "btn btn-primary" %>
