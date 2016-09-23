@@ -16,6 +16,7 @@
   border-radius: 1px;                         /* Small radius */
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: -39px;
 }
 
 #motivation_letter_field {
@@ -98,4 +99,31 @@
 
 .padding-3px {
   padding: 3px;
+}
+
+.cv-tab {
+  margin-bottom: 20px;
+}
+
+.tab-description {
+  margin-top: -7px;
+  font-size: 14px;
+}
+
+.cv-separator {
+  margin: auto;
+  width: 75%;
+  background-color: $gray-mid-lightest;
+  height: 1px;
+  margin-top: 20px;
+}
+
+.hide-cv-separator {
+  position: absolute;
+  background-color: white;
+  margin: auto;
+  height: 4px;
+  width: 80%;
+  top: 11px;
+  z-index: 1;
 }
