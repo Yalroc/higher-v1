@@ -9,7 +9,7 @@
             <div class="job-offer-icons-div">
               <ul class="list-inline product-controls hidden-sm hidden-xs text-center">
                 <li><i class="fa fa-globe"></i> <%= @job_offer.location %></li>
-                <li><i class="fa fa-wpforms"></i> <%= @job_offer.min_xp.to_i.to_s + "y - " + @job_offer.max_xp.to_i.to_s + "y" %></li>
+                <li><i class="fa fa-file-text"></i> <%= @job_offer.min_xp.to_i.to_s + "y - " + @job_offer.max_xp.to_i.to_s + "y" %></li>
                 <li><i class="fa fa-money"></i> <%= @job_offer.salary.to_s + "K€" %></li>
               </ul>
             </div>
@@ -36,14 +36,38 @@
           <!-- experiences  -->
           <% if @experiences_sorted.empty? %>
           <% else %>
-            <h3><i class="fa fa-wpforms" aria-hidden="true"></i> EXPERIENCES</h3>
+            <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCES</h3>
               <div class="margin-left">
                 <% @experiences_sorted.each do |experience| %>
                   <div class="">
-                    <h4 class="display-inline"><%= experience.title + " @ " + experience.organization %></h4>
+                    <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
+                    <a href="" data-toggle="modal" data-target="#EditExperienceModal" class="inline margin-left-20px">Edit /</a>  <!-- button de modal: Edit XP -->
+                     <%= link_to experience_path(experience), method: :delete do %>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                    <% end %>
 
+                    <!-- experience dates -->
+                    <% months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
+                    <p class="color-mid-gray margin-top-1px"><%= months[experience.start_date.month - 1] + " " + experience.start_date.year.to_s + " - " + months[experience.end_date.month - 1] + " " + experience.end_date.year.to_s%>
+                      <!-- years xp calculation -->
+                      <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) > 2 %>
+                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " years) " %>
+                      <% elsif (((experience.end_date - experience.start_date)/30.5).to_i/12) > 0 %>
+                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year)" %>
+                      <% end %>
+                      <!-- month xp calculation -->
+                      <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) > 2 %>
+                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " months)" %>
+                      <% elsif (((experience.end_date - experience.start_date)/30.5).to_i%12) > 0 %>
+                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month)" %>
+                      <% end %>
+                      <%= experience.location ? "| #{experience.location}" : "" %>
+                    </p>
+                    <p><%= experience.description %></p>
+
+                    <!-- modal Edit Experience -->
                     <div class="modal fade" id="EditExperienceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                      <div class="modal-dialog" role="document">  <!-- modal Edit Experience -->
+                      <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -67,19 +91,6 @@
                       </div>
                     </div>
 
-                    <p class="display-inline"><span class="color-mid-gray"><%= experience.start_date.month.to_s + "/" + experience.start_date.year.to_s + " - " + experience.end_date.month.to_s + "/" + experience.end_date.year.to_s %></span><span id="chevron"> >></span>
-                    <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) != 0 %>
-                      <%=  (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year(s) " %>
-                    <% end %>
-                    <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) != 0 %>
-                      <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month(s)" %><p>
-                    <% end %>
-                    <p><%= experience.description %></p>
-
-                     <a href="" data-toggle="modal" data-target="#EditExperienceModal">Edit /</a>  <!-- button de modal: Add XP -->
-                     <%= link_to experience_path(experience), method: :delete do %>
-                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    <% end %>
                   </div>
                 <% end %>
               </div>
@@ -92,13 +103,13 @@
 
           <% if @job_application.experiences.empty? %>
             <div id="inline-link-resume">
-              <i class="fa fa-wpforms" aria-hidden="true"> </i> <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><strong>Add</strong> a first Experience</a>
+              <i class="fa fa-file-text" aria-hidden="true"> </i> <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><strong>Add</strong> a first Experience</a>
             </div>
               <!-- button de modal: Add XP -->
           <% else %>
-          <div class="margin-links-add-something">
-            <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><strong>Add</strong> Experience</a> <!-- button de modal: Add XP -->
-          </div>
+            <div class="margin-links-add-something">
+              <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><strong>Add</strong> Experience</a> <!-- button de modal: Add XP -->
+            </div>
           <% end %>
 
           <div class="modal fade" id="AddExperienceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">  <!-- modal Add Experience -->
@@ -133,16 +144,16 @@
               <div class="margin-left">
                 <% @educations_sorted.each do |education| %>
                   <div class="">
-                    <h4 class="display-inline"><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h4>
-
-                    <p><span class="color-mid-gray"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></span><span id="chevron"> >> </span><%= ([(education.end_date.year - education.start_date.year), 1].max ).to_s + " year(s)" %><p>
-                    <p><%= education.description %></p>
-                    <a href="" data-toggle="modal" data-target="#EditEducationModal" id="links-modal-resume">Edit /</a>   <!-- button de modal: Edit Education -->
+                    <h4 class="inline"><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h4>
+                    <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditEducationModal" id="links-modal-resume">Edit /</a>   <!-- button de modal: Edit Education -->
                     <%= link_to education_path(education), method: :delete do %>
-                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      <i class="fa fa-times" aria-hidden="true"></i>
                     <% end %>
+                    <p class="color-mid-gray margin-top-1px"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></p>
+                    <p><%= education.description %></p>
 
-                    <div class="modal fade" id="EditEducationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <!-- modal Edit Education -->
+                    <!-- modal Edit Education -->
+                    <div class="modal fade" id="EditEducationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -209,34 +220,47 @@
           <% else %>
             <div class="">
               <h3><i class="fa fa-globe" aria-hidden="true"></i> LANGUAGES</h3>
-              <ul><% @languages.each do |language| %>
-                  <li><%= language.name %><span id="chevron"> >></span><%= language.proficiency %>
-                  <a href="" data-toggle="modal" data-target="#EditLanguageModal">Edit /</a> <!-- button de modal: Edit Education -->
-                  <div class="modal fade" id="EditLanguageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <!-- modal Edit Education -->
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="myModalLabel">Edit Language</h4>
-                        </div>
-                        <div class="modal-body">
-                          <%= simple_form_for(language) do |field| %>
-                            <%= field.input :name %>
-                            <%= field.input :proficiency %>
-                            <%= field.input :job_application_id, as: :hidden, input_html: {value: @job_application.id} %>
-                            <%= field.button :submit %>
+
+                <div class="row language-blocks">
+                  <% @languages.each do |language| %>
+
+                    <div class="col-xs-6">
+
+                      <h4 class="inline"><%= language.name %></h4>
+                      <p class="inline">
+                        <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditLanguageModal">Edit /</a> <!-- button de modal: Edit Education -->
+                          <%= link_to language_path(language), method: :delete do %>
+                            <i class="fa fa-times" aria-hidden="true"></i>
                           <% end %>
+                      </p>
+                      <p><%= language.proficiency %></p>
+
+
+                      <!-- modal Edit Education -->
+                      <div class="modal fade" id="EditLanguageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel">Edit Language</h4>
+                            </div>
+                            <div class="modal-body">
+                              <%= simple_form_for(language) do |field| %>
+                                <%= field.input :name %>
+                                <%= field.input :proficiency %>
+                                <%= field.input :job_application_id, as: :hidden, input_html: {value: @job_application.id} %>
+                                <%= field.button :submit %>
+                              <% end %>
+                            </div>
+                          </div>
                         </div>
                       </div>
+
                     </div>
-                  </div>
-                  <%= link_to language_path(language), method: :delete do %>
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
                   <% end %>
-                  </li>
-              <% end %>
-              </ul>
-            </div>
+                </div>
+              </div>
+
           <% end %>
 
             <% if @job_application.languages.empty? %>
@@ -306,11 +330,11 @@
         <% if @experiences_sorted.empty? %>
         <% else %>
           <div class="">
-            <h5><i class="fa fa-wpforms" aria-hidden="true"></i> EXPERIENCES</h5>
+            <h5><i class="fa fa-file-text" aria-hidden="true"></i> EXPERIENCES</h5>
             <% @experiences_sorted.each do |experience| %>
               <div class="">
-                <h6 class="display-inline"><%= experience.title + " @ " + experience.organization %></h6>
-                <p class="display-inline small-text"><span class="color-mid-gray"><%= experience.start_date.month.to_s + "/" + experience.start_date.year.to_s + " - " + experience.end_date.month.to_s + "/" + experience.end_date.year.to_s %></span><span id="chevron"> >></span>
+                <h6 class=""><%= experience.title + " @ " + experience.organization %></h6>
+                <p class=" small-text"><span class="color-mid-gray"><%= experience.start_date.month.to_s + "/" + experience.start_date.year.to_s + " - " + experience.end_date.month.to_s + "/" + experience.end_date.year.to_s %></span><span id="chevron"> >></span>
                 <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) != 0 %>
                   <%=  (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year(s) " %>
                 <% end %>
@@ -330,7 +354,7 @@
             <h5><i class="fa fa-graduation-cap" aria-hidden="true"></i> EDUCATION</h5>
             <% @educations_sorted.each do |education| %>
               <div class="">
-                <h6 class="display-inline"><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h6>
+                <h6 class=""><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h6>
 
                 <p class="small-text"><span class="color-mid-gray"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></span><span id="chevron"> >> </span> <%= ([(education.end_date.year - education.start_date.year), 1].max ).to_s + " year(s)" %><p>
                 <p class="small-text"><%= education.description %></p>
