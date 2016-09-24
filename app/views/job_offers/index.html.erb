@@ -159,7 +159,9 @@
             <%  def folder_html(folder) %>
                   <tr class="border folder-js <%= folder.open == true ? "folder-open" : "folder-closed" %> <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %>">
                     <td class="column-0">
-                      <i class="fa star-icon <%= 'tree-folder-level-' + tree_level(folder).to_s %> <%= folder.star == true ? "fa-star yellow" : "fa-star-o gray-light" %>" aria-hidden="true"></i>
+                      <%= link_to job_offer_folder_path(folder, type: "star"), method: :put, remote: true do %>
+                        <i class="fa star-icon <%= 'tree-folder-level-' + tree_level(folder).to_s %> <%= folder.star == true ? "fa-star yellow" : "fa-star-o gray-light" %>" aria-hidden="true"></i>
+                      <% end %>
                     </td>
                     <td class="column-1 text-left bold <%= 'folder-indentation-' + tree_level(folder).to_s %>">
                       <%= link_to root_path, class: "folder-link" do %>
@@ -213,7 +215,7 @@
             <%  def offer_html(offer) %>
                   <tr class="border">
                     <td class="column-0">
-                      <%= link_to job_offer_path(offer), method: :put do %>
+                      <%= link_to job_offer_path(offer, type: "star"), method: :put, remote: true do %>
                         <i class="fa <%= offer.star == true ? "fa-star yellow" : "fa-star-o gray-light" %> star-icon" aria-hidden="true"></i>
                       <% end %>
                     </td>

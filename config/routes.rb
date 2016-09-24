@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # search for job offers
   get '/search', to: 'pages#search', as: 'search'
   # create job offer FOLDERS
-  resources :job_offer_folders, only: [:create]
+  resources :job_offer_folders, only: [:create, :update]
   # :index => "as a recruiter, I can see all job offers made by my company"
   # :new & :create => "As a recruiter I can CREATE an offer"
   # :show => "As a candidate, I can view the offer while I am applying to it"

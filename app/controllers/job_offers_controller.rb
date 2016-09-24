@@ -44,22 +44,21 @@
   end
 
   def update
-      raise
-
-        # add/remove star ajax
-
-
-        # hide/unhide folders ajax
-
-
-        # normal update
-        @job_offer = JobOffer.find(params[:id])
-        authorize @job_offer
-        if @job_offer.update(job_offer_params)
-          redirect_to job_offers_path
-        else
-          render :edit
+        if job_offer_update_params[:type] == "star"  # add/remove star ajax
+          @job_offer = JobOffer.find(job_offer_update_params[:id])
+          authorize @job_offer
+          @job_offer.star == true ? @job_offer.star = false : @job_offer.star = true
+          @job_offer.save
+          redirect_to job_offers_path # get ridd off when ajax
         end
+
+    # @job_offer = JobOffer.find(params[:id])   # normal update
+    # authorize @job_offer
+    # if @job_offer.update(job_offer_params)
+    #   redirect_to job_offers_path
+    # else
+    #   render :edit
+    # end
   end
 
   private
@@ -71,6 +70,11 @@
   def job_offer_params
     params.require(:job_offer).permit(:description, :title, :job_offer_folder_id)
   end
+
+  def job_offer_update_params
+    params.permit(:id, :type)
+  end
+
 
   def set_job_offer
     @job_offer = JobOffer.find(params[:id])
