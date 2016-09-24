@@ -59,20 +59,20 @@
 
                     <!-- experience dates -->
                     <% months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
-                    <p class="color-mid-gray margin-top-1px"><%= months[experience.start_date.month - 1] + " " + experience.start_date.year.to_s + " - " + months[experience.end_date.month - 1] + " " + experience.end_date.year.to_s%>
+                    <p class="color-mid-gray margin-top-1px"><%= months[experience.start_date.month - 1] + " " + experience.start_date.year.to_s + " - " + months[experience.end_date.month - 1] + " " + experience.end_date.year.to_s + " (" %>
                       <!-- years xp calculation -->
-                      <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) > 2 %>
-                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " years) " %>
+                      <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) >= 2 %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " years" %>
                       <% elsif (((experience.end_date - experience.start_date)/30.5).to_i/12) > 0 %>
-                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year)" %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year" %>
                       <% end %>
                       <!-- month xp calculation -->
-                      <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) > 2 %>
-                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " months)" %>
+                      <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) >= 2 %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " months" %>
                       <% elsif (((experience.end_date - experience.start_date)/30.5).to_i%12) > 0 %>
-                        <%= " (" + (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month)" %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month" %>
                       <% end %>
-                      <%= experience.location ? "| #{experience.location}" : "" %>
+                      <%= experience.location ? ") | #{experience.location}" : ")" %>
                     </p>
                     <p class="tab-description"><%= experience.description %></p>
 
@@ -242,7 +242,7 @@
                             <i class="fa fa-times" aria-hidden="true"></i>
                           <% end %>
                       </p>
-                      <p class="small-text"><%= language.proficiency %></p>
+                      <p class="small-text margin-bottom-20px"><%= language.proficiency %></p>
 
 
                       <!-- modal Edit Education -->
