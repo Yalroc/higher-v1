@@ -44,13 +44,22 @@
   end
 
   def update
-    @job_offer = JobOffer.find(params[:id])
-    authorize @job_offer
-    if @job_offer.update(job_offer_params)
-      redirect_to job_offers_path
-    else
-      render :edit
-    end
+      raise
+
+        # add/remove star ajax
+
+
+        # hide/unhide folders ajax
+
+
+        # normal update
+        @job_offer = JobOffer.find(params[:id])
+        authorize @job_offer
+        if @job_offer.update(job_offer_params)
+          redirect_to job_offers_path
+        else
+          render :edit
+        end
   end
 
   private
