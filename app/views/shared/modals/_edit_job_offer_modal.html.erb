@@ -1,15 +1,14 @@
 <!-- Modal: Edit a Job Offer -->
-<div class="modal fade" id="EditJobOfferModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div id="EditJobOfferModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Create an offer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit an offer</h4>
       </div>
       <div class="modal-body">
-        <%= simple_form_for([ @job_offer ]) do |form| %>
+      <p>something</p>
+        <%= simple_form_for([ job_offer ]) do |form| %>
           <%= form.input :title %>
           <%= form.input :description, input_html: { id: 'job_offer_description_field' } %>
           <%= form.input :location %>
@@ -22,6 +21,3 @@
     </div>
   </div>
 </div>
-
-
-

@@ -349,3 +349,7 @@ a:hover + .offer_settings_icon {
   text-decoration: none;
   cursor: default;
 }
+
+#EditJobOfferModal {
+  z-index: 1000 !important;
+}
