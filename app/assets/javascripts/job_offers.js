@@ -28,11 +28,11 @@ $(document).ready(function() {
   // make the star yellow on click
   $('.column-0').on('click', function() {
     if ($(this).find(".star-icon").hasClass("fa-star-o")) {
-      $(this).find(".star-icon").addClass("fa-star yellow").removeClass("fa-star-o");
+      $(this).find(".star-icon").addClass("fa-star yellow").removeClass("fa-star-o gray-light");
         // call AJAX somewhere here
     }
     else {
-      $(this).find(".star-icon").addClass("fa-star-o").removeClass("fa-star yellow");
+      $(this).find(".star-icon").addClass("fa-star-o gray-light").removeClass("fa-star yellow");
         // call AJAX somewhere here
     }
   })

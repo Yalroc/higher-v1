@@ -53,8 +53,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-1" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-1" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-1" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1" ).show()
         }
       });
 
@@ -70,8 +70,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-2" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-2" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-2" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2" ).show()
         }
       });
 
@@ -87,8 +87,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-3" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-3" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-3" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3" ).show()
         }
       });
 
@@ -104,8 +104,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-4" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-4" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-4" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4" ).show()
         }
       });
 
@@ -121,8 +121,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-5" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-5" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-5" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5" ).show()
         }
       });
 
@@ -138,8 +138,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-6" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-6" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-6" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).show()
         }
       });
 
@@ -155,8 +155,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-7" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-7" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-7" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).show()
         }
       });
 
@@ -172,8 +172,8 @@ for (var i = 0 ; i < 11; i++) {
           $(this).removeClass("folder-closed").addClass("folder-open");
           $(this).nextUntil( ".tree-folder-level-8" ).removeClass("folder-closed").addClass("folder-open");
           $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-8" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-8" ).show()
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7, .tree-folder-level-8" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $(this).nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7, .tree-folder-level-8" ).show()
         }
       });
 
