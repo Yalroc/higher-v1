@@ -75,7 +75,7 @@ table {
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   margin-top: -27px !important;
   padding: 0.8rem;
-  min-width: 1040px;
+  min-width: 1080px;
 }
 .border {
   border-bottom: 1px solid #E6E6E6;
@@ -319,5 +319,7 @@ a:hover + .offer_settings_icon {
   display: none;
 }
 
-
-
+.folder-link {
+  text-decoration: none;
+  cursor: default;
+}

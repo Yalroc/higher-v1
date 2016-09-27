@@ -20,16 +20,18 @@ skip_before_action :authenticate_candidate!
       authorize @job_offer_folder
       @job_offer_folder.star == true ? @job_offer_folder.star = false : @job_offer_folder.star = true
       @job_offer_folder.save
-      redirect_to job_offers_path # get ridd off when ajax
-    # elsif job_offer_update_params[:type] == "collapse" # hide/unhide folders ajax
-    #   @job_offer = JobOffer.find(job_offer_update_params[:id])
-    #   authorize @job_offer
+      redirect_to job_offers_path # in case ajax fails ? not sure it's needed
+    elsif job_offer_folder_update_params[:type] == "collapse" # hide/unhide folders ajax
+      raise
+      @job_offer_folder = JobOfferFolder.find(job_offer_folder_update_params[:id])
+      authorize @job_offer_folder
+      @job_offer_folder.open == true ? @job_offer_folder.open = false : @job_offer_folder.open = true
+      @job_offer_folder.save
+      redirect_to job_offers_path
     end
-
-
   end
 
-   private
+  private
 
   def job_offer_folder_params
     params.require(:job_offer_folder).permit(:name, :parent_id)
