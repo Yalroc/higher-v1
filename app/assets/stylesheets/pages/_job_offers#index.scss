@@ -167,6 +167,7 @@ table {
   text-decoration: none !important;
   padding: 16px;
   margin: -16px;
+  cursor: pointer !important;
 }
 
 .folder-name-position {
@@ -230,9 +231,8 @@ a:hover + .offer_settings_icon {
   color: $gray-mid-lighter;
 }
 
-.folder-name-position:hover + .offer_settings_icon {
+.folder-name-position:hover > .offer_settings_icon {
   color: $gray-mid-lighter;
-  background-color: red;
 }
 
 .dropdown-menu-offer {
@@ -342,6 +342,7 @@ a:hover + .offer_settings_icon {
   height: 100%;
   display: inline-block;
   position: absolute;
+  cursor: default;
 }
 
 .folder-link {

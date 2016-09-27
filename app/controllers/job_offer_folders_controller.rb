@@ -22,7 +22,6 @@ skip_before_action :authenticate_candidate!
       @job_offer_folder.save
       redirect_to job_offers_path # in case ajax fails ? not sure it's needed
     elsif job_offer_folder_update_params[:type] == "collapse" # hide/unhide folders ajax
-      raise
       @job_offer_folder = JobOfferFolder.find(job_offer_folder_update_params[:id])
       authorize @job_offer_folder
       @job_offer_folder.open == true ? @job_offer_folder.open = false : @job_offer_folder.open = true

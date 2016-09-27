@@ -191,16 +191,16 @@
                           </ul>
                         </div>
                       </div>
-                      <%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-2">
-                      <%= count_down_tree_for_offers(folder).to_s %><%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= count_down_tree_for_offers(folder).to_s %><%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-3">
-                      <%= count_down_tree(folder).to_s %><%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= count_down_tree(folder).to_s %><%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-4">
-                      <%= count_down_tree_for_contacted(folder).to_s %><%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= count_down_tree_for_contacted(folder).to_s %><%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-5">
                       <% if count_down_tree(folder) == 0 %>
@@ -208,7 +208,7 @@
                       <% else %>
                         <%= rand(60..90).round(1).to_s + "%" %>
                       <% end %>
-                      <%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                   </tr>
             <%  end %>
