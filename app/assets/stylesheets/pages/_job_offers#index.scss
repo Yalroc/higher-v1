@@ -17,21 +17,26 @@ table {
   width: 42.5%;
   color: #004080;
   text-decoration: none;
+  position: relative;
 }
 .column-2 {
   width: 13.5%;
+  position: relative;
   // border-bottom: 1px solid #E6E6E6;
 }
 .column-3 {
   width: 13.5%;
+  position: relative;
   // border-bottom: 1px solid #E6E6E6;
 }
 .column-4 {
   width: 13.5%;
+  position: relative;
   // border-bottom: 1px solid #E6E6E6;
 }
 .column-5 {
   width: 13.5%;
+  position: relative;
   // border-bottom: 1px solid #E6E6E6;
 }
 
@@ -164,6 +169,12 @@ table {
   margin: -16px;
 }
 
+.folder-name-position {
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+}
+
 .offer-link {
   text-decoration: none !important;
   padding: 17px;
@@ -208,7 +219,7 @@ a + .offer_settings_icon {
   color: white;
 }
 
-.folder-indentation-0 > .offer_settings_icon {
+.folder-indentation-0 > .folder-name-position >.offer_settings_icon {
   color: $gray-lighter; // basis color
     &:hover {
       color: $gray-mid-light;
@@ -217,6 +228,11 @@ a + .offer_settings_icon {
 
 a:hover + .offer_settings_icon {
   color: $gray-mid-lighter;
+}
+
+.folder-name-position:hover + .offer_settings_icon {
+  color: $gray-mid-lighter;
+  background-color: red;
 }
 
 .dropdown-menu-offer {
@@ -317,6 +333,15 @@ a:hover + .offer_settings_icon {
 
 .folder-closed + .tree-folder-level-1 {
   display: none;
+}
+
+.td-link-absolute {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: absolute;
 }
 
 .folder-link {
