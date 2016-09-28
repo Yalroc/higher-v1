@@ -7,10 +7,38 @@
           <div class="navbar-higher-brand-recruiter2">
             <%= image_tag "LOreal_black_vector.png" %>
           </div>
-          <div class="btn-group navbar-higher-btn-group-recruiter" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job_gray_plus.svg", class: "cv-icon-navbar-noun-job" %></div></button>
-          </div>
+          <!-- btn group in white navbar -->
+          <div class="btn-group navbar-higher-btn-group-recruiter dropdown closed" role="group" aria-label="...">
+            <!-- Folder icon dropdown -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default" id="folderDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
+                <ul class="dropdown-menu" aria-labelledby="folderDropdownMenuButton">
+                  <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#AddFolderModal"} do %> Add folder<% end %></li>
+                  <li class="dropdown-item"><%= link_to "#" do %> Collapse all<% end %></li>
+                  <li class="dropdown-item"><%= link_to "#" do %> Open all<% end %></li>
+                </ul>
+            </div>
+            <!-- Job Offer icon dropdown -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default" id="offerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "noun_job_gray_plus.svg", class: "cv-icon-navbar-noun-job" %></div></button>
+                <ul class="dropdown-menu" aria-labelledby="offerDropdownMenuButton">
+                  <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#CreateJobOfferModal"} do %> Add offer<% end %></li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+          </div> <!-- end of btn group -->
+
           <tr class="flex height-40px bold table-head">
             <th class="column-0"></th>
             <th class="column-1 text-center"></th>
@@ -328,7 +356,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder-open folder-icon" aria-hidden="true"></i> Add a Folder</h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder folder-icon" aria-hidden="true"></i> Add a Folder</h4>
       </div>
       <div class="modal-body">
         <%= simple_form_for([ @job_offer_folder ]) do |form| %>
