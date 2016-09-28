@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # JOB OFFERS & FOLDERS & SEARCH ROUTES
   get '/search', to: 'pages#search', as: 'search'
-  resources :job_offer_folders, only: [:create, :update]
+  resources :job_offer_folders, only: [:create, :update, :destroy]
   resources :job_offers, only: [:index, :create, :edit, :update, :show, :destroy] do
 
 

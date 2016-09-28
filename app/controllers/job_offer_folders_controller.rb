@@ -30,6 +30,13 @@ skip_before_action :authenticate_candidate!
     end
   end
 
+  def destroy
+    @job_offer_folder = JobOfferFolder.find(params[:id])
+    authorize @job_offer_folder
+    @job_offer_folder.destroy
+    redirect_to job_offers_path
+  end
+
   private
 
   def job_offer_folder_params
