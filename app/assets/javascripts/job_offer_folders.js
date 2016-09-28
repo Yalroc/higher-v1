@@ -25,21 +25,21 @@ for (var i = 0 ; i < 11; i++) {
 
 //MAKE FOLDER LEVELS COLLAPSEABLE
     // make the folders at level 0 collapsable
-    $('.tree-folder-level-0').on('click', function(e) {
+    // $('.tree-folder-level-0').on('click', function(e) {
 
-        if ($(this).hasClass("folder-open")) {
-          $(this).removeClass("folder-open").addClass("folder-closed");
-          $(this).find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
-          $(this).nextUntil( ".tree-folder-level-0" ).hide()
+    //     if ($(this).hasClass("folder-open")) {
+    //       $(this).removeClass("folder-open").addClass("folder-closed");
+    //       $(this).find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+    //       $(this).nextUntil( ".tree-folder-level-0" ).hide()
 
-        } else if ($(this).hasClass("folder-closed")) {
-          $(this).removeClass("folder-closed").addClass("folder-open");
-          $(this).nextUntil( ".tree-folder-level-0" ).not('.folder-closed').show()
-          $(this).nextUntil( ".tree-folder-level-0" ).removeClass("folder-closed").addClass("folder-open");
-          $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-          $(this).nextUntil( ".tree-folder-level-0" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
-        }
-    });
+    //     } else if ($(this).hasClass("folder-closed")) {
+    //       $(this).removeClass("folder-closed").addClass("folder-open");
+    //       $(this).nextUntil( ".tree-folder-level-0" ).not('.folder-closed').show()
+    //       $(this).nextUntil( ".tree-folder-level-0" ).removeClass("folder-closed").addClass("folder-open");
+    //       $(this).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+    //       $(this).nextUntil( ".tree-folder-level-0" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+    //     }
+    // });
 
     // make the folders at level 1 collapsable
     $('.tree-folder-level-1').on('click', function() {
