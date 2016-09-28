@@ -27,6 +27,9 @@ skip_before_action :authenticate_candidate!
       @job_offer_folder.open == true ? @job_offer_folder.open = false : @job_offer_folder.open = true
       @job_offer_folder.save
       redirect_to job_offers_path
+    else
+      @job_offer_folder = JobOfferFolder.find(job_offer_folder_params)
+      authorize @job_offer_folders
     end
   end
 

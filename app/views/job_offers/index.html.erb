@@ -172,10 +172,6 @@
                <% end %>
             <%  end %>
 
-
-            <!-- put this link around folders -->
-            <%#= link_to job_offer_folder_path(folder, type: "collapse"), method: :put %>
-
             <%  def folder_html(folder) %>
 
                   <tr class="border folder-js <%= folder.open == true ? "folder-open" : "folder-closed" %> <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %>">
@@ -195,9 +191,9 @@
                           <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
                           <ul class="dropdown-menu dropdown-offer-folder-js dropdown-menu-folder pull-right dropdown-menu-right">
                             <li>
-                              <%= link_to "#" do %>
+                              <a href="" data-toggle="modal" data-target="#EditFolder<%=folder.id%>Modal" class="inline no-decoration">
                                 <i class="fa fa-pencil"></i> <%= t(".profile", default: "rename") %>
-                              <% end %>
+                              </a>
                             </li>
                             <li>
                               <%= link_to job_offer_folder_path(folder), method: :delete do %>
@@ -227,6 +223,25 @@
                       <%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                   </tr>
+
+                  <!-- modal Edit Folder-->
+                    <div class="modal fade" id="EditFolder<%=folder.id%>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder"></i> Edit Folder Name</h4>
+                          </div>
+                          <div class="modal-body">
+                            <%= simple_form_for(folder) do |field| %>
+                              <%= field.input :name, label: false %>
+                              <%= field.button :submit, "RENAME" %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
             <%  end %>
 
 
@@ -356,5 +371,6 @@
     </div>
   </div>
 </div>
+
 
 
