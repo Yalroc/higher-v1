@@ -15,7 +15,7 @@
                 <ul class="dropdown-menu" aria-labelledby="folderDropdownMenuButton">
                   <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#AddFolderModal"} do %> Add folder<% end %></li>
                   <li class="dropdown-item"><%= link_to "#" do %> Collapse all<% end %></li>
-                  <li class="dropdown-item"><%= link_to "#" do %> Open all<% end %></li>
+                  <li class="dropdown-item"><%= link_to "#" do %> Expand all<% end %></li>
                 </ul>
             </div>
             <!-- Job Offer icon dropdown -->
@@ -25,18 +25,6 @@
                   <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#CreateJobOfferModal"} do %> Add offer<% end %></li>
                 </ul>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
           </div> <!-- end of btn group -->
 
           <tr class="flex height-40px bold table-head">
@@ -272,7 +260,7 @@
                             <%= render "shared/modals/edit_job_offer_modal", job_offer: offer %>
                           </li>
                           <li>
-                            <%= link_to "#" do %>
+                            <%= link_to job_offer_path(offer), method: :delete do %>
                               <i class="fa fa-times"></i> <%= t(".profile", default: "delete") %>
                             <% end %>
                           </li>

@@ -25,4 +25,8 @@ class JobOfferPolicy < ApplicationPolicy
     edit?
   end
 
+  def destroy?
+    true
+  end
+
 end

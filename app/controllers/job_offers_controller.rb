@@ -61,6 +61,13 @@
     # end
   end
 
+  def destroy
+    @job_offer = JobOffer.find(params[:id])
+    authorize @job_offer
+    @job_offer.destroy
+    redirect_to job_offers_path
+  end
+
   private
 
   def pundit_user
