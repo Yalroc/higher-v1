@@ -174,7 +174,7 @@
 
             <%  def folder_html(folder) %>
 
-                  <tr class="border folder-js <%= folder.open == true ? "folder-open" : "folder-closed" %> <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %>">
+                  <tr class="border folder-js <%= folder.open == true ? "folder-open" : "folder-closed" %> <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %> <%= "folder-#{folder.id.to_s}" %>">
 
                     <td class="column-0">
                       <%= link_to job_offer_folder_path(folder, type: "star"), method: :put, remote: true do %>

@@ -50,7 +50,7 @@
           @job_offer.star == true ? @job_offer.star = false : @job_offer.star = true
           @job_offer.save
           respond_to do |format|
-            format.html { redirect_to job_offers_path } # get rid off when ajax
+            format.html { redirect_to job_offers_path }
             format.js { render 'job_offer_star'}
           end
         end
