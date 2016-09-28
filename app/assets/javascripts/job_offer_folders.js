@@ -11,7 +11,7 @@ $(document).ready(function() {
     }
     // HIDE FOLDERS WHICH ARE CLOSED
     $('.tree-folder-level-' + i + '.folder-closed').nextUntil(concat).hide();
-  }
+}
 
 // HIDE FOLDERS WHICH ARE CLOSED
     //   $('.tree-folder-level-0.folder-closed').nextUntil( ".tree-folder-level-0" ).hide();
@@ -23,5 +23,15 @@ $(document).ready(function() {
     //   $('.tree-folder-level-6.folder-closed').nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).hide();
     //   $('.tree-folder-level-7.folder-closed').nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).hide();
 
+
+
+    // make the folders at level 3 collapsable
+    $('#collapse-all-folders-btn').on('click', function() {
+      $(".tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7, .offer-js").hide();
+    });
+
+    $('#expand-all-folders-btn').on('click', function() {
+      $(".tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7, .offer-js").show();
+    });
 
 }) // end of doc.function
