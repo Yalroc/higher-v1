@@ -16,6 +16,7 @@
     # DRY recursive tree-structure
     @parent_folders = current_recruiter.organization.job_offer_folders.where(parent: nil).sort_by { |folder| folder.name }
     @all_folders = JobOfferFolder.where(organization: current_recruiter.organization).all.sort_by { |folder| folder.name }
+    @orphan_offers = JobOffer.where(organization: current_recruiter.organization, job_offer_folder: nil).sort_by { |offer| offer.title }
     # MODAL DATA
     @job_offer = JobOffer.new # for job_offer creation
     @job_offer_folder = JobOfferFolder.new # for folder (job offers) creation

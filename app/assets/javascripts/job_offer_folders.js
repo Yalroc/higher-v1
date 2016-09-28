@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     // make the folders at level 3 collapsable
     $('#collapse-all-folders-btn').on('click', function() {
-      $(".tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7, .offer-js").hide();
+      $(".tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7, .offer-js").not('.orphan-row').hide();
     });
 
     $('#expand-all-folders-btn').on('click', function() {
