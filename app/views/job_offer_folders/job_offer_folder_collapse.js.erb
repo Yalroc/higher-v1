@@ -1,0 +1,124 @@
+// //MAKE FOLDER LEVELS COLLAPSEABLE
+//     // make the folders at level 0 collapsable
+
+   if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-0')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-1')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-2')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-3')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-4')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-5')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-6')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+    } else if ($( "<%= j '.folder-' + @job_offer_folder.id.to_s %>" ).hasClass('tree-folder-level-7')) {
+
+        if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-open")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-open").addClass("folder-closed");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder-open").addClass("fa-folder").removeClass("fa-folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).hide()
+
+        } else if ($("<%= j '.folder-' + @job_offer_folder.id.to_s %>").hasClass("folder-closed")) {
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).show()
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).removeClass("folder-closed").addClass("folder-open");
+          $("<%= j '.folder-' + @job_offer_folder.id.to_s %>").nextUntil( ".tree-folder-level-0, .tree-folder-level-1, .tree-folder-level-2, .tree-folder-level-3, .tree-folder-level-4, .tree-folder-level-5, .tree-folder-level-6, .tree-folder-level-7" ).find(".fa-folder").addClass("fa-folder-open").removeClass("fa-folder");
+        }
+
+  };

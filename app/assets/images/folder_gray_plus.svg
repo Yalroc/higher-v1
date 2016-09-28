@@ -1,31 +1,19 @@
 
-<svg width="63px" height="33px" viewBox="-574 -76 63 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="65px" height="30px" viewBox="112 146 65 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
     <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M13.1234432,10.9504111 C13.3308011,11.1538727 13.3292584,11.4852625 13.1262094,11.6844963 L11.6146994,13.1676417 C11.408831,13.3696001 11.0736965,13.3682064 10.8665514,13.1649171 L0.332900315,2.82919182 C0.125542464,2.6257302 0.127085147,2.29434038 0.330134125,2.09510667 L1.84164412,0.611961205 C2.04745928,0.410002837 2.38259383,0.411396481 2.58979209,0.614685858 L13.1234432,10.9504111 L13.1234432,10.9504111 Z" id="path-1"></path>
-        <path d="M10.8665514,0.614685858 C11.0739093,0.411224233 11.4116504,0.41273271 11.6146994,0.611961205 L13.1262094,2.09510667 C13.3320778,2.29707026 13.3306415,2.62590245 13.1234432,2.82919182 L2.58979209,13.1649171 C2.38243424,13.3683839 2.0446931,13.3668754 1.84164412,13.1676417 L0.330134125,11.6844963 C0.124265761,11.4825379 0.125702052,11.1537005 0.332900315,10.9504111 L10.8665514,0.614685858 L10.8665514,0.614685858 Z" id="path-3"></path>
-    </defs>
-    <g id="cv-icon-navbar-folder" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-574.000000, -76.000000)">
-        <g id="cross" transform="translate(51.899495, 9.899495) rotate(45.000000) translate(-51.899495, -9.899495) translate(44.899495, 2.899495)">
-            <g id="Group-60" transform="translate(0.000000, 0.000000)">
-                <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                </mask>
-                <g id="Clip-59"></g>
-                <polygon id="Fill-58" fill="#6E6E6E" mask="url(#mask-2)" points="17.2604398 11.3188134 11.2420085 17.2241644 -3.80409626 2.46078953 2.21433501 -3.44456146"></polygon>
+    <defs></defs>
+    <g id="folder_gray_plus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(112.000000, 146.000000)">
+        <g id="Created-with-Sketch.">
+            <g id="cv-icon-navbar-folder">
+                <g id="cross" transform="translate(52.242641, 17.677670) rotate(45.000000) translate(-52.242641, -17.677670) translate(43.742641, 9.177670)" fill="#ACABAB">
+                    <polygon id="Triangle" transform="translate(8.730983, 8.186851) rotate(135.000000) translate(-8.730983, -8.186851) " points="8.73098256 4.00201645 15.9470484 12.3716847 5.32918979 12.3716847 1.51491673 12.3716847 4.01659778 9.47007031"></polygon>
+                </g>
+                <g id="folder" fill="#6E6E6E">
+                    <rect id="Rectangle" x="0" y="0" width="20" height="20" rx="5"></rect>
+                    <path d="M0,11.9911381 C0,7.5777544 3.58133444,4 8.00566201,4 L31.9907763,4 C34.7572942,4 37,6.23493942 37,8.99096922 L37,22.9959766 L37,24.0009151 C37,26.7618335 34.7688083,29 31.9907763,29 L5.00922367,29 C2.24270583,29 0,26.763668 0,24.0009625 L0,24.0009625 L0,11.9911381 L0,11.9911381 Z" id="Rectangle"></path>
+                </g>
             </g>
-            <g id="Group-63" transform="translate(0.000000, 0.000000)">
-                <mask id="mask-4" fill="white">
-                    <use xlink:href="#path-3"></use>
-                </mask>
-                <g id="Clip-62"></g>
-                <polygon id="Fill-61" fill="#6E6E6E" mask="url(#mask-4)" points="11.9491153 -2.73745467 17.9675466 3.16789631 2.92144179 17.9312712 -3.09698948 12.0259202"></polygon>
-            </g>
-        </g>
-        <g id="folder" transform="translate(0.000000, 4.000000)" fill="#6E6E6E">
-            <rect id="Rectangle" x="0" y="0" width="20" height="20" rx="8"></rect>
-            <path d="M0,11.9911381 C0,7.5777544 3.58133444,4 8.00566201,4 L31.9907763,4 C34.7572942,4 37,6.23493942 37,8.99096922 L37,22.9959766 L37,24.0009151 C37,26.7618335 34.7688083,29 31.9907763,29 L5.00922367,29 C2.24270583,29 0,26.763668 0,24.0009625 L0,24.0009625 L0,11.9911381 Z" id="Rectangle"></path>
         </g>
     </g>
 </svg>

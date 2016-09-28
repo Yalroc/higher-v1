@@ -20,15 +20,31 @@ skip_before_action :authenticate_candidate!
       authorize @job_offer_folder
       @job_offer_folder.star == true ? @job_offer_folder.star = false : @job_offer_folder.star = true
       @job_offer_folder.save
-      redirect_to job_offers_path # in case ajax fails ? not sure it's needed
+      respond_to do |format|
+        format.html { redirect_to job_offers_path }
+        format.js { render 'job_offer_folder_star'}
+      end
+
     elsif job_offer_folder_update_params[:type] == "collapse" # hide/unhide folders ajax
-      raise
       @job_offer_folder = JobOfferFolder.find(job_offer_folder_update_params[:id])
       authorize @job_offer_folder
       @job_offer_folder.open == true ? @job_offer_folder.open = false : @job_offer_folder.open = true
       @job_offer_folder.save
-      redirect_to job_offers_path
+      respond_to do |format|
+        format.html { redirect_to job_offers_path }
+        format.js { render 'job_offer_folder_collapse'}
+      end
+    else
+      @job_offer_folder = JobOfferFolder.find(job_offer_folder_params)
+      authorize @job_offer_folders
     end
+  end
+
+  def destroy
+    @job_offer_folder = JobOfferFolder.find(params[:id])
+    authorize @job_offer_folder
+    @job_offer_folder.destroy
+    redirect_to job_offers_path
   end
 
   private

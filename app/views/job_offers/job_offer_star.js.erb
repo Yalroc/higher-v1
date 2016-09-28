@@ -1,0 +1,9 @@
+ // make the star yellow on click & vice versa
+if ($( "<%= j '.offer-' + @job_offer.id.to_s %>" ).find(".star-icon").hasClass("fa-star-o")) {
+  $( "<%= j '.offer-' + @job_offer.id.to_s %>" ).find(".star-icon").addClass("fa-star yellow").removeClass("fa-star-o gray-light");
+}
+else {
+  $( "<%= j '.offer-' + @job_offer.id.to_s %>" ).find(".star-icon").addClass("fa-star-o gray-light").removeClass("fa-star yellow");
+}
+
+

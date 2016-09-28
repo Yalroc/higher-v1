@@ -7,10 +7,26 @@
           <div class="navbar-higher-brand-recruiter2">
             <%= image_tag "LOreal_black_vector.png" %>
           </div>
-          <div class="btn-group navbar-higher-btn-group-recruiter" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddFolderModal"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#CreateJobOfferModal"><div><%= image_tag "noun_job_gray_plus.svg", class: "cv-icon-navbar-noun-job" %></div></button>
-          </div>
+          <!-- btn group in white navbar -->
+          <div class="btn-group navbar-higher-btn-group-recruiter dropdown closed" role="group" aria-label="...">
+            <!-- Folder icon dropdown -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default" id="folderDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
+                <ul class="dropdown-menu" aria-labelledby="folderDropdownMenuButton">
+                  <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#AddFolderModal"} do %> Add folder<% end %></li>
+                  <li class="dropdown-item"><%= link_to "#", id: "collapse-all-folders-btn" do %> Collapse all<% end %></li>
+                  <li class="dropdown-item"><%= link_to "#", id: "expand-all-folders-btn" do %> Expand all<% end %></li>
+                </ul>
+            </div>
+            <!-- Job Offer icon dropdown -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default" id="offerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "noun_job_gray_plus.svg", class: "cv-icon-navbar-noun-job" %></div></button>
+                <ul class="dropdown-menu" aria-labelledby="offerDropdownMenuButton">
+                  <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#CreateJobOfferModal"} do %> Create job offer<% end %></li>
+                </ul>
+            </div>
+          </div> <!-- end of btn group -->
+
           <tr class="flex height-40px bold table-head">
             <th class="column-0"></th>
             <th class="column-1 text-center"></th>
@@ -156,13 +172,9 @@
                <% end %>
             <%  end %>
 
-
-            <!-- put this link around folders -->
-            <%#= link_to job_offer_folder_path(folder, type: "collapse"), method: :put %>
-
             <%  def folder_html(folder) %>
 
-                  <tr class="border folder-js <%= folder.open == true ? "folder-open" : "folder-closed" %> <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %>">
+                  <tr class="border folder-js <%= folder.open == true ? "folder-open" : "folder-closed" %> <%= folder.parent ? "" : "parent-folder-row" %> <%= 'tree-folder-level-' + tree_level(folder).to_s %> <%= "folder-#{folder.id.to_s}" %>">
 
                     <td class="column-0">
                       <%= link_to job_offer_folder_path(folder, type: "star"), method: :put, remote: true do %>
@@ -179,28 +191,33 @@
                           <i class="fa fa-cog cog-icon" aria-hidden="true" data-toggle="dropdown"></i>
                           <ul class="dropdown-menu dropdown-offer-folder-js dropdown-menu-folder pull-right dropdown-menu-right">
                             <li>
-                              <%= link_to "#" do %>
+                              <a href="" data-toggle="modal" data-target="#RenameFolder<%=folder.id%>Modal" class="inline no-decoration">
                                 <i class="fa fa-pencil"></i> <%= t(".profile", default: "rename") %>
-                              <% end %>
+                              </a>
                             </li>
                             <li>
-                              <%= link_to "#" do %>
+                              <a href="" data-toggle="modal" data-target="#MoveFolder<%=folder.id%>Modal" class="inline no-decoration">
+                                <i class="fa fa-arrows"></i> <%= t(".profile", default: "move") %>
+                              </a>
+                            </li>
+                            <li>
+                              <%= link_to job_offer_folder_path(folder), method: :delete do %>
                                 <i class="fa fa-times"></i> <%= t(".profile", default: "delete") %>
                               <% end %>
                             </li>
                           </ul>
                         </div>
                       </div>
-                      <%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-2">
-                      <%= count_down_tree_for_offers(folder).to_s %><%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= count_down_tree_for_offers(folder).to_s %><%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-3">
-                      <%= count_down_tree(folder).to_s %><%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= count_down_tree(folder).to_s %><%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-4">
-                      <%= count_down_tree_for_contacted(folder).to_s %><%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= count_down_tree_for_contacted(folder).to_s %><%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                     <td class="column-5">
                       <% if count_down_tree(folder) == 0 %>
@@ -208,14 +225,51 @@
                       <% else %>
                         <%= rand(60..90).round(1).to_s + "%" %>
                       <% end %>
-                      <%= link_to root_path, class: "td-link-absolute" do %> <% end %>
+                      <%= link_to job_offer_folder_path(folder, type: "collapse"), method: :put, remote: true, class: "td-link-absolute" do %> <% end %>
                     </td>
                   </tr>
+
+                  <!-- modal Rename Folder-->
+                    <div class="modal fade" id="RenameFolder<%=folder.id%>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title text-left" id="myModalLabel"><i class="fa fa-folder"></i> Edit Folder Name</h4>
+                          </div>
+                          <div class="modal-body text-left">
+                            <%= simple_form_for(folder) do |field| %>
+                              <%= field.input :name, label: false %>
+                              <%= field.button :submit, "RENAME" %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- modal Move Folder-->
+                    <div class="modal fade" id="MoveFolder<%=folder.id%>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title text-left" id="myModalLabel"><i class="fa fa-folder"></i> Move Folder</h4>
+                          </div>
+                          <div class="modal-body text-left">
+                            <%= simple_form_for(folder) do |field| %>
+                              <%= field.input :parent_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders, class: 'String'  %>
+                              <%= field.button :submit, "MOVE" %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
             <%  end %>
 
 
             <%  def offer_html(offer) %>
-                  <tr class="border">
+                  <tr class="border offer-js <%= offer.job_offer_folder.open == true ? "folder-open" : "folder-closed" %> <%= "offer-#{offer.id.to_s}" %>">
                     <td class="column-0">
                       <%= link_to job_offer_path(offer, type: "star"), method: :put, remote: true do %>
                         <i class="fa <%= offer.star == true ? "fa-star yellow" : "fa-star-o gray-light" %> star-icon" aria-hidden="true"></i>
@@ -237,12 +291,14 @@
                             <% end %>
                           </li>
                           <li>
-                            <%= link_to "#" do %>
+                            <%= link_to "#EditJobOfferModal", data: { toggle: "modal" } do %>
                               <i class="fa fa-cogs"></i> <%= t(".profile", default: "edit") %>
                             <% end %>
+                            <!-- Modal: Edit a Job Offer -->
+                            <%= render "shared/modals/edit_job_offer_modal", job_offer: offer %>
                           </li>
                           <li>
-                            <%= link_to "#" do %>
+                            <%= link_to job_offer_path(offer), method: :delete do %>
                               <i class="fa fa-times"></i> <%= t(".profile", default: "delete") %>
                             <% end %>
                           </li>
@@ -326,7 +382,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder-open folder-icon" aria-hidden="true"></i> Add a Folder</h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder folder-icon" aria-hidden="true"></i> Add a Folder</h4>
       </div>
       <div class="modal-body">
         <%= simple_form_for([ @job_offer_folder ]) do |form| %>
@@ -340,5 +396,4 @@
 </div>
 
 
-<!-- Modal: Edit a Job Offer -->
-<%= render "shared/modals/edit_job_offer_modal" %>
+

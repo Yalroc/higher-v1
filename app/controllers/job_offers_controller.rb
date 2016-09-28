@@ -49,7 +49,10 @@
           authorize @job_offer
           @job_offer.star == true ? @job_offer.star = false : @job_offer.star = true
           @job_offer.save
-          redirect_to job_offers_path # get ridd off when ajax
+          respond_to do |format|
+            format.html { redirect_to job_offers_path }
+            format.js { render 'job_offer_star'}
+          end
         end
 
     # @job_offer = JobOffer.find(params[:id])   # normal update
@@ -59,6 +62,13 @@
     # else
     #   render :edit
     # end
+  end
+
+  def destroy
+    @job_offer = JobOffer.find(params[:id])
+    authorize @job_offer
+    @job_offer.destroy
+    redirect_to job_offers_path
   end
 
   private
