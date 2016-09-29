@@ -1,0 +1,18 @@
+<!-- Modal: Edit a Job Offer -->
+<div id="MoveJobOffer<%=offer.id%>Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-left">Move offer</h4>
+      </div>
+      <div class="modal-body text-left">
+      <p>something</p>
+        <%= simple_form_for(offer) do |form| %>
+          <%= form.input :job_offer_folder_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders, class: 'String'  %>
+          <%= form.button :submit, "MOVE" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

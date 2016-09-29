@@ -34,10 +34,15 @@ skip_before_action :authenticate_candidate!
         format.html { redirect_to job_offers_path }
         format.js { render 'job_offer_folder_collapse'}
       end
+
     else
+      # to do
+      raise
       @job_offer_folder = JobOfferFolder.find(job_offer_folder_params)
+      @job_offer_folder.update()
       authorize @job_offer_folders
     end
+
   end
 
   def destroy
