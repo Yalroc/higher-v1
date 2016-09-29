@@ -4,8 +4,12 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante  -->
+
+
+
           <% if  @job_offer %>
-            <h4 class="text-center"><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h4>
+
+            <h4 class="text-center job-offer-title"><%= @job_offer.title %></h4>
             <div class="job-offer-icons-div">
               <ul class="list-inline product-controls hidden-sm hidden-xs text-center">
                 <li><i class="fa fa-globe"></i> <%= @job_offer.location %></li>
@@ -13,10 +17,19 @@
                 <li><i class="fa fa-money"></i> <%= @job_offer.salary.to_s + "K€" %></li>
               </ul>
             </div>
+            <div class="job-offer-description">
             <p><%= simple_format @job_offer.description %></p>
+            </div>
+
           <% else %>
             <p>Sorry mate. This job offer does not have a description..</p>
           <% end %>
+
+
+
+
+
+
         </div> <!-- fin div englobbante  -->
       </div>
     </div>
@@ -44,7 +57,7 @@
           <% if @experiences_sorted.empty? %>
           <% else %>
             <div class="cv-separator"></div>
-            <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCES <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><i class="fa fa-plus-circle add-btn" aria-hidden="true"></i></a></h3>
+            <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCE <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><i class="fa fa-plus-circle add-btn" aria-hidden="true"></i></a></h3>
                <!-- button de modal: Add XP -->
 
 
@@ -54,7 +67,7 @@
                     <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
                     <a href="" data-toggle="modal" data-target="#EditExperience<%=experience.id%>Modal" class="inline margin-left-20px no-decoration">Edit /</a>  <!-- button de modal: Edit XP -->
                      <%= link_to experience_path(experience), method: :delete do %>
-                      <i class="fa fa-times" aria-hidden="true"></i>
+                      Delete
                     <% end %>
 
                     <!-- experience dates -->
@@ -91,6 +104,7 @@
                                 <%= field.input :start_date, discard_day: true, start_year: 2000, end_year: Date.today.year , order: [:month, :year] %>
                                 <%= field.input :end_date, discard_day: true, start_year: 2000, end_year: Date.today.year , order: [:month, :year] %>
                                 <%= field.input :present %>
+                                <%= field.input :location %>
                                 <%= field.input :description %>
                                 <%#=  field.input :company_size %>
                                 <%#= field.input :industry %>
@@ -130,6 +144,7 @@
                       <%= field.input :start_date, discard_day: true, start_year: 2000, end_year: Date.today.year, order: [:month, :year] %>
                       <%= field.input :end_date, discard_day: true, start_year: 2000, end_year: Date.today.year, order: [:month, :year] %>
                       <%= field.input :present %>
+                      <%= field.input :location %>
                       <%= field.input :description %>
                       <%#= field.input :company_size %>
                       <%#= field.input :industry %>
@@ -149,10 +164,10 @@
               <div class="margin-left">
                 <% @educations_sorted.each do |education| %>
                   <div class="cv-tab">
-                    <h4 class="inline"><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h4>
+                    <h4 class="inline"><%= education.degree_field + ' @ ' + education.organization %></h4>
                     <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditEducation<%=education.id%>Modal" id="links-modal-resume">Edit /</a>   <!-- button de modal: Edit Education -->
                     <%= link_to education_path(education), method: :delete do %>
-                      <i class="fa fa-times" aria-hidden="true"></i>
+                      Delete
                     <% end %>
                     <p class="color-mid-gray margin-top-1px"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></p>
                     <p class="tab-description"><%= education.description %></p>
@@ -233,13 +248,13 @@
                       <p class="inline">
                         <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditLanguage<%=language.id%>Modal">Edit /</a> <!-- button de modal: Edit Education -->
                           <%= link_to language_path(language), method: :delete do %>
-                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Delete
                           <% end %>
                       </p>
                       <p class="small-text margin-bottom-20px"><%= language.proficiency %></p>
 
 
-                      <!-- modal Edit Education -->
+                      <!-- modal Edit Language -->
                       <div class="modal fade" id="EditLanguage<%=language.id%>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -263,7 +278,6 @@
                   <% end %>
                 </div>
               </div>
-
           <% end %>
 
             <% if @job_application.languages.empty? %>
@@ -320,77 +334,104 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <button type="button" class="close top-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <div class="modal-body">
+      <div class="modal-body" id="view-as-modal">
 
-        <div class="titles-resume">
-          <h6 id="resume-style" >Your resume for : </h6> <h6 class="text-center" id="underline-title" ><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h6>
+        <!-- header -->
+        <div class="view-as-modal-header">
+          <div class="view-as-modal-header-left">
+            <p><strong>Candidate: </strong> <%= @experiences_sorted.first.title + " @ " + @experiences_sorted.first.organization %><br>
+            Applying to: <%= @job_offer.title + " @ " + @job_offer.organization.name %> <br>
+            Available: 1st December 2016
+            </p>
+          </div>
+          <div class="view-as-modal-header-right">
+            <p> Fit: 65.5% <br>
+            Applied on <br>
+            13/10/2016
+            </p>
+          </div>
         </div>
 
-        <!-- <div id="top-border-under-title"></div> -->
-
-        <!-- experience  -->
-        <% if @experiences_sorted.empty? %>
-        <% else %>
-          <div class="">
-            <h5><i class="fa fa-file-text" aria-hidden="true"></i> EXPERIENCES</h5>
-            <% @experiences_sorted.each do |experience| %>
-              <div class="">
-                <h6 class=""><%= experience.title + " @ " + experience.organization %></h6>
-                <p class=" small-text"><span class="color-mid-gray"><%= experience.start_date.month.to_s + "/" + experience.start_date.year.to_s + " - " + experience.end_date.month.to_s + "/" + experience.end_date.year.to_s %></span><span id="chevron"> >></span>
-                <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) != 0 %>
-                  <%=  (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year(s) " %>
+        <!-- experiences  -->
+          <% if @experiences_sorted.empty? %>
+          <% else %>
+            <div class="cv-separator"></div>
+            <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCE </h3>
+              <div class="margin-left">
+                <% @experiences_sorted.each do |experience| %>
+                  <div class="cv-tab">
+                    <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
+                    <!-- experience dates -->
+                    <% months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
+                    <p class="color-mid-gray margin-top-1px"><%= months[experience.start_date.month - 1] + " " + experience.start_date.year.to_s + " - " + months[experience.end_date.month - 1] + " " + experience.end_date.year.to_s + " (" %>
+                      <!-- years xp calculation -->
+                      <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) >= 2 %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " years" %>
+                      <% elsif (((experience.end_date - experience.start_date)/30.5).to_i/12) > 0 %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year" %>
+                      <% end %>
+                      <!-- month xp calculation -->
+                      <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) >= 2 %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " months" %>
+                      <% elsif (((experience.end_date - experience.start_date)/30.5).to_i%12) > 0 %>
+                        <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month" %>
+                      <% end %>
+                      <%= experience.location ? ") | #{experience.location}" : ")" %>
+                    </p>
+                    <p class="tab-description"><%= experience.description %></p>
+                  </div>
                 <% end %>
-                <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) != 0 %>
-                  <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month(s)" %><p>
+              </div>
+          <% end %>
+
+          <!-- educations -->
+          <% if @educations_sorted.empty? %>
+          <% else %>
+            <div class="cv-separator"></div>
+            <h3><i class="fa fa-graduation-cap" aria-hidden="true"></i> EDUCATION</h3>
+              <div class="margin-left">
+                <% @educations_sorted.each do |education| %>
+                  <div class="cv-tab">
+                    <h4 class="inline"><%= education.degree_field + ' @ ' + education.organization %></h4>
+                    <p class="color-mid-gray margin-top-1px"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></p>
+                    <p class="tab-description"><%= education.description %></p>
+                  </div>
                 <% end %>
-                <p class="small-text"><%= experience.description %></p>
               </div>
-            <% end %>
-          </div>
-        <% end %> <!-- fin de experiences -->
+          <% end %>
 
-        <!-- education -->
-        <% if @educations_sorted.empty? %>
-        <% else %>
-          <div class="">
-            <h5><i class="fa fa-graduation-cap" aria-hidden="true"></i> EDUCATION</h5>
-            <% @educations_sorted.each do |education| %>
-              <div class="">
-                <h6 class=""><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h6>
+          <!-- languages -->
+          <% if @languages.empty? %>
+          <% else %>
+            <div class="cv-separator"></div>
+            <div class="">
+              <h3><i class="fa fa-globe" aria-hidden="true"></i> LANGUAGES</h3>
 
-                <p class="small-text"><span class="color-mid-gray"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></span><span id="chevron"> >> </span> <%= ([(education.end_date.year - education.start_date.year), 1].max ).to_s + " year(s)" %><p>
-                <p class="small-text"><%= education.description %></p>
+                <div class="row language-blocks">
+                  <% @languages.each do |language| %>
+
+                    <div class="col-xs-6">
+                      <h4 class="inline"><%= language.name %></h4>
+                      <p class="small-text margin-bottom-20px"><%= language.proficiency %></p>
+                    </div>
+                  <% end %>
+                </div>
               </div>
-            <% end %>
-          </div>
-        <% end %> <!-- fin de educations -->
-
-        <!-- languages -->
-        <% if @languages.empty? %>
-        <% else %>
-          <div class="">
-            <h5><i class="fa fa-globe" aria-hidden="true"></i> LANGUAGES</h5>
-            <ul><% @languages.each do |language| %>
-                <li class="small-text">
-                  <%= language.name %> <span id="chevron"> >> </span> <%= language.proficiency %>
-                </li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %> <!-- fin languages -->
-
+          <% end %>
 
         <!-- motivation letter -->
-        <div id="top-border">
-          <h5><i class="fa fa-pencil" aria-hidden="true"></i> COVER LETTER</h5>
+        <div class="cv-separator"></div>
+        <h3><i class="fa fa-pencil" aria-hidden="true"></i> COVER LETTER</h3>
+        <div id="motivation-letter-in-modal">
           <p class="small-text"><%= simple_format @job_application.motivation_letter %></p>
         </div>
         <!-- footer de modal -->
-        <div class="modal-footer view-as-modal-footer">
-          <button type="button" class="btn btn-default btn-submit-application" id="return-margin-top" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> Return</button>
-          <%= button_to "Submit Application", submit_job_offer_job_application_path(@job_offer, @job_application), class: "btn btn-primary btn-return-to-funnel", id: "submit-margin-top" %>
+        <div class="text-right">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-submit-application" data-dismiss="modal"><i class="fa fa-undo" aria-hidden="true"></i> Return</button>
+            <%= link_to "Submit Application", submit_job_offer_job_application_path(@job_offer, @job_application), class: "btn btn-primary btn-return-to-funnel" %>
+          </div>
         </div>
-
       </div> <!-- fin div englobbante du cv  -->
     </div>
   </div>
