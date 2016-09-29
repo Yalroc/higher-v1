@@ -323,8 +323,20 @@
       <button type="button" class="close top-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <div class="modal-body" id="view-as-modal">
 
-        <div class="titles-resume">
-          <h6 id="resume-style" >Your resume for : </h6> <h6 class="text-center" id="underline-title" ><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h6>
+        <!-- header -->
+        <div class="view-as-modal-header">
+          <div class="view-as-modal-header-left">
+            <p><strong>Candidate: </strong> <%= @experiences_sorted.first.title + " @ " + @experiences_sorted.first.organization %><br>
+            Applying to: <%= @job_offer.title + " @ " + @job_offer.organization.name %> <br>
+            Available: 1st December 2016
+            </p>
+          </div>
+          <div class="view-as-modal-header-right">
+            <p> Fit: 65.5% <br>
+            Applied on <br>
+            13/10/2016
+            </p>
+          </div>
         </div>
 
         <!-- experiences  -->
@@ -375,7 +387,7 @@
               </div>
           <% end %>
 
-          <!-- LANGUAGES -->
+          <!-- languages -->
           <% if @languages.empty? %>
           <% else %>
             <div class="cv-separator"></div>

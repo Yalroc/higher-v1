@@ -128,15 +128,22 @@
   color: $gray-light;
 }
 
-#resume-style {
-  color: $black;
-  font-weight: lighter;
-  font-style: italic;
-  margin-right: 10px;
+.view-as-modal-header {
+  height: 40px;
 }
 
-.titles-resume {
-  display: flex;
-  justify-content: center;
+.view-as-modal-header-left {
+  position: fixed;
+  top: 35px;
+  left: 53px;
+  font-size: 15px;
 }
 
+.view-as-modal-header-right {
+  position: fixed;
+  top: 35px;
+  right: 65px;
+  font-size: 15px;
+  text-align: right;
+
+}
