@@ -44,7 +44,7 @@
           <% if @experiences_sorted.empty? %>
           <% else %>
             <div class="cv-separator"></div>
-            <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCES <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><i class="fa fa-plus-circle add-btn" aria-hidden="true"></i></a></h3>
+            <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCE <a href="" data-toggle="modal" data-target="#AddExperienceModal" id="links-modal-resume"><i class="fa fa-plus-circle add-btn" aria-hidden="true"></i></a></h3>
                <!-- button de modal: Add XP -->
 
 
@@ -149,7 +149,7 @@
               <div class="margin-left">
                 <% @educations_sorted.each do |education| %>
                   <div class="cv-tab">
-                    <h4 class="inline"><%= education.degree_type + ' ' + education.degree_field + ' @ ' + education.organization %></h4>
+                    <h4 class="inline"><%= education.degree_field + ' @ ' + education.organization %></h4>
                     <a href="" class="margin-left-20px" data-toggle="modal" data-target="#EditEducation<%=education.id%>Modal" id="links-modal-resume">Edit /</a>   <!-- button de modal: Edit Education -->
                     <%= link_to education_path(education), method: :delete do %>
                       <i class="fa fa-times" aria-hidden="true"></i>

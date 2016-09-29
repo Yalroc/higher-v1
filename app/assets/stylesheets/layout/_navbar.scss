@@ -70,8 +70,8 @@
 }
 
 // blank flex-boxes
-.blank-10-percent {
-  flex: 0 0 10%;
+.blank-2-percent {
+  flex: 0 0 2%;
 }
 
 // blank flex-boxes
@@ -151,7 +151,7 @@
   width: 30vw;
   min-width: 15vw;
   transition: all 0.15s ease;
-  line-height: 45px;
+  line-height: 27px !important;
   font-weight: lighter;
   color: #666666;
   border: 1px solid #E6E6E6;
@@ -190,7 +190,7 @@
   margin-right: -16px;
   cursor: pointer;
   padding: 0 20px;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .navbar-higher-links-candidates {
@@ -204,10 +204,10 @@
 .navbar-higher-link {
   text-decoration: none;
   color: white;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: lighter;
-  opacity: 0.85;
-  padding: 0 13px;
+  opacity: 0.95;
+  padding: 0 10px;
   &:hover {
     text-decoration: none;
     // font-weight: normal;
