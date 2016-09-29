@@ -52,7 +52,7 @@
                 <% @experiences_sorted.each do |experience| %>
                   <div class="cv-tab">
                     <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
-                    <a href="" data-toggle="modal" data-target="#EditExperienceModal" class="inline margin-left-20px no-decoration">Edit /</a>  <!-- button de modal: Edit XP -->
+                    <a href="" data-toggle="modal" data-target="#EditExperience<%=experience.id%>Modal" class="inline margin-left-20px no-decoration">Edit /</a>  <!-- button de modal: Edit XP -->
                      <%= link_to experience_path(experience), method: :delete do %>
                       <i class="fa fa-times" aria-hidden="true"></i>
                     <% end %>
