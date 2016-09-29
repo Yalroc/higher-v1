@@ -7,15 +7,15 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante  -->
-          <h4 class="text-center"><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h4>
+          <h4 class="text-center job-offer-title"><%= @job_offer.title %></h4>
           <div class="job-offer-icons-div">
             <ul class="list-inline product-controls hidden-sm hidden-xs text-center">
               <li><i class="fa fa-globe"></i> <%= @job_offer.location %></li>
-              <li><i class="fa fa-wpforms"></i> <%= @job_offer.min_xp.to_i.to_s + "y - " + @job_offer.max_xp.to_i.to_s + "y" %></li>
+              <li><i class="fa fa-file-text"></i> <%= @job_offer.min_xp.to_i.to_s + "y - " + @job_offer.max_xp.to_i.to_s + "y" %></li>
               <li><i class="fa fa-money"></i> <%= @job_offer.salary.to_s + "K€" %></li>
             </ul>
           </div>
-          <div class="job-description-wrapper">
+          <div class="job-offer-description">
             <p><%= simple_format @job_offer.description %></p>
           </div>
         </div> <!-- fin div englobbante  -->
@@ -31,8 +31,13 @@
           <% if recruiter_signed_in? %>
             <%= link_to "Edit offer", root_path, class: "btn btn-primary" %> <!-- replace with modal soon -->
           <% else %>
-            <% JobApplication.where(job_offer: @job_offer, candidate: current_candidate).first ? call_to_action = "Finish application" : call_to_action = "Apply now" %>
-            <%= link_to call_to_action, new_job_offer_job_application_path(@job_offer), class: "btn btn-primary" %>
+            <% if JobApplication.where(job_offer: @job_offer, candidate: current_candidate, submit: true).first %>
+              <%= link_to "Already applied", "#", class: "btn btn-primary", id: "btn-recruiter" %>
+            <% elsif JobApplication.where(job_offer: @job_offer, candidate: current_candidate).first %>
+              <%= link_to "Continue application", new_job_offer_job_application_path(@job_offer), class: "btn btn-primary" %>
+            <% else %>
+              <%= link_to "Apply now", new_job_offer_job_application_path(@job_offer), class: "btn btn-primary" %>
+            <% end %>
           <% end %>
         </div>
       </div>
