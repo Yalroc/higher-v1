@@ -4,8 +4,12 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante  -->
+
+
+
           <% if  @job_offer %>
-            <h4 class="text-center"><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h4>
+
+            <h4 class="text-center job-offer-title"><%= @job_offer.title %></h4>
             <div class="job-offer-icons-div">
               <ul class="list-inline product-controls hidden-sm hidden-xs text-center">
                 <li><i class="fa fa-globe"></i> <%= @job_offer.location %></li>
@@ -13,10 +17,19 @@
                 <li><i class="fa fa-money"></i> <%= @job_offer.salary.to_s + "K€" %></li>
               </ul>
             </div>
+            <div class="job-offer-description">
             <p><%= simple_format @job_offer.description %></p>
+            </div>
+
           <% else %>
             <p>Sorry mate. This job offer does not have a description..</p>
           <% end %>
+
+
+
+
+
+
         </div> <!-- fin div englobbante  -->
       </div>
     </div>
