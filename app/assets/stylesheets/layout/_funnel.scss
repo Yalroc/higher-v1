@@ -16,7 +16,7 @@
   border-radius: 1px;                         /* Small radius */
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: -39px;
+  margin-top: -5px;
 }
 
 #motivation_letter_field {
@@ -130,4 +130,26 @@
 
 .margin-bottom-20px {
   margin-bottom: 20px;
+}
+
+.left-bar-resume {
+    background-color: $gray-lighter;
+    width: 51%;
+    height: 1px;
+    position: absolute;
+    top: 25px;
+    left: -32px;
+}
+
+.right-bar-resume {
+    background-color: $gray-lighter;
+    width: 51%;
+    height: 1px;
+    position: absolute;
+    top: 25px;
+    right: -32px;
+}
+
+.relative {
+  position: relative
 }

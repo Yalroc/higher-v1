@@ -4,8 +4,6 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante  -->
-          <br>
-          <br>
           <% if  @job_offer %>
             <h4 class="text-center"><%= @job_offer.title + " @ " + @job_offer.recruiter.organization.name %></h4>
             <div class="job-offer-icons-div">
@@ -311,8 +309,6 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
         <div class="cv-wrapper"> <!-- div englobbante -->
-          <br>
-          <br>
           <%= simple_form_for([@job_offer, @job_application]) do |field| %>
             <%= field.input :motivation_letter, input_html: { id: 'motivation_letter_field', placeholder: @sample_letter } %>
             <%= field.button :submit, "Save", class: "btn btn-primary" %>
