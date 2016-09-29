@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def search
-    @job_offers = JobOffer.all # later Algolia search stuff features
+    @job_offers = JobOffer.where(published: true) # later Algolia search stuff features
   end
 
   def messages # messages management for candidates

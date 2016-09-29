@@ -20,7 +20,7 @@
 }
 
 #motivation_letter_field {
-  height: 50vh;
+  height: 65vh;
 }
 
 // CV modal
@@ -61,9 +61,9 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#top-border {
-    margin-top: 50px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+#motivation-letter-in-modal {
+  padding: 0px 30px 0px 30px;
+  text-align: justify;
 }
 
 #top-border-under-title {
@@ -157,4 +157,10 @@
 .add-btn {
   font-size: 26px;
   padding-left: 7px;
+}
+
+#view-as-modal {
+  width: 100%;
+  margin: auto;
+  padding: 50px !important;
 }
