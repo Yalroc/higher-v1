@@ -54,6 +54,10 @@
             format.html { redirect_to job_offers_path }
             format.js { render 'job_offer_star'}
           end
+        else
+          # todo
+          @job_offer = JobOffer.find(job_offer_update_params)
+          authorize @job_offer
         end
 
     # @job_offer = JobOffer.find(params[:id])   # normal update
