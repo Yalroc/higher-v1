@@ -7,7 +7,7 @@
 .job-offer-second-navbar {
   position: absolute;
   top: 14px;
-  left: 620px;
+  left: 577px;
   font-size: 15px;
   font-weight: bold;
 }
@@ -47,6 +47,28 @@
         margin-top: -4px;
       }
     }
+}
+
+.page-switch-chevrons {
+  z-index: 10;
+  position: fixed;
+  top: 55px;
+  right: 25px;
+    button {
+      background-color: $gray-lighter;
+      height: 26px;
+      div {
+        margin-top: -4px;
+      }
+    }
+}
+
+.page-switch-text {
+  z-index: 10;
+  position: fixed;
+  top: 60px;
+  right: 126px;
+  font-size: 14px;
 }
 
 .second-navbar-brand {
@@ -322,5 +344,25 @@ font-size: 13px
 }
 
 .btn-second-navbar-job-applications {
-  width: 80px;
+  width: 72px;
+}
+
+.btn-second-navbar-page-switch {
+  width: 45px;
+}
+
+.black {
+  color: black;
+}
+
+.gray-mid-lighter {
+  color: $gray-mid-lighter;
+  margin-left: 3px;
+}
+
+.second-navbar-job-offer-title {
+  color: $blue;
+  font-size: 16px;
+  font-weight: 100;
+  margin-left: 3px;
 }

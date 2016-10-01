@@ -29,32 +29,39 @@
         </div>
       </div> <!-- end of btn group -->
 
-
-
-
-
-
-
-
-
-
-
       <!-- Job Offer Title & Parents -->
       <div class="job-offer-second-navbar">
         <p>
-          <%= link_to "Active >", "#", class: "text-decoration-none" %>
+          <%= link_to "Active >", "#", class: "text-decoration-none black" %>
           <% if @folder_array != nil %>
             <% @folder_array.each do |folder| %>
-              <%= link_to "#{folder.name} >", "#", class: "text-decoration-none" %>
+              <%= link_to "#{folder.name} >", "#", class: "text-decoration-none black" %>
             <% end %>
           <% end %>
-          <%= link_to "#{@job_offer.title}", "#", class: "text-decoration-none" %>
+          <%= link_to "#", class: "text-decoration-none second-navbar-job-offer-title" do %>
+            <%= "#{@job_offer.title} #{content_tag :i, nil, class: 'fa fa-chevron-down gray-mid-lighter'}".html_safe %>
+          <% end %>
         </p>
       </div>
 
-
-
-
+      <!-- page switch numbers + btn-group -->
+      <div class="btn-group page-switch-text">
+        <p>
+          <strong><%= "1" + "-" + "#{@job_applications.count}" %></strong>
+          of
+          <strong><%= "#{@job_applications.count}" %></strong>
+        </p>
+      </div>
+      <div class="btn-group navbar-higher-page page-switch-chevrons dropdown closed" role="group" aria-label="...">
+        <!-- chevron left -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-page-switch" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-left gray-light" aria-hidden="true"></i></div></button>
+        </div>
+        <!-- chevron right -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-page-switch" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-right gray-light" aria-hidden="true"></i></div></button>
+        </div>
+      </div>
 
     <!-- legacy material design BS -->
     <%= form_tag batch_deletion_job_offer_job_applications_path, method: :delete, class:"form-pourri" do %>
