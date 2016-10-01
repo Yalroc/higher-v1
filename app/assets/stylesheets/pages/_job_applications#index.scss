@@ -42,7 +42,6 @@
     button {
       background-color: $gray-lighter;
       height: 26px;
-      width: 90px;
       div {
         margin-top: -4px;
       }
@@ -70,40 +69,66 @@
   bottom: 0px;
   background: white;
   width: 200px;
-  height: 400px;
+  min-height: 400px;
   left: 0;
   padding-left: 5px;
 }
 
-.mini-menu-profils {
-  margin-top: 6%;
-  margin-left: 10%;
+.HR-agents {
+  width: 160px;
+  margin: auto;
 }
 
-.menu-header-text {
-  padding-left: 20px;
+.HR-agent {
+  border-top: 1px solid $gray-lighter;
+  position: relative;
+  padding: 6px;
+  height: 49px;
+}
+
+.HR-agent-name-and-title {
+  font-size: 18px;
+  position: absolute;
+  top: 6;
+  left: 45px;
+}
+
+.HR-agent-name {
+  font-size: 18px;
+  margin-top: -2px;
+}
+
+.HR-agent-title {
+  font-size: 13px;
+  margin-top: -16px;
+}
+
+.HR-agent-photo {
+  position: absolute;
+  top: 6;
+  left: 0;
+}
+
+.side-bar-content {
+  font-size: 16px;
+  margin-top: 25px;
+  margin-left: 28px;
+  padding-left: 0;
   padding-right: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
-.menu-profils {
-  border-style: solid;
-  border-top-width: 0.25px;
-  border-bottom-width: 0;
-  border-left-width: 0;
-  border-right-width: 0;
-  border-color: $gray-light;
-  margin-top: 10%;
-}
-
-#padding-button {
-  margin-left: 50px;
-  margin-bottom: 30px;
-  margin-top: 10px;
-  border-radius: 1px;
+#filters-button {
+  margin-left: 25px;
+  margin-top: 0px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 0px;
+  width: 140px;
   z-index: 0;
   background-color: $blue;
+  font-size: 17px;
 }
 
 .table-th-job-applications {
@@ -286,17 +311,11 @@ font-size: 13px
   background: gray;
 }
 
-.text-prof {
-  margin-left: 25%;
-}
-
-#name-guy {
-  font-size: 16px;
-  font-weight: bold;
-}
-
 .form-pourri {
   width: 0;
   height: 0;
 }
 
+.btn-second-navbar {
+  width: 80px;
+}

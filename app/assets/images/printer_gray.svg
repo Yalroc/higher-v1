@@ -1,0 +1,17 @@
+
+<svg width="44px" height="36px" viewBox="562 70 44 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="10.6666667" y="18.2608696" width="22.6666667" height="16.7391304"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="22.6666667" height="16.7391304" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="printer-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(562.000000, 70.000000)">
+        <rect id="Rectangle-4" fill="#6E6E6E" x="0" y="9.13043478" width="44" height="16.7391304"></rect>
+        <rect id="Rectangle-4" fill="#6E6E6E" x="9.33333333" y="0" width="25.3333333" height="7.60869565"></rect>
+        <rect id="Rectangle-4" fill="#F3F3F3" x="40" y="10.6521739" width="1.33333333" height="1.52173913"></rect>
+        <use id="Rectangle-4" stroke="#6E6E6E" mask="url(#mask-2)" stroke-width="2" fill="#F3F3F3" xlink:href="#path-1"></use>
+    </g>
+</svg>

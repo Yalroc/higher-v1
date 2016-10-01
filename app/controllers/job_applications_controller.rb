@@ -2,7 +2,7 @@ class JobApplicationsController < ApplicationController
 
   before_action :set_job_offer, only: [:show, :edit, :update, :job_applications, :batch_deletion]
   before_action :set_job_application, only: [:update, :submit, :edit, :show, :conversation]
-  before_action :authenticate_recruiter_and_candidate, only: [:show]
+  before_action :authenticate_recruiter_or_candidate, only: [:show]
   after_action :verify_policy_scoped, only: [:index, :job_applications], unless: :skip_pundit?
 
   skip_before_action :authenticate_recruiter!, only: [:edit, :update, :submit, :new, :conversation, :job_applications, :show]
@@ -120,7 +120,7 @@ class JobApplicationsController < ApplicationController
 
   private
 
-  def authenticate_recruiter_and_candidate
+  def authenticate_recruiter_or_candidate
     :authenticate_recruiter! || :authenticate_candidate!
   end
 
