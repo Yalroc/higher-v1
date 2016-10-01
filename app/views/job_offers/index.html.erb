@@ -11,7 +11,7 @@
           <div class="btn-group navbar-higher-btn-group-recruiter dropdown closed" role="group" aria-label="...">
             <!-- Folder icon dropdown -->
             <div class="btn-group">
-              <button type="button" class="btn btn-default btn-second-navbar" id="folderDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
+              <button type="button" class="btn btn-default btn-second-navbar-job-offers" id="folderDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
                 <ul class="dropdown-menu" aria-labelledby="folderDropdownMenuButton">
                   <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#AddFolderModal"} do %><i class="fa fa-plus margin-right-2px margin-left-neg-4px"></i> Add folder<% end %></li>
                   <li class="dropdown-item"><%= link_to "#", id: "collapse-all-folders-btn" do %><i class="fa fa-compress margin-left-neg-4px"></i> Collapse all<% end %></li>
@@ -20,7 +20,7 @@
             </div>
             <!-- Job Offer icon dropdown -->
             <div class="btn-group">
-              <button type="button" class="btn btn-default btn-second-navbar" id="offerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "noun_job_gray_plus.svg", class: "cv-icon-navbar-noun-job" %></div></button>
+              <button type="button" class="btn btn-default btn-second-navbar-job-offers" id="offerDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "noun_job_gray_plus.svg", class: "cv-icon-navbar-noun-job" %></div></button>
                 <ul class="dropdown-menu" aria-labelledby="offerDropdownMenuButton">
                   <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#CreateJobOfferModal"} do %><i class="fa fa-plus margin-left-neg-4px margin-right-2px"></i> Create job offer<% end %></li>
                 </ul>

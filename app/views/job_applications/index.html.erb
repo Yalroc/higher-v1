@@ -3,32 +3,54 @@
     <div class="navbar-higher-brand-recruiter2">
       <%= image_tag "LOreal_black_vector.png" %>
     </div>
-    <div class="job-offer-title-job-applications"><%= @job_offer.title %></div>
 
     <!-- btn group in white navbar -->
       <div class="btn-group navbar-higher-btn-group-recruiter dropdown closed" role="group" aria-label="...">
 
         <!-- Letter icon dropdown -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "letter_gray.svg", class: "cv-icon-navbar-letter" %></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "letter_gray.svg", class: "cv-icon-navbar-letter" %></div></button>
         </div>
         <!-- Folder icon dropdown -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
         </div>
         <!-- Cross icon dropdown -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar"><div><%= image_tag "cross_gray.svg", class: "cv-icon-navbar-cross" %></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications"><div><%= image_tag "cross_gray.svg", class: "cv-icon-navbar-cross" %></div></button>
         </div>
         <!-- Printer icon dropdown -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar"><div><%= image_tag "printer_gray.svg", class: "cv-icon-navbar-printer" %></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications"><div><%= image_tag "printer_gray.svg", class: "cv-icon-navbar-printer" %></div></button>
         </div>
         <!-- Download icon dropdown -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "download_gray.svg", class: "cv-icon-navbar-download" %></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "download_gray.svg", class: "cv-icon-navbar-download" %></div></button>
         </div>
       </div> <!-- end of btn group -->
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Job Offer Title & Parents -->
+      <div class="job-offer-second-navbar">
+        <p>
+          <%= link_to "Active >", "#", class: "text-decoration-none" %>
+          <% if @folder_array != nil %>
+            <% @folder_array.each do |folder| %>
+              <%= link_to "#{folder.name} >", "#", class: "text-decoration-none" %>
+            <% end %>
+          <% end %>
+          <%= link_to "#{@job_offer.title}", "#", class: "text-decoration-none" %>
+        </p>
+      </div>
 
 
 

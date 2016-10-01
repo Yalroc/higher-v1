@@ -4,10 +4,11 @@
   margin-top: 30px;
 }
 
-.job-offer-title-job-applications {
-  padding-left: 500px;
-  padding-top: 14px;
-  font-weight: 16px;
+.job-offer-second-navbar {
+  position: absolute;
+  top: 14px;
+  left: 620px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -316,6 +317,10 @@ font-size: 13px
   height: 0;
 }
 
-.btn-second-navbar {
+.btn-second-navbar-job-offers {
+  width: 90px;
+}
+
+.btn-second-navbar-job-applications {
   width: 80px;
 }

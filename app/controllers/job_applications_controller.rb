@@ -17,6 +17,18 @@ class JobApplicationsController < ApplicationController
     @job_applications = set_job_offer.job_applications.where(rejected: nil, submit: true)
 
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
+
+    # list parents of job offer in second navbar
+    @folder_array = []
+    if @job_offer.job_offer_folder == nil
+    else
+      folder = @job_offer.job_offer_folder
+      @folder_array << folder
+      until folder.parent == nil do
+        @folder_array << folder.parent
+        folder = folder.parent
+      end
+    end
   end
 
   def show
