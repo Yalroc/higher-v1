@@ -1,12 +1,69 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
-
 <!-- Second navbar -->
 <div class="second-navbar-job-applications">
     <div class="navbar-higher-brand-recruiter2">
       <%= image_tag "LOreal_black_vector.png" %>
     </div>
-    <div class="job-offer-title-job-applications"><%= @job_offer.title %></div>
+
+    <!-- btn group in white navbar -->
+      <div class="btn-group navbar-higher-btn-group-recruiter dropdown closed" role="group" aria-label="...">
+
+        <!-- Letter icon dropdown -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "letter_gray.svg", class: "cv-icon-navbar-letter" %></div></button>
+        </div>
+        <!-- Folder icon dropdown -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
+        </div>
+        <!-- Cross icon dropdown -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications"><div><%= image_tag "cross_gray.svg", class: "cv-icon-navbar-cross" %></div></button>
+        </div>
+        <!-- Printer icon dropdown -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications"><div><%= image_tag "printer_gray.svg", class: "cv-icon-navbar-printer" %></div></button>
+        </div>
+        <!-- Download icon dropdown -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-job-applications" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "download_gray.svg", class: "cv-icon-navbar-download" %></div></button>
+        </div>
+      </div> <!-- end of btn group -->
+
+      <!-- Job Offer Title & Parents -->
+      <div class="job-offer-second-navbar">
+        <p>
+          <%= link_to "Active >", "#", class: "text-decoration-none black" %>
+          <% if @folder_array != nil %>
+            <% @folder_array.each do |folder| %>
+              <%= link_to "#{folder.name} >", "#", class: "text-decoration-none black" %>
+            <% end %>
+          <% end %>
+          <%= link_to "#", class: "text-decoration-none second-navbar-job-offer-title" do %>
+            <%= "#{@job_offer.title} #{content_tag :i, nil, class: 'fa fa-chevron-down gray-mid-lighter'}".html_safe %>
+          <% end %>
+        </p>
+      </div>
+
+      <!-- page switch numbers + btn-group -->
+      <div class="btn-group page-switch-text">
+        <p>
+          <strong><%= "1" + "-" + "#{@job_applications.count}" %></strong>
+          of
+          <strong><%= "#{@job_applications.count}" %></strong>
+        </p>
+      </div>
+      <div class="btn-group navbar-higher-page page-switch-chevrons dropdown closed" role="group" aria-label="...">
+        <!-- chevron left -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-page-switch" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-left gray-light" aria-hidden="true"></i></div></button>
+        </div>
+        <!-- chevron right -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-default btn-second-navbar-page-switch" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-right gray-light" aria-hidden="true"></i></div></button>
+        </div>
+      </div>
+
+    <!-- legacy material design BS -->
     <%= form_tag batch_deletion_job_offer_job_applications_path, method: :delete, class:"form-pourri" do %>
       <%= hidden_field_tag :job_application_ids %>
       <button class="mdl-button mdl-js-button mdl-button--icon delete-but">
@@ -18,29 +75,43 @@
 <!-- Side bar -->
 <div class="menu-job-applications">
   <div class="menu-header">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored text-center" id="padding-button">Filters</button>
-    <div class="menu-header-text">
-      <strong><p>All (<%= @job_applications.where(rejected: nil).length %>)</p></strong>
-      <p>New (<%= @job_applications.where(viewed: nil).length %>)</p>
+    <button class="btn btn-primary text-center" id="filters-button">FILTERS</button>
+    <div class="side-bar-content">
+      <p><strong>All (<%= @job_applications.where(rejected: nil).length %>)</strong></p>
       <p>Contacted (<%= @job_applications.where(contact: true).length %>)</p>
+      <p>New (<%= @job_applications.where(viewed: nil).length %>)</p>
+      <br>
+      <p>More <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+      <br>
     </div>
   </div>
-  <% if current_recruiter.organization %>
-  <div class="menu-profils">
-      <% current_recruiter.organization.recruiters.each do |recruiter| %>
-    <div class="mini-menu-profils">
-      <div class="text-prof">
-        <span id="name-guy">Thierry Delas</span><br>
-        Senior Recruiter
+    <div class="HR-agents">
+
+      <div class="HR-agent">
+        <div class="HR-agent-photo">
+          <img src="http://26.media.tumblr.com/tumblr_lfwvh2sNGJ1qzkvmxo1_500.png" alt="Thierry Delas" class="avatar-large">
+        </div>
+        <div class="HR-agent-name-and-title">
+          <p class="HR-agent-name">Thierry Delas</p>
+          <p class="HR-agent-title">Senior Recruiter</p>
+        </div>
       </div>
-      <img src="http://26.media.tumblr.com/tumblr_lfwvh2sNGJ1qzkvmxo1_500.png" alt="Thierry Delas" class="avatar-large">
+      <div class="HR-agent">
+        <div class="HR-agent-photo">
+          <img src="https://media.licdn.com/media/p/4/005/0a2/3f5/1717f6c.jpg" alt="Guillaume Corlay" class="avatar-large">
+        </div>
+        <div class="HR-agent-name-and-title">
+          <p class="HR-agent-name">Guillaume C.</p>
+          <p class="HR-agent-title">Hiring Manager</p>
+        </div>
+      </div>
     </div>
-    <% end %>
-  </div>
-  <% end %>
 </div>
 
-<!-- Table -->
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<!-- Legacy Table -->
+
 <div class="wrapper-table-job-offer text-center ">
   <div>
     <div class="table-applications-wrapper">

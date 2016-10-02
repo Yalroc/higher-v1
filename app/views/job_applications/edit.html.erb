@@ -336,7 +336,7 @@
         <!-- header -->
         <div class="view-as-modal-header">
           <div class="view-as-modal-header-left">
-            <p><strong>Candidate: </strong> <%= @experiences_sorted.first.title + " @ " + @experiences_sorted.first.organization %><br>
+            <p><strong>Candidate: </strong> <%= @experiences_sorted.first ? @experiences_sorted.first.title + " @ " + @experiences_sorted.first.organization : " " %><br>
             Applying to: <%= @job_offer.title + " @ " + @job_offer.organization.name %> <br>
             Available: 1st December 2016
             </p>

@@ -2,7 +2,7 @@ class JobApplicationsController < ApplicationController
 
   before_action :set_job_offer, only: [:show, :edit, :update, :job_applications, :batch_deletion]
   before_action :set_job_application, only: [:update, :submit, :edit, :show, :conversation]
-  before_action :authenticate_recruiter_and_candidate, only: [:show]
+  before_action :authenticate_recruiter_or_candidate, only: [:show]
   after_action :verify_policy_scoped, only: [:index, :job_applications], unless: :skip_pundit?
 
   skip_before_action :authenticate_recruiter!, only: [:edit, :update, :submit, :new, :conversation, :job_applications, :show]
@@ -17,6 +17,18 @@ class JobApplicationsController < ApplicationController
     @job_applications = set_job_offer.job_applications.where(rejected: nil, submit: true)
 
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
+
+    # list parents of job offer in second navbar
+    @folder_array = []
+    if @job_offer.job_offer_folder == nil
+    else
+      folder = @job_offer.job_offer_folder
+      @folder_array << folder
+      until folder.parent == nil do
+        @folder_array << folder.parent
+        folder = folder.parent
+      end
+    end
   end
 
   def show
@@ -120,7 +132,7 @@ class JobApplicationsController < ApplicationController
 
   private
 
-  def authenticate_recruiter_and_candidate
+  def authenticate_recruiter_or_candidate
     :authenticate_recruiter! || :authenticate_candidate!
   end
 

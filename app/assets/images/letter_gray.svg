@@ -1,0 +1,16 @@
+
+<svg width="46px" height="28px" viewBox="72 54 46 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40 (33762) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="44" height="27"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="44" height="27" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="letter-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(73.000000, 55.000000)">
+        <use id="Rectangle" stroke="#979797" mask="url(#mask-2)" stroke-width="2" fill="#6E6E6E" xlink:href="#path-1"></use>
+        <path d="M1.40425532,1.39655172 L22,14.4310345" id="Line" stroke="#F3F3F3" stroke-width="2" stroke-linecap="square"></path>
+        <path d="M22,1.39655172 L42.5957447,14.4310345" id="Line" stroke="#F3F3F3" stroke-width="2" stroke-linecap="square" transform="translate(32.297872, 7.913793) scale(1, -1) translate(-32.297872, -7.913793) "></path>
+    </g>
+</svg>
