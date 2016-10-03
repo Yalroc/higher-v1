@@ -36,11 +36,10 @@ skip_before_action :authenticate_candidate!
       end
 
     else
-      # to do
-      raise
-      @job_offer_folder = JobOfferFolder.find(job_offer_folder_params)
-      @job_offer_folder.update()
-      authorize @job_offer_folders
+      @job_offer_folder = JobOfferFolder.find(job_offer_folder_update_params[:id])
+      authorize @job_offer_folder
+      @job_offer_folder.update(job_offer_folder_params)
+      redirect_to job_offers_path
     end
 
   end
