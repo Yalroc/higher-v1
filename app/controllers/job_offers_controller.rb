@@ -45,28 +45,22 @@
   end
 
   def update
-        if job_offer_update_params[:type] == "star"  # add/remove star ajax
-          @job_offer = JobOffer.find(job_offer_update_params[:id])
-          authorize @job_offer
-          @job_offer.star == true ? @job_offer.star = false : @job_offer.star = true
-          @job_offer.save
-          respond_to do |format|
-            format.html { redirect_to job_offers_path }
-            format.js { render 'job_offer_star'}
-          end
-        else
-          # todo
-          @job_offer = JobOffer.find(job_offer_update_params)
-          authorize @job_offer
-        end
-
-    # @job_offer = JobOffer.find(params[:id])   # normal update
-    # authorize @job_offer
-    # if @job_offer.update(job_offer_params)
-    #   redirect_to job_offers_path
-    # else
-    #   render :edit
-    # end
+    if job_offer_update_params[:type] == "star"  # add/remove star ajax
+      @job_offer = JobOffer.find(job_offer_update_params[:id])
+      authorize @job_offer
+      @job_offer.star == true ? @job_offer.star = false : @job_offer.star = true
+      @job_offer.save
+      respond_to do |format|
+        format.html { redirect_to job_offers_path }
+        format.js { render 'job_offer_star'}
+      end
+    else
+      # todo
+      @job_offer = JobOffer.find(job_offer_update_params[:id])
+      authorize @job_offer
+      @job_offer.update(job_offer_params)
+      redirect_to job_offers_path
+    end
   end
 
   def destroy
@@ -77,6 +71,8 @@
   end
 
   private
+
+
 
   def pundit_user
     current_recruiter

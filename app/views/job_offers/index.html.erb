@@ -258,7 +258,7 @@
                           </div>
                           <div class="modal-body text-left">
                             <%= simple_form_for(folder) do |field| %>
-                              <%= field.input :parent_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders, class: 'String'  %>
+                              <%= field.input :parent_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders.reject{|target_folder| target_folder.parent == folder}, class: 'String'  %>
                               <%= field.button :submit, "MOVE" %>
                             <% end %>
                           </div>
@@ -360,7 +360,12 @@
       </table>
     </div>
   </div>
+  <!-- bottom note -->
+  <div class="bottom-note">
+    <p>Higher © <%= Time.now.year %> <span>|</span> Terms of Service <span>|</span> Privacy Policies <span>|</span> Send Feedback <span>|</span> <span class="blue">English</span></p>
+  </div>
 </div>
+
 
 <!-- SCRIPTS -->
 
@@ -405,6 +410,7 @@
     </div>
   </div>
 </div>
+
 
 
 
