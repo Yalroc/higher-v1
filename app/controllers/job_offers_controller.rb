@@ -56,8 +56,11 @@
           end
         else
           # todo
-          @job_offer = JobOffer.find(job_offer_update_params)
+          @job_offer = JobOffer.find(job_offer_update_params[:id])
           authorize @job_offer
+          @job_offer.update(job_offer_params)
+          @job_offer.save
+          redirect_to job_offers_path
         end
 
     # @job_offer = JobOffer.find(params[:id])   # normal update

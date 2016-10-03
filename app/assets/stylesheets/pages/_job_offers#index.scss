@@ -41,9 +41,11 @@ table {
 }
 
 #job_offers_index_wrapper {
-  height: 95vh;
+  min-height: 94.5vh;
   width: 100%;
   text-align: center;
+  position: relative;
+  padding-bottom: 45px;
 }
 .head-fixed {
   position: fixed;
@@ -402,6 +404,20 @@ a:hover + .offer_settings_icon {
   padding-left: 2px;
 }
 
+.blue {
+  color: $blue;
+}
+
 .blue-lighter {
   color: $blue-lighter;
+}
+
+.bottom-note {
+  position: absolute;
+  bottom: -4px;
+  width: 100%;
+  font-size: 14px;
+    span {
+      padding: 2px;
+    }
 }

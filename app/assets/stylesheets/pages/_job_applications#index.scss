@@ -367,4 +367,12 @@ font-size: 13px
   margin-left: 3px;
 }
 
-
+.bottom-left-note {
+  position: absolute;
+  bottom: -4px;
+  width: 100%;
+  font-size: 14px;
+    span {
+      padding: 2px;
+    }
+}
