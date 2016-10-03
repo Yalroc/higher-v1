@@ -105,7 +105,173 @@
     </div>
 </div>
 
-<br><br><br><br><br><br><br><br><br><br><br>
+
+<!-- New Table (IMPLEMENT DATATABLES) -->
+<table id="job_application_table">
+
+  <thead>
+    <tr style="border-bottom: 1px solid black">
+      <th>Candidate</th>
+      <th>Fit</th>
+      <th>XP</th>
+      <th>Companies</th>
+      <th>Education</th>
+      <th>Languages</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr id="dog">
+        <th>John</th>
+        <th>80.3%</th>
+        <th>4</th>
+        <th>LVMH</th>
+        <th>Provence University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Marc</th>
+        <th>80.3%</th>
+        <th>3</th>
+        <th>LVMH</th>
+        <th>Oxford University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Smith</th>
+        <th>80.3%</th>
+        <th>1</th>
+        <th>LVMH</th>
+        <th>Princeton University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Brown University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jacques</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Harvard University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>John Hopkins University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Georgio</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Queens University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jean</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Brice</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Cambridge University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Prison University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>John</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>VanderBilt University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Paul</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Orange University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Louis</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sapiens3 University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Roxanne</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+          <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+
+  </tbody>
+
+
+</table>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <!-- Legacy Table -->
 
@@ -237,272 +403,3 @@
     </div>
    </div>
 </div>
-<div class="wrapper-table-job-offer text-center ">
-  <div>
-    <div class="table-applications-wrapper">
-      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable width-95-percent ">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="mdl-data-table__cell--non-numeric">Candidate</th>
-            <th>XP</th>
-            <th>Companies</th>
-            <th>Education</th>
-            <th>Languages</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody class="font-size-table">
-          <% @job_applications.each_with_index do |job_application, y| %>
-            <% unless job_application.rejected == true %>
-            <tr>
-              <td><span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span></td>
-              <!-- Triple condition : 1. Was the profil viewed ? 2.Was the profil contacted ? 3. Has the profil an experience ?-->
-                <% if job_application.viewed? != true  %>
-                  <% if job_application.experiences.first == nil %>
-                    <td class="text-center">-</td>
-                  <% else %>
-                    <% if job_application.contact == true %>
-                      <td class="mdl-data-table__cell--non-numeric link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %></strong><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
-                    <% else %>
-                      <td class="mdl-data-table__cell--non-numeric link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %></strong><% end %></td>
-                    <% end %>
-                  <% end %>
-                <% else %>
-                  <% if job_application.experiences.first == nil %>
-                    <% if job_application.contact == true %>
-                      <td class="text-center">-<i class="fa fa-envelope-o color-icons" aria-hidden="true"></i></td>
-                    <% else %>
-                      <td class="text-center">-</td>
-                    <% end %>
-                  <% else %>
-                   <% if job_application.contact == true %>
-                      <td class="mdl-data-table__cell--non-numeric"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
-
-                    <!-- Modal phone number -->
-                      <div class="mdl-tooltip mdl-tooltip--large" id="tooltip" for="tool-number"><%= job_application.candidate.phone_number %></div>
-                    <!-- -->
-                   <% else %>
-                      <td class="mdl-data-table__cell--non-numeric"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %><% end %></td>
-                  <% end %>
-                <% end %>
-              <% end %>
-
-
-              <td>
-                <% $years =  job_application.experiences.first.end_date.year  - job_application.experiences.first.start_date.year - 2 %>
-                <% $months = 12 - job_application.experiences.first.start_date.month + job_application.experiences.first.end_date.month %>
-                <% if $months >= 12 && $months < 24 %>
-                  <%  $years += 1 %>
-                  <%  $months -= 12 %>
-                <% end %>
-
-                <% unless job_application.experiences.second == nil %>
-                  <% $years += (job_application.experiences.second.end_date.year - job_application.experiences.second.start_date.year) %>
-                  <% $months += (12 - job_application.experiences.second.start_date.month + job_application.experiences.second.end_date.month) %>
-                  <% if $months >= 12 && $months < 24 %>
-                    <% $years += 1 %>
-                    <% $months -= 12 %>
-                <% end %>
-                <% end %>
-
-                <% if $months != 0 %>
-                  <%= $years %> y <%= $months %> m
-                <% else %>
-                  <%= $years %> y
-                <% end %>
-
-              </td>
-
-                <!-- Organization -->
-
-                  <% if job_application.experiences.empty? %>
-                    <td>-</td>
-                  <% else %>
-                    <td><%= job_application.experiences.first.organization %></td>
-                  <% end %>
-
-
-                <!--  Education  -->
-                  <% if job_application.educations.first.nil? %>
-                    <td>-</td>
-                  <% else %>
-                    <td><%= job_application.educations.first.organization %></td>
-                  <% end %>
-
-                <!-- Language -->
-
-                      <% if job_application.languages.first.nil? %>
-                        <td>-</td>
-                      <% else %>
-                      <td>
-                        <% job_application.languages.each do |language| %>
-                        <%= language.name %>
-                      <% end %>
-                    <% end %>
-                    </td>
-
-                <!-- Date -->
-                <td>
-                  <% date = ((Time.now - job_application.created_at) / (24 * 60 * 60)).to_i %>
-                  <% if I18n.l(job_application.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
-                    <% date = "Today"%>
-                  <% else %>
-                    <% if date <= 1 %>
-                      <% date = "1 day ago" %>
-                    <% else %>
-                    <% date = "#{((Time.now - job_application.created_at) / (24 * 60 * 60)).to_i} days ago" %>
-                    <% end %>
-                  <% end %>
-                  <%= date %>
-                  <div>(<%= job_application.created_at.strftime('%x') %>)</div>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-   </div>
-</div>
-<div class="wrapper-table-job-offer text-center ">
-  <div>
-    <div class="table-applications-wrapper">
-      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable width-95-percent ">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="mdl-data-table__cell--non-numeric">Candidate</th>
-            <th>XP</th>
-            <th>Companies</th>
-            <th>Education</th>
-            <th>Languages</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody class="font-size-table">
-          <% @job_applications.each_with_index do |job_application, y| %>
-            <% unless job_application.rejected == true %>
-            <tr>
-              <td><span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span></td>
-              <!-- Triple condition : 1. Was the profil viewed ? 2.Was the profil contacted ? 3. Has the profil an experience ?-->
-                <% if job_application.viewed? != true  %>
-                  <% if job_application.experiences.first == nil %>
-                    <td class="text-center">-</td>
-                  <% else %>
-                    <% if job_application.contact == true %>
-                      <td class="mdl-data-table__cell--non-numeric link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %></strong><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
-                    <% else %>
-                      <td class="mdl-data-table__cell--non-numeric link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %></strong><% end %></td>
-                    <% end %>
-                  <% end %>
-                <% else %>
-                  <% if job_application.experiences.first == nil %>
-                    <% if job_application.contact == true %>
-                      <td class="text-center">-<i class="fa fa-envelope-o color-icons" aria-hidden="true"></i></td>
-                    <% else %>
-                      <td class="text-center">-</td>
-                    <% end %>
-                  <% else %>
-                   <% if job_application.contact == true %>
-                      <td class="mdl-data-table__cell--non-numeric"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
-
-                    <!-- Modal phone number -->
-                      <div class="mdl-tooltip mdl-tooltip--large" id="tooltip" for="tool-number"><%= job_application.candidate.phone_number %></div>
-                    <!-- -->
-                   <% else %>
-                      <td class="mdl-data-table__cell--non-numeric"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %><% end %></td>
-                  <% end %>
-                <% end %>
-              <% end %>
-
-
-              <td>
-                <% $years =  job_application.experiences.first.end_date.year  - job_application.experiences.first.start_date.year - 2 %>
-                <% $months = 12 - job_application.experiences.first.start_date.month + job_application.experiences.first.end_date.month %>
-                <% if $months >= 12 && $months < 24 %>
-                  <%  $years += 1 %>
-                  <%  $months -= 12 %>
-                <% end %>
-
-                <% unless job_application.experiences.second == nil %>
-                  <% $years += (job_application.experiences.second.end_date.year - job_application.experiences.second.start_date.year) %>
-                  <% $months += (12 - job_application.experiences.second.start_date.month + job_application.experiences.second.end_date.month) %>
-                  <% if $months >= 12 && $months < 24 %>
-                    <% $years += 1 %>
-                    <% $months -= 12 %>
-                <% end %>
-                <% end %>
-
-                <% if $months != 0 %>
-                  <%= $years %> y <%= $months %> m
-                <% else %>
-                  <%= $years %> y
-                <% end %>
-
-              </td>
-
-                <!-- Organization -->
-
-                  <% if job_application.experiences.empty? %>
-                    <td>-</td>
-                  <% else %>
-                    <td><%= job_application.experiences.first.organization %></td>
-                  <% end %>
-
-
-                <!--  Education  -->
-                  <% if job_application.educations.first.nil? %>
-                    <td>-</td>
-                  <% else %>
-                    <td><%= job_application.educations.first.organization %></td>
-                  <% end %>
-
-                <!-- Language -->
-
-                      <% if job_application.languages.first.nil? %>
-                        <td>-</td>
-                      <% else %>
-                      <td>
-                        <% job_application.languages.each do |language| %>
-                        <%= language.name %>
-                      <% end %>
-                    <% end %>
-                    </td>
-
-                <!-- Date -->
-                <td>
-                  <% date = ((Time.now - job_application.created_at) / (24 * 60 * 60)).to_i %>
-                  <% if I18n.l(job_application.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
-                    <% date = "Today"%>
-                  <% else %>
-                    <% if date <= 1 %>
-                      <% date = "1 day ago" %>
-                    <% else %>
-                    <% date = "#{((Time.now - job_application.created_at) / (24 * 60 * 60)).to_i} days ago" %>
-                    <% end %>
-                  <% end %>
-                  <%= date %>
-                  <div>(<%= job_application.created_at.strftime('%x') %>)</div>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-   </div>
-</div>
-<!-- Modal to show the profil -->
-<div class="modal">
-
-</div>
-
-
-
-
-
-
-
-
-
