@@ -258,7 +258,7 @@
                           </div>
                           <div class="modal-body text-left">
                             <%= simple_form_for(folder) do |field| %>
-                              <%= field.input :parent_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders.reject{|target_folder| target_folder.parent == folder}, class: 'String'  %>
+                              <%= field.input :parent_id, label: 'In which folder?', hint: 'If you want your folder to stand alone, leave this field blank.', collection: @all_folders.reject{|target_folder| all_children_folders(folder).include? target_folder}, class: 'String'  %>
                               <%= field.button :submit, "MOVE" %>
                             <% end %>
                           </div>

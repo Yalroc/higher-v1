@@ -4,6 +4,8 @@
 
   skip_before_action :authenticate_recruiter!, only: [:show]
 
+  helper_method :all_children_folders
+
   def index
     @job_offers = policy_scope(JobOffer) # Pundit authorization
     @job_offers = JobOffer.where(organization: current_recruiter.organization).sort_by { |job_offer| job_offer.title }
@@ -72,7 +74,14 @@
 
   private
 
-
+  def all_children_folders(parent, children_array = [])
+    children = JobOfferFolder.where(parent_id: parent.id)
+    children_array << children
+    children.each do |child|
+      return all_children_folders(child, children_array)
+    end
+    return children_array.flatten
+  end
 
   def pundit_user
     current_recruiter
