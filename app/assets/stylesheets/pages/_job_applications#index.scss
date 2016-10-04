@@ -367,9 +367,16 @@ font-size: 13px
 #job_application_table {
   margin: 0 !important;
   position: relative;
+  top: 50px;
   left: 200px;
   width: 84.4vw;
   background-color: $gray-lighter !important;
+  th {
+    text-align: center;
+  }
+  td {
+    text-align: center;
+  }
 }
 
 #job_application_table_length {
@@ -400,3 +407,6 @@ font-size: 13px
   display: none;
 }
 
+.datatable-candidate-col {
+  text-align: left !important;
+}
