@@ -173,9 +173,23 @@
           <% end %>
         </td>
 
+        <!-- Education: Level -->
+        <td>
+          <% if job_application.educations.empty? %>
+            -
+          <% else %>
+            <%= ["1°", "2°","B", "M", "PhD","Exe"].sample %>
+          <% end %>
+        </td>
 
-        <td>M</td>
-        <td>Sorbonne University</td>
+        <!-- Education: School -->
+        <td>
+          <% if job_application.educations.empty? %>
+            -
+          <% else %>
+            <%= job_application.educations.first.organization %>
+          <% end %>
+        </td>
 
         <!-- Languages -->
         <td>
