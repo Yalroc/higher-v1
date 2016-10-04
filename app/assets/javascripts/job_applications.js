@@ -4,8 +4,6 @@
 $(document).ready(function() {
 
   $('#job_application_table').DataTable({
-
-    "pageLength": 50
   // ajax: ...,
   // autoWidth: false,
   // pagingType: 'full_numbers',
@@ -15,6 +13,8 @@ $(document).ready(function() {
   // Optional, if you want full pagination controls.
   // Check dataTables documentation to learn more about available options.
   // http://datatables.net/reference/option/pagingType
+  "pageLength": 50
+
   });
 
   // show entries from & to

@@ -73,6 +73,8 @@
       <p>Contacted (<%= @job_applications.where(contact: true).length %>)</p>
       <p>New (<%= @job_applications.where(viewed: nil).length %>)</p>
       <br>
+      <p>Keywords: </p>
+      <br><br><br>
       <p>More <i class="fa fa-caret-down" aria-hidden="true"></i></p>
       <br>
     </div>
@@ -109,38 +111,38 @@
 <table id="job_application_table">
 
   <thead>
-    <tr style="border-bottom: 1px solid black">
-      <th></th>
-      <th>Candidate</th>
-      <th>Fit</th>
-      <th>XP</th>
-      <th>Companies</th>
-      <th></th>
-      <th>Education</th>
-      <th>Languages</th>
-      <th>Date</th>
+    <tr id="master-row-col">
+      <th class="rank-col"><input id="master-row-checkbox" type="checkbox" /></th>
+      <th class="candidate-col">Candidate</th>
+      <th class="fit-col"><span class="margin-left-neg-10px">Fit</span></th>
+      <th class="xp-years-col-col"><span class="margin-left-neg-8px">XP</span></th>
+      <th class="xp-org-col">Companies</th>
+      <th class="ed-lvl-col no-right-border"></th>
+      <th class="ed-uni-col no-left-border"><span class="margin-left-neg-22px">Education</span></th>
+      <th class="languages-col"><span class="margin-left-neg-8px">Languages</span></th>
+      <th class="date-col">Date</th>
     </tr>
   </thead>
   <tbody>
     <% @job_applications.each_with_index do |job_application, y| %>
-      <tr>
+      <tr class="row-col opened">
         <!-- Rank -->
-        <td>
-          <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
+        <td class="rank-col">
+          <input type="checkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
         </td>
 
         <!-- Candidate -->
-        <td class="datatable-candidate-col">
+        <td class="candidate-col">
           <%= link_to job_offer_job_application_path(@job_offer, job_application), class: "link-candidate" do %>
             <%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %>
           <% end %>
         </td>
 
         <!-- Fit -->
-        <td><%= rand(50..100).round(1).to_s %>%</td>
+        <td class="fit-col"><%= rand(50..100).round(1).to_s %>%</td>
 
         <!-- XP: years -->
-        <td>
+        <td class="xp-years-col">
           <% $years =  job_application.experiences.first.end_date.year  - job_application.experiences.first.start_date.year - 2 %>
           <% $months = 12 - job_application.experiences.first.start_date.month + job_application.experiences.first.end_date.month %>
           <% if $months >= 12 && $months < 24 %>
@@ -158,14 +160,14 @@
           <% end %>
 
           <% if $months != 0 %>
-            <%= $years %> y <%= $months %> m
+            <%= $years.to_s %> <span class="no-spacing-single-char"> y</span> <%= $months.to_s %> <span class="no-spacing-single-char">m</span>
           <% else %>
-            <%= $years %> y
+            <%= $years.to_s %><span class="no-spacing-single-char"> y+</span>
           <% end %>
         </td>
 
         <!-- XP: organizations -->
-        <td>
+        <td class="xp-org-col">
           <% if job_application.experiences.empty? %>
             -
           <% else %>
@@ -174,25 +176,25 @@
         </td>
 
         <!-- Education: Level -->
-        <td>
+        <td class="ed-lvl-col">
           <% if job_application.educations.empty? %>
             -
           <% else %>
-            <%= ["1°", "2°","B", "M", "PhD","Exe"].sample %>
+            <%= ["2nd","B", "M", "PhD", "-"].sample %>
           <% end %>
         </td>
 
         <!-- Education: School -->
-        <td>
+        <td class="ed-uni-col">
           <% if job_application.educations.empty? %>
             -
           <% else %>
-            <%= job_application.educations.first.organization %>
+            <%= job_application.educations.first.organization %> <%= job_application.educations.first.organization %>
           <% end %>
         </td>
 
         <!-- Languages -->
-        <td>
+        <td class="languages-col">
           <% if job_application.languages.first.nil? %>
             -
           <% else %>
@@ -203,7 +205,7 @@
         </td>
 
         <!-- Date -->
-        <td>
+        <td class="date-col">
           <% date = ((Time.now - job_application.created_at) / (24 * 60 * 60)).to_i %>
           <% if I18n.l(job_application.created_at, format: "%A") == I18n.l(Date.today, format: "%A")  %>
             <% date = "Today"%>
