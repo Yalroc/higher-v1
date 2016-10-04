@@ -18,6 +18,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-material-design-lite'
