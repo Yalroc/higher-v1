@@ -20,10 +20,6 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'jquery-datatables-rails', '~> 3.4.0'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-material-design-lite'
-end
-
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'

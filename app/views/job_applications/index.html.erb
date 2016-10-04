@@ -47,7 +47,7 @@
       <!-- page switch numbers + btn-group -->
       <div class="btn-group page-switch-text">
         <p>
-          <strong><%= "1" + "-" + "#{@job_applications.count}" %></strong>
+          <strong><span id=entries-from></span>-<span id=entries-to></span></strong>
           of
           <strong><%= "#{@job_applications.count}" %></strong>
         </p>
@@ -55,11 +55,11 @@
       <div class="btn-group navbar-higher-page page-switch-chevrons dropdown closed" role="group" aria-label="...">
         <!-- chevron left -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar-page-switch" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-left gray-light" aria-hidden="true"></i></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-page-switch" id="page-switch-left" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-left gray-light" aria-hidden="true"></i></div></button>
         </div>
         <!-- chevron right -->
         <div class="btn-group">
-          <button type="button" class="btn btn-default btn-second-navbar-page-switch" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-right gray-light" aria-hidden="true"></i></div></button>
+          <button type="button" class="btn btn-default btn-second-navbar-page-switch" id="page-switch-right" aria-haspopup="true" aria-expanded="false"><div><i class="fa fa-chevron-right gray-light" aria-hidden="true"></i></div></button>
         </div>
       </div>
 </div>
@@ -105,7 +105,7 @@
     </div>
 </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
 
 <!-- New Table (IMPLEMENT DATATABLES) -->
 <table id="job_application_table">
@@ -266,7 +266,472 @@
         <th>French</th>
         <th>2 days ago</th>
       </tr>
-
+            <tr id="dog">
+        <th>John</th>
+        <th>80.3%</th>
+        <th>4</th>
+        <th>LVMH</th>
+        <th>Provence University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Marc</th>
+        <th>80.3%</th>
+        <th>3</th>
+        <th>LVMH</th>
+        <th>Oxford University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Smith</th>
+        <th>80.3%</th>
+        <th>1</th>
+        <th>LVMH</th>
+        <th>Princeton University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Brown University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jacques</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Harvard University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>John Hopkins University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Georgio</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Queens University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jean</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Brice</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Cambridge University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Prison University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>John</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>VanderBilt University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Paul</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Orange University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Louis</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sapiens3 University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Roxanne</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+          <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>      <tr id="dog">
+        <th>John</th>
+        <th>80.3%</th>
+        <th>4</th>
+        <th>LVMH</th>
+        <th>Provence University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Marc</th>
+        <th>80.3%</th>
+        <th>3</th>
+        <th>LVMH</th>
+        <th>Oxford University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Smith</th>
+        <th>80.3%</th>
+        <th>1</th>
+        <th>LVMH</th>
+        <th>Princeton University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Brown University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jacques</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Harvard University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>John Hopkins University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Georgio</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Queens University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jean</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Brice</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Cambridge University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Prison University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>John</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>VanderBilt University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Paul</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Orange University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Louis</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sapiens3 University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Roxanne</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+          <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+       <tr>
+        <th>Georgio</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Queens University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jean</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Brice</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Cambridge University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Prison University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>John</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>VanderBilt University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Paul</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Orange University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Louis</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sapiens3 University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Roxanne</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+          <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>       <tr>
+        <th>Georgio</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Queens University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Jean</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Brice</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Cambridge University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Prison University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>John</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>VanderBilt University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Paul</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Orange University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Louis</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sapiens3 University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Guillaume</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+      <tr>
+        <th>Roxanne</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Schaffer University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
+          <tr>
+        <th>Joe</th>
+        <th>80.3%</th>
+        <th>10</th>
+        <th>LVMH</th>
+        <th>Sorbonne University</th>
+        <th>French</th>
+        <th>2 days ago</th>
+      </tr>
   </tbody>
 
 
@@ -279,11 +744,11 @@
 <div class="wrapper-table-job-offer text-center ">
   <div>
     <div class="table-applications-wrapper">
-      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable width-95-percent ">
+      <table class="width-95-percent ">
         <thead>
           <tr>
             <th></th>
-            <th class="mdl-data-table__cell--non-numeric">Candidate</th>
+            <th class="">Candidate</th>
             <th>XP</th>
             <th>Companies</th>
             <th>Education</th>
@@ -302,9 +767,9 @@
                     <td class="text-center">-</td>
                   <% else %>
                     <% if job_application.contact == true %>
-                      <td class="mdl-data-table__cell--non-numeric link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %></strong><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
+                      <td class="link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %></strong><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
                     <% else %>
-                      <td class="mdl-data-table__cell--non-numeric link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %></strong><% end %></td>
+                      <td class="link-row"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><strong><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %></strong><% end %></td>
                     <% end %>
                   <% end %>
                 <% else %>
@@ -316,13 +781,9 @@
                     <% end %>
                   <% else %>
                    <% if job_application.contact == true %>
-                      <td class="mdl-data-table__cell--non-numeric"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %><% end %><i class="fa fa-phone color-icon-phone" id="tool-number" aria-hidden="true"></i><i class="fa fa-envelope-o color-icon-mail" aria-hidden="true"></i><div class="font-weight-experiences-under-name link-candidate"><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
-
-                    <!-- Modal phone number -->
-                      <div class="mdl-tooltip mdl-tooltip--large" id="tooltip" for="tool-number"><%= job_application.candidate.phone_number %></div>
-                    <!-- -->
+                      <td class=""><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %><% end %><i><%= job_application.experiences.first.title %></i> @ <%= job_application.experiences.first.organization %></div></td>
                    <% else %>
-                      <td class="mdl-data-table__cell--non-numeric"><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %><% end %></td>
+                      <td class=""><%= link_to job_offer_job_application_path(@job_offer, job_application), class:"link-candidate" do %><%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %><% end %></td>
                   <% end %>
                 <% end %>
               <% end %>
