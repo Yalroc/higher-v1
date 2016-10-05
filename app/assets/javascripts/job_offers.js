@@ -22,6 +22,6 @@ $(document).ready(function() {
           $('.offer_settings_icon').removeClass("active-settings-icon");
         });
       }
-    })
+  });
 
 }) // end of doc.function

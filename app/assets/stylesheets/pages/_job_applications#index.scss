@@ -133,7 +133,7 @@
 }
 
 .side-bar-content {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 25px;
   margin-left: 28px;
   padding-left: 0;
@@ -297,22 +297,6 @@
   color: #376092
 }
 
-.color-icon-mail {
-  color: gray;
-  font-size: 16px;
-  position: absolute;
-  right: 0;
-  top: 15%
-}
-
-.color-icon-phone {
-  color: gray;
-  font-size: 16px;
-  position: absolute;
-  right: 0;
-  bottom: 15%;
-}
-
 .font-size-table {
 font-size: 13px
 }
@@ -324,10 +308,6 @@ font-size: 13px
 .font-weight-experiences-under-name {
   line-height: 10px;
   font-size: 11px;
-}
-
-#tooltip {
-  background: $gray;
 }
 
 .background-dif {
@@ -378,8 +358,187 @@ font-size: 13px
 }
 
 // DATATABLE
-#job_application_table {
-  position: relative;
-  top: 75px;
-  left: 200px;
+#job_application_table_wrapper {
 }
+
+.dataTable {
+}
+
+#job_application_table {
+  margin: 0 !important;
+  border-collapse: collapse;
+  position: relative;
+  top: 50px;
+  left: 200px;
+  width: 84.4vw;
+  min-width: 1000px;
+  background-color: $gray-lighter !important;
+  th {
+    text-align: center;
+  }
+  td {
+    text-align: center;
+  }
+}
+
+#job_application_table_length {
+  position: absolute;
+  left: 200px;
+  display: none;
+}
+
+#job_application_table_filter {
+  position: fixed;
+  left: 40px;
+  top: 285px;
+  z-index: 10;
+  label {
+  }
+  input {
+    width: 141px;
+    margin-left: -68px;
+    font-weight: 100 !important;
+  }
+}
+
+#job_application_table_info {
+  position: absolute;
+  left: 200px;
+  display: none;
+}
+
+#job_application_table_paginate {
+  display: none;
+}
+
+#master-row-col th {
+  font-size: 15px;
+  background-color: white;
+  font-weight: 100;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center !important;
+  border-bottom: 0.1px solid $gray-mid-lighter;
+}
+
+#master-row-checkbox {
+  margin-left: -10px;
+}
+
+.row-col {
+  font-size: 12px;
+  height: 35px;
+}
+
+.rank-col {
+  border: 0.1px solid $gray-mid-lighter;
+  font-size: 13px;
+  width: 22px;
+
+  input {
+    margin-right: 7px;
+  }
+}
+
+.candidate-col {
+  border: 0.1px solid $gray-mid-lighter;
+  font-size: 14px;
+  text-align: left !important;
+}
+
+.fit-col {
+  border: 0.1px solid $gray-mid-lighter;
+  font-size: 13px;
+  width: 26px;
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+}
+
+.xp-years-col {
+  border: 0.1px solid $gray-mid-lighter;
+  font-size: 13px;
+  width: 36px;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+.xp-org-col {
+  border: 0.1px solid $gray-mid-lighter;
+  text-align: left !important;
+  width: 125px;
+}
+
+.ed-lvl-col {
+  border: 0.1px solid $gray-mid-lighter;
+  font-size: 13px;
+  width: 25px;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+.ed-uni-col {
+  border: 0.1px solid $gray-mid-lighter;
+  text-align: left !important;
+  width: 125px;
+}
+
+.languages-col {
+  border: 0.1px solid $gray-mid-lighter;
+  width: 75px;
+}
+
+.date-col {
+  border: 0.1px solid $gray-mid-lighter;
+  width: 75px;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+.no-spacing-single-char {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: -3px;
+  margin-right: -3px;
+}
+
+.no-left-border {
+  border-left: none !important;
+}
+
+.no-right-border {
+  border-right: none !important;
+}
+
+.margin-left-neg-22px {
+  margin-left: -22px;
+}
+
+.margin-left-neg-10px {
+  margin-left: -10px;
+}
+
+.margin-left-neg-8px {
+  margin-left: -8px;
+}
+
+.viewed {
+  background-color: $gray-lighter !important;
+}
+
+.not-viewed {
+  background-color: white !important;
+  .rank-col {
+    font-weight: bold;
+  }
+  .candidate-col {
+    font-weight: bold;
+  }
+  .fit-col {
+    font-weight: bold;
+  }
+  .xp-years-col {
+    font-weight: bold;
+  }
+}
+
+
