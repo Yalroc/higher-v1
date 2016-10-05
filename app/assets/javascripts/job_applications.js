@@ -52,4 +52,24 @@ $(document).ready(function() {
     dataTableEntries2();
   });
 
+  // make checkboxes shift-clickable
+  var lastChecked = null;
+
+  var $chkboxes = $('.chkbox');
+  $chkboxes.click(function(e) {
+      if(!lastChecked) {
+          lastChecked = this;
+          return;
+      }
+      if(e.shiftKey) {
+          var start = $chkboxes.index(this);
+          var end = $chkboxes.index(lastChecked);
+
+          $chkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', lastChecked.checked);
+      }
+      lastChecked = this;
+  });
+
+
+
 }) // end of doc.function

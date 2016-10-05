@@ -109,10 +109,11 @@
 
 <!-- New Table (IMPLEMENT DATATABLES) -->
 <table id="job_application_table">
+  <div id="master-row-checkbox-div"><input id="master-row-checkbox" type="checkbox" /></div>
 
   <thead>
     <tr id="master-row-col">
-      <th class="rank-col"><input id="master-row-checkbox" type="checkbox" /></th>
+      <th class="rank-col"></th>
       <th class="candidate-col">Candidate</th>
       <th class="fit-col"><span class="margin-left-neg-10px">Fit</span></th>
       <th class="xp-years-col-col"><span class="margin-left-neg-8px">XP</span></th>
@@ -122,13 +123,15 @@
       <th class="languages-col"><span class="margin-left-neg-8px">Languages</span></th>
       <th class="date-col">Date</th>
     </tr>
+
   </thead>
   <tbody>
+  <% 20.times do %>
     <% @job_applications.each_with_index do |job_application, y| %>
       <tr class="row-col <%= job_application.viewed ? "viewed" : "not-viewed" %>">
         <!-- Rank -->
         <td class="rank-col">
-          <input type="checkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
+          <input type="checkbox" class="chkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
         </td>
 
         <!-- Candidate -->
@@ -222,8 +225,8 @@
 
       </tr>
     <% end %>
+  <% end %>
   </tbody>
-
 
 </table>
 

@@ -365,9 +365,9 @@ font-size: 13px
 }
 
 #job_application_table {
+  position: relative;
   margin: 0 !important;
   border-collapse: collapse;
-  position: relative;
   top: 50px;
   left: 200px;
   width: 84.4vw;
@@ -419,6 +419,14 @@ font-size: 13px
   padding-bottom: 5px;
   text-align: center !important;
   border-bottom: 0.1px solid $gray-mid-lighter;
+}
+#master-row-checkbox-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  top: 100px;
+  left: 225px;
 }
 
 #master-row-checkbox {
