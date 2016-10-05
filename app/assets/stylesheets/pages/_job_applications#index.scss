@@ -371,6 +371,7 @@ font-size: 13px
   top: 50px;
   left: 200px;
   width: 84.4vw;
+  min-width: 1000px;
   background-color: $gray-lighter !important;
   th {
     text-align: center;
@@ -396,6 +397,7 @@ font-size: 13px
   input {
     width: 141px;
     margin-left: -68px;
+    font-weight: 100 !important;
   }
 }
 
@@ -414,7 +416,7 @@ font-size: 13px
   background-color: white;
   font-weight: 100;
   padding-top: 5px;
-  padding-bottom: 4px;
+  padding-bottom: 5px;
   text-align: center !important;
   border-bottom: 0.1px solid $gray-mid-lighter;
 }
@@ -477,7 +479,7 @@ font-size: 13px
 .ed-uni-col {
   border: 0.1px solid $gray-mid-lighter;
   text-align: left !important;
-  width: 115px;
+  width: 125px;
 }
 
 .languages-col {
@@ -519,6 +521,24 @@ font-size: 13px
   margin-left: -8px;
 }
 
-.opened {
+.viewed {
   background-color: $gray-lighter !important;
 }
+
+.not-viewed {
+  background-color: white !important;
+  .rank-col {
+    font-weight: bold;
+  }
+  .candidate-col {
+    font-weight: bold;
+  }
+  .fit-col {
+    font-weight: bold;
+  }
+  .xp-years-col {
+    font-weight: bold;
+  }
+}
+
+

@@ -69,7 +69,7 @@
   <div class="menu-header">
     <button class="btn btn-primary text-center" id="filters-button">FILTERS</button>
     <div class="side-bar-content">
-      <p><strong>All (<%= @job_applications.where(rejected: nil).length %>)</strong></p>
+      <p><strong>All (<%= @job_applications.where(viewed: nil).length %>)</strong></p>
       <p>Contacted (<%= @job_applications.where(contact: true).length %>)</p>
       <p>New (<%= @job_applications.where(viewed: nil).length %>)</p>
       <br>
@@ -125,7 +125,7 @@
   </thead>
   <tbody>
     <% @job_applications.each_with_index do |job_application, y| %>
-      <tr class="row-col opened">
+      <tr class="row-col <%= job_application.viewed ? "viewed" : "not-viewed" %>">
         <!-- Rank -->
         <td class="rank-col">
           <input type="checkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
