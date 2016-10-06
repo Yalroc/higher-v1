@@ -31,17 +31,28 @@
 
       <!-- Job Offer Title & Parents -->
       <div class="job-offer-second-navbar">
-        <p>
+        <div class="inline">
           <%= link_to "Active >", "#", class: "text-decoration-none black" %>
-          <% if @folder_array != nil %>
-            <% @folder_array.each do |folder| %>
+        </div>
+        <% if @folder_array != nil %>
+          <% @folder_array.each do |folder| %>
+            <div class="inline">
               <%= link_to "#{folder.name} >", "#", class: "text-decoration-none black" %>
-            <% end %>
+            </div>
           <% end %>
-          <%= link_to "#", class: "text-decoration-none second-navbar-job-offer-title" do %>
+        <% end %>
+        <div class="dropdown inline">
+          <%= link_to "#", { class: "text-decoration-none inline dropdown-toggle second-navbar-job-offer-title", 'role' => 'button', id: "dropdownMenu1", 'data-toggle' => 'dropdown' } do %>
             <%= "#{@job_offer.title} #{content_tag :i, nil, class: 'fa fa-chevron-down gray-mid-lighter'}".html_safe %>
           <% end %>
-        </p>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Go to Offer</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- page switch numbers + btn-group -->
@@ -86,7 +97,7 @@
           <img src="http://26.media.tumblr.com/tumblr_lfwvh2sNGJ1qzkvmxo1_500.png" alt="Thierry Delas" class="avatar-large">
         </div>
         <div class="HR-agent-name-and-title">
-          <p class="HR-agent-name">Thierry Delas</p>
+          <p class="HR-agent-name">Thierry D.</p>
           <p class="HR-agent-title">Senior Recruiter</p>
         </div>
       </div>
@@ -109,10 +120,11 @@
 
 <!-- New Table (IMPLEMENT DATATABLES) -->
 <table id="job_application_table">
+  <div id="master-row-checkbox-div"><input id="master-row-checkbox" type="checkbox" /></div>
 
   <thead>
     <tr id="master-row-col">
-      <th class="rank-col"><input id="master-row-checkbox" type="checkbox" /></th>
+      <th class="rank-col"></th>
       <th class="candidate-col">Candidate</th>
       <th class="fit-col"><span class="margin-left-neg-10px">Fit</span></th>
       <th class="xp-years-col-col"><span class="margin-left-neg-8px">XP</span></th>
@@ -122,13 +134,14 @@
       <th class="languages-col"><span class="margin-left-neg-8px">Languages</span></th>
       <th class="date-col">Date</th>
     </tr>
+
   </thead>
   <tbody>
-    <% @job_applications.each_with_index do |job_application, y| %>
-      <tr class="row-col <%= job_application.viewed ? "viewed" : "not-viewed" %>">
+    <% @job_applications_sorted_fit.each_with_index do |job_application, y| %>
+      <tr class="row-col <%= job_application.viewed ? "viewed" : "not-viewed" %> <%= "row-id-#{job_application.id}" %>">
         <!-- Rank -->
         <td class="rank-col">
-          <input type="checkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
+          <input type="checkbox" class="chkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
         </td>
 
         <!-- Candidate -->
@@ -139,30 +152,49 @@
         </td>
 
         <!-- Fit -->
-        <td class="fit-col"><%= rand(50..100).round(1).to_s %>%</td>
+        <td class="fit-col">
+          <% if job_application.fit.nil? %>
+            -
+          <% else %>
+            <%= job_application.fit.to_s + "%" %>
+          <% end %>
+
+        </td>
 
         <!-- XP: years -->
         <td class="xp-years-col">
-          <% $years =  job_application.experiences.first.end_date.year  - job_application.experiences.first.start_date.year - 2 %>
-          <% $months = 12 - job_application.experiences.first.start_date.month + job_application.experiences.first.end_date.month %>
-          <% if $months >= 12 && $months < 24 %>
-            <%  $years += 1 %>
-            <%  $months -= 12 %>
-          <% end %>
+          <!-- max possible XP -->
 
-          <% unless job_application.experiences.second == nil %>
-            <% $years += (job_application.experiences.second.end_date.year - job_application.experiences.second.start_date.year) %>
-            <% $months += (12 - job_application.experiences.second.start_date.month + job_application.experiences.second.end_date.month) %>
-            <% if $months >= 12 && $months < 24 %>
-              <% $years += 1 %>
-              <% $months -= 12 %>
-            <% end %>
-          <% end %>
-
-          <% if $months != 0 %>
-            <%= $years.to_s %> <span class="no-spacing-single-char"> y</span> <%= $months.to_s %> <span class="no-spacing-single-char">m</span>
+          <% if job_application.experiences.empty? %>
+            -
           <% else %>
-            <%= $years.to_s %><span class="no-spacing-single-char"> y+</span>
+            <% min = 0 %>
+            <% max = 10^9 %>
+            <% months = 0 %>
+            <% job_application.experiences.each do |experience| %>
+
+              <!-- find total number of working months -->
+              <% months = months + ((experience.end_date.year * 12 + experience.end_date.month) - (experience.start_date.year * 12 + experience.start_date.month)) %>
+
+              <!-- find  min: earliest experience -->
+              <% ((Time.now.year * 12 + Time.now.month) - (experience.start_date.year * 12 + experience.start_date.month)) > min ? min = ((Time.now.year * 12 + Time.now.month) - (experience.start_date.year * 12 + experience.start_date.month)) : "" %>
+
+               <!-- find  max: lasted ending experience (present?) -->
+              <% ((Time.now.year * 12 + Time.now.month) - (experience.end_date.year * 12 + experience.end_date.month)) < max ? max = ((Time.now.year * 12 + Time.now.month) - (experience.end_date.year * 12 + experience.end_date.month)) : "" %>
+            <% end %>
+            <!-- take the lowest from diff max-min or total months -->
+            <% final_months = [(min - max), months].min %>
+
+            <% if final_months < 12 %>
+              <%= months.to_s %><span class="no-spacing-single-char"> m</span>
+            <% elsif final_months < 36 %>
+              <% months = final_months % 12 %>
+              <% years = (final_months / 12).round(0) %>
+              <%= years.to_s %> <span class="no-spacing-single-char"> y</span> <%= months == 0 ? "" : months.to_s %> <span class="no-spacing-single-char <%= months == 0 ? "hidden" : "" %>">m</span>
+            <% else %>
+              <% years = (final_months / 12).round(0) %>
+              <%= years.to_s %><span class="no-spacing-single-char"> y+</span>
+            <% end %>
           <% end %>
         </td>
 
@@ -171,7 +203,13 @@
           <% if job_application.experiences.empty? %>
             -
           <% else %>
-            <%= job_application.experiences.first.organization %>
+            <% organizations = [] %>
+            <% job_application.experiences.each do |experience| %>
+              <% organizations << experience.organization %>
+            <% end %>
+            <% organizations = organizations.uniq %>
+            <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
+            <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
           <% end %>
         </td>
 
@@ -185,11 +223,17 @@
         </td>
 
         <!-- Education: School -->
-        <td class="ed-uni-col">
+        <td class="ed-uni-col <%= job_application.educations.empty? ? "text-center-important" : "" %>">
           <% if job_application.educations.empty? %>
             -
           <% else %>
-            <%= job_application.educations.first.organization %> <%= job_application.educations.first.organization %>
+            <% organizations = [] %>
+            <% job_application.educations.each do |education| %>
+              <% organizations << education.organization %>
+              <% end %>
+              <% organizations = organizations.uniq %>
+              <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
+              <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
           <% end %>
         </td>
 
@@ -198,8 +242,20 @@
           <% if job_application.languages.first.nil? %>
             -
           <% else %>
+            <% languages = [] %>
             <% job_application.languages.each do |language| %>
-              <%= language.name + (language != job_application.languages.last ? ", " : "") %>
+              <% languages << (language.proficiency == ("Full professional proficiency" || "Native or bilingual proficiency") ? language.name + "*" : language.name) %>
+            <% end %>
+            <% languages = languages.uniq %>
+            <% case languages.size %>
+              <% when 1 %>
+                <%= languages[0] %>
+              <% when 2 %>
+                <%= languages.join(', ') %>
+              <% when 3 %>
+                <%= languages.join(', ') %>
+              <% else %>
+                <%= languages[0..2].join(', ') + ", +" + (languages.size - 3).to_s %>
             <% end %>
           <% end %>
         </td>
@@ -223,7 +279,7 @@
       </tr>
     <% end %>
   </tbody>
-
-
 </table>
-
+<% 5.times do %>
+  <br>
+<% end %>

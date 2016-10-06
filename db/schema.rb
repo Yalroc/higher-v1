@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923075559) do
+ActiveRecord::Schema.define(version: 20161005195358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160923075559) do
     t.boolean  "contact"
     t.boolean  "rejected"
     t.boolean  "viewed"
-    t.string   "location"
+    t.float    "fit"
     t.index ["candidate_id"], name: "index_job_applications_on_candidate_id", using: :btree
     t.index ["job_offer_id"], name: "index_job_applications_on_job_offer_id", using: :btree
   end

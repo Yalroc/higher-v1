@@ -15,6 +15,8 @@ class JobApplicationsController < ApplicationController
   def index
     @job_applications = policy_scope(JobApplication)
     @job_applications = set_job_offer.job_applications.where(rejected: nil, submit: true)
+    @job_applications_sorted_fit = @job_applications.sort { |a,b| b.fit <=> a.fit }
+
 
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
 
