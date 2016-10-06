@@ -57,19 +57,34 @@ $(document).ready(function() {
 
   var $chkboxes = $('.chkbox');
   $chkboxes.click(function(e) {
-      if(!lastChecked) {
+      if(lastChecked == null) {
           lastChecked = this;
           return;
       }
       if(e.shiftKey) {
           var start = $chkboxes.index(this);
+          console.log(start);
           var end = $chkboxes.index(lastChecked);
+          console.log(end);
 
           $chkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', lastChecked.checked);
       }
       lastChecked = this;
   });
 
+  // script for master checkbox (check all)
+  $("#master-row-checkbox").click(function () {
+    $('.chkbox').prop('checked', this.checked);
+    console.log($('.chkbox'));
+  });
+
+  // script for checkboxes to be propped when col is clicked
+  $('td.rank-col').on( "click", function(e) {
+    if($(e.target).is('input')){
+      return;
+    }
+    $(this).find('input').trigger( "click" );
+  });
 
 
 }) // end of doc.function

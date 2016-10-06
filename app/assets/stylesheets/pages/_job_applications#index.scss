@@ -441,10 +441,23 @@ font-size: 13px
 .rank-col {
   border: 0.1px solid $gray-mid-lighter;
   font-size: 13px;
-  width: 22px;
+  width: 34px;
+  position: relative;
+    &:hover {
+      opacity: 0.4; // needs to become yellow
+    }
 
   input {
-    margin-right: 7px;
+    position: absolute;
+    top: 35%;
+    left: 15px;
+    margin: 0;
+  }
+
+  span {
+    position: absolute;
+    top: 31%;
+    right: 14%;
   }
 }
 
@@ -548,5 +561,6 @@ font-size: 13px
     font-weight: bold;
   }
 }
+
 
 

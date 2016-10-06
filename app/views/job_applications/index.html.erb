@@ -31,17 +31,28 @@
 
       <!-- Job Offer Title & Parents -->
       <div class="job-offer-second-navbar">
-        <p>
+        <div class="inline">
           <%= link_to "Active >", "#", class: "text-decoration-none black" %>
-          <% if @folder_array != nil %>
-            <% @folder_array.each do |folder| %>
+        </div>
+        <% if @folder_array != nil %>
+          <% @folder_array.each do |folder| %>
+            <div class="inline">
               <%= link_to "#{folder.name} >", "#", class: "text-decoration-none black" %>
-            <% end %>
+            </div>
           <% end %>
-          <%= link_to "#", class: "text-decoration-none second-navbar-job-offer-title" do %>
+        <% end %>
+        <div class="dropdown inline">
+          <%= link_to "#", { class: "text-decoration-none inline dropdown-toggle second-navbar-job-offer-title", 'role' => 'button', id: "dropdownMenu1", 'data-toggle' => 'dropdown' } do %>
             <%= "#{@job_offer.title} #{content_tag :i, nil, class: 'fa fa-chevron-down gray-mid-lighter'}".html_safe %>
           <% end %>
-        </p>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Go to Offer</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- page switch numbers + btn-group -->
@@ -126,9 +137,8 @@
 
   </thead>
   <tbody>
-  <% 20.times do %>
-    <% @job_applications.each_with_index do |job_application, y| %>
-      <tr class="row-col <%= job_application.viewed ? "viewed" : "not-viewed" %>">
+    <% @job_applications_sorted_fit.each_with_index do |job_application, y| %>
+      <tr class="row-col <%= job_application.viewed ? "viewed" : "not-viewed" %> <%= "row-id-#{job_application.id}" %>">
         <!-- Rank -->
         <td class="rank-col">
           <input type="checkbox" class="chkbox" /> <span class="job-application-id" data-id="<%= job_application.id %>"><%= y + 1 %></span>
@@ -142,7 +152,14 @@
         </td>
 
         <!-- Fit -->
-        <td class="fit-col"><%= rand(50..100).round(1).to_s %>%</td>
+        <td class="fit-col">
+          <% if job_application.fit.nil? %>
+            -
+          <% else %>
+            <%= job_application.fit.to_s + "%" %>
+          <% end %>
+
+        </td>
 
         <!-- XP: years -->
         <td class="xp-years-col">
@@ -225,8 +242,6 @@
 
       </tr>
     <% end %>
-  <% end %>
   </tbody>
 
 </table>
-

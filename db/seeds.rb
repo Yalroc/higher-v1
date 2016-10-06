@@ -200,7 +200,8 @@ JobApplication.create!({
   job_offer: JobOffer.first,
   motivation_letter: "Dear Sir or Madam, I am writing in response to your advertisement for a Sales Director for your Consulting Services Line of Business in France. I have done many roles in the same field of skills required by your proposition.",
   submit: true,
-  created_at: "30-8-2016"
+  created_at: "30-8-2016",
+  fit: rand(50.0..99.9).round(1)
   })
 
 Language.create!({
@@ -262,7 +263,8 @@ JobApplication.create!({
   job_offer: JobOffer.first,
   submit: true,
   motivation_letter: "Dear Sir or Madam, I am very interested by your proposition. I have worked for more than ten years in the IT field, so I think I have enough experience to get this position.",
-  created_at: "31-8-2016"
+  created_at: "31-8-2016",
+  fit: rand(50.0..99.9).round(1)
   })
 
 Language.create!({
@@ -307,212 +309,7 @@ Education.create!({
 #######
 ########
 
-Candidate.create!({
-  first_name: "Benjamin",
-  last_name: "Rihouet",
-  email: "ben@gmail.com",
-  password: "123456",
-  phone_number: "+33 4 78 24 35 96",
-  })
 
-JobApplication.create!({
-  candidate: Candidate.third,
-  job_offer: JobOffer.third,
-  submit: true,
-  motivation_letter: "Hi, I had an experience at Amazon in Marketing, but now I want to be more focused on tech products.",
-  created_at: "31-8-2016"
-  })
-
-Language.create!({
-  job_application: JobApplication.third,
-  name: "French",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.third,
-  name: "English",
-  proficiency: "TOEFL 930"
-  })
-
-Experience.create!({
-  organization: "Cdiscount",
-  job_application: JobApplication.third,
-  title: "Digital Marketing Analyst",
-  start_date: "1-6-2010",
-  end_date: "1-6-2016",
-  description: "I worked on several projects about SEO and growth hacking.",
-  company_size: 100000,
-  industry: "E-commerce"
-  })
-
-Education.create!({
-  organization: "HEC Paris",
-  job_application: JobApplication.third,
-  start_date: "1-6-2005",
-  end_date: "1-6-2009",
-  description: "I did a specialization in Consumer Goods Marketing",
-  degree_type: "Master",
-  degree_field: "Marketing",
-  })
-
-
-#########
-
-####################
-
-Candidate.create!({
-  first_name: "Clémence",
-  last_name: "Eljira",
-  email: "clemm@gmail.com",
-  password: "123456",
-  phone_number: "+33 9 31 94 88 66",
-  })
-
-JobApplication.create!({
-  candidate: Candidate.find_by(last_name: "Eljira"),
-  job_offer: JobOffer.third,
-  submit: true,
-  motivation_letter: "Ok",
-  created_at: "1-9-2016",
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "Ok"),
-  name: "English",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "Ok"),
-  name: "French",
-  proficiency: "Fluent"
-  })
-
-Experience.create!({
-  organization: "Fleury Michon",
-  job_application: JobApplication.find_by(motivation_letter: "Ok"),
-  title: "Marketing Assistant",
-  start_date: "1-6-2002",
-  end_date: "1-6-2010",
-  description: "Exciting experience in a dynamic SSII.",
-  company_size: 100000,
-  industry: "Accounting"
-  })
-
-Education.create!({
-  organization: "EM Strasbourg",
-  job_application: JobApplication.find_by(motivation_letter: "Ok"),
-  start_date: "1-6-1996",
-  end_date: "1-6-2001",
-  description: "My specialization is about computer science.",
-  degree_type: "Master",
-  degree_field: "Computer Science",
-  })
-
-#########################
-
-Candidate.create!({
-  first_name: "Sandra",
-  last_name: "Potier",
-  email: "clemdddsm@gmail.com",
-  password: "123456",
-  phone_number: "+33 9 31 94 88 66",
-  })
-
-JobApplication.create!({
-  candidate: Candidate.find_by(last_name: "Potier"),
-  job_offer: JobOffer.third,
-  submit: true,
-  motivation_letter: "I",
-  created_at: "1-9-2016"
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "I"),
-  name: "English",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "I"),
-  name: "French",
-  proficiency: "Fluent"
-  })
-
-Experience.create!({
-  organization: "Akerman LLP",
-  job_application: JobApplication.find_by(motivation_letter: "I"),
-  title: "Legal Analyst M&A",
-  start_date: "1-6-1999",
-  end_date: "1-6-2010",
-  description: "Exciting experience in a dynamic SSII.",
-  company_size: 100000,
-  industry: "Corporate Law"
-  })
-
-Education.create!({
-  organization: "Chicago Law School",
-  job_application: JobApplication.find_by(motivation_letter: "I"),
-  start_date: "1-6-1996",
-  end_date: "1-6-2001",
-  description: "My specialization is about computer science.",
-  degree_type: "Master",
-  degree_field: "Computer Science",
-  })
-
-###################
-
-Candidate.create!({
-  first_name: "Paul",
-  last_name: "Doumergue",
-  email: "paul.dou@gmail.com",
-  password: "123456",
-  phone_number: "+33 8 31 94 88 66",
-  })
-
-JobApplication.create!({
-  candidate: Candidate.find_by(last_name: "Doumergue"),
-  job_offer: JobOffer.third,
-  submit: true,
-  motivation_letter: "Hello world",
-  created_at: "1-9-2016"
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "Hello world"),
-  name: "English",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "Hello world"),
-  name: "French",
-  proficiency: "Fluent"
-  })
-
-Experience.create!({
-  organization: "Airbus",
-  job_application: JobApplication.find_by(motivation_letter: "Hello world"),
-  title: "Aerospace Engineer",
-  start_date: "1-6-1999",
-  end_date: "1-6-2010",
-  description: "Exciting experience in a dynamic SSII.",
-  company_size: 100000,
-  industry: "Corporate Law"
-  })
-
-Education.create!({
-  organization: "INSA Lyon",
-  job_application: JobApplication.find_by(motivation_letter: "Hello world"),
-  start_date: "1-6-1996",
-  end_date: "1-6-2001",
-  description: "My specialization is about computer science.",
-  degree_type: "Master",
-  degree_field: "Computer Science",
-  })
-
-##############
 
 Candidate.create!({
   first_name: "Edouard",
@@ -527,6 +324,7 @@ JobApplication.create!({
   job_offer: JobOffer.third,
   submit: true,
   motivation_letter: "Yolo",
+  fit: rand(50.0..99.9).round(1)
   })
 
 Language.create!({
@@ -565,66 +363,66 @@ Education.create!({
 
 ##################
 
-Candidate.create!({
-  first_name: "Bernard",
-  last_name: "Madoff",
-  email: "bernard@gmail.com",
+######## LOOPED JOB APPLICATION ######
+
+
+105.times do
+
+  candidate = Candidate.create!({
+  first_name: Faker::Name.name.split(" ")[0],
+  last_name: Faker::Name.name.split(" ")[0],
+  email: Faker::Internet.email,
   password: "123456",
-  phone_number: "+33 7 31 94 88 66",
+  phone_number: "+33 9 31 94 88 66",
   })
 
-JobApplication.create!({
-  candidate: Candidate.find_by(last_name: "Madoff"),
+  job_app = JobApplication.create!({
+  candidate: Candidate.find(candidate),
   job_offer: JobOffer.third,
   motivation_letter: "Dear Sir,
   I really want to work with you because i am the bezst fit for you, trust me !",
-  created_at: "1-9-2016"
+  created_at: "1-9-2016",
+  viewed: [true, nil].sample,
+  submit: true,
+  fit: rand(50.0..94.9).round(1)
   })
 
-Education.create!({
-  organization: "Ninja School",
-  job_application: JobApplication.find_by(motivation_letter: "Dear Sir,
-  I really want to work with you because i am the bezst fit for you, trust me !"),
-  title: "Martial Arts Training",
-  start_date: "1-6-2007",
-  end_date: "1-8-2010",
-  description: "Martial Arts Training",
-  degree_type: "Kun-fu",
-  degree_field: "Master",
-  })
+  rand(1..5).times do
+    Education.create!({
+      organization: Faker::Educator.university,
+      job_application: job_app,
+      title: Faker::Educator.course,
+      start_date: "1-6-2007",
+      end_date: "1-8-2010",
+      description: "Martial Arts Training",
+      degree_type: ["High School Diploma", "Bachelor", "Master", "PhD & equivalent", "Executive Education", "Other"].sample,
+      degree_field: Faker::Book.genre,
+      })
+  end
 
-Education.create!({
-  organization: "Le Wagon",
-  job_application: JobApplication.find_by(motivation_letter: "Dear Sir,
-  I really want to work with you because i am the bezst fit for you, trust me !"),
-  title: "Programming",
-  start_date: "1-9-2010",
-  end_date: "1-11-2010",
-  description: "Full stack coding bootcamp",
-  degree_type: "RoR",
-  degree_field: "",
-  })
+  rand(1..5).times do
+    Experience.create!({
+      organization: Faker::Company.name,
+      job_application: job_app,
+      title: Faker::Company.profession.capitalize,
+      start_date: "1-6-1999",
+      end_date: "1-6-2002",
+      description: "I worked within a team of 12 collaborators. I was personally in charge of analyzing KPIs of several categories of products and writing reports and recommandations about it.",
+      company_size: 100000,
+      industry: "Marketing"
+      })
+  end
 
-
-Experience.create!({
-  organization: "P&G",
-  job_application: JobApplication.find_by(motivation_letter: "Dear Sir,
-  I really want to work with you because i am the bezst fit for you, trust me !"),
-  title: "Category Manager",
-  start_date: "1-6-1999",
-  end_date: "1-6-2010",
-  description: "I worked within a team of 12 collaborators. I was personally in charge of analyzing KPIs of several categories of products and writing reports and recommandations about it.",
-  company_size: 100000,
-  industry: "Marketing"
-  })
+  rand(1..5).times do
+    Language.create!({
+      job_application: job_app,
+      name: ["French", "English", "Spanish", "Dutch", "German", "Danish", "Polish"].sample,
+      proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
+      })
+  end
 
 
-
-
-
-
-
-
+end
 
 
 
