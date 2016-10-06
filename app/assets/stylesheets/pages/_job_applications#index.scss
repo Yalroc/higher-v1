@@ -148,7 +148,7 @@
   padding-top: 3px;
   padding-bottom: 3px;
   border-radius: 0px;
-  width: 140px;
+  width: 127px;
   z-index: 0;
   background-color: $blue;
   font-size: 17px;
@@ -440,6 +440,7 @@ font-size: 13px
 .row-col {
   font-size: 12px;
   height: 35px;
+  line-height: 1.3;
 }
 
 .rank-col {
@@ -467,7 +468,7 @@ font-size: 13px
 
 .candidate-col {
   border: 0.1px solid $gray-mid-lighter;
-  font-size: 14px;
+  font-size: 13px;
   text-align: left !important;
 }
 
@@ -572,4 +573,16 @@ font-size: 13px
 
 .hidden {
   display: none;
+}
+
+#candidate-col-name {
+  font-size: 15px;
+  margin: 0px;
+  text-decoration: none;
+}
+
+#candidate-col-title {
+  font-size: 11px;
+  margin: 0px;
+  text-decoration: none;
 }
