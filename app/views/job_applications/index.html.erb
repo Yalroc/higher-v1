@@ -191,7 +191,13 @@
           <% if job_application.experiences.empty? %>
             -
           <% else %>
-            <%= job_application.experiences.first.organization %>
+            <% organizations = [] %>
+            <% job_application.experiences.each do |experience| %>
+              <% organizations << experience.organization %>
+            <% end %>
+            <% organizations = organizations.uniq %>
+            <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
+            <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
           <% end %>
         </td>
 
@@ -209,7 +215,13 @@
           <% if job_application.educations.empty? %>
             -
           <% else %>
-            <%= job_application.educations.first.organization %> <%= job_application.educations.first.organization %>
+            <% organizations = [] %>
+            <% job_application.educations.each do |education| %>
+              <% organizations << education.organization %>
+              <% end %>
+              <% organizations = organizations.uniq %>
+              <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
+              <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
           <% end %>
         </td>
 

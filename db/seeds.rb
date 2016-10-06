@@ -64,6 +64,7 @@ JobOffer.create!({
   salary: 35,
   job_offer_folder: social_folder,
   published: true,
+  created_at: "10-8-2016"
   })
 
 JobOffer.create!({
@@ -95,6 +96,7 @@ JobOffer.create!({
   max_xp: 10,
   salary: 52,
   published: true,
+  created_at: "20-8-2016"
   })
 
 JobOffer.create!({
@@ -143,6 +145,7 @@ Build effective relationships at all levels",
   max_xp: 12,
   salary: 70,
   published: true,
+  created_at: "15-8-2016"
   })
 
 JobOffer.create!({
@@ -191,173 +194,7 @@ Build effective relationships at all levels",
   max_xp: 12,
   salary: 70,
   published: true,
-  })
-
-# THIBAULT DUPONT'S JOB APPLICATION
-
-JobApplication.create!({
-  candidate: Candidate.first,
-  job_offer: JobOffer.first,
-  motivation_letter: "Dear Sir or Madam, I am writing in response to your advertisement for a Sales Director for your Consulting Services Line of Business in France. I have done many roles in the same field of skills required by your proposition.",
-  submit: true,
-  created_at: "30-8-2016",
-  fit: rand(50.0..99.9).round(1)
-  })
-
-Language.create!({
-  job_application: JobApplication.first,
-  name: "French",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.first,
-  name: "English",
-  proficiency: "Fluent"
-  })
-
-Experience.create!({
-  organization: "Unilever",
-  job_application: JobApplication.first,
-  title: "Category Manager",
-  start_date: "1-6-1994",
-  end_date: "1-8-2015",
-  description: "I managed a team of 10 account managers.",
-  company_size: 100000,
-  industry: "Computer Software"
-  })
-
-Experience.create!({
-  organization: "Carrefour",
-  job_application: JobApplication.first,
-  title: "Product Manager",
-  start_date: "1-2-1980",
-  end_date: "1-11-1990",
-  description: "I managed a team of 10 account managers.",
-  company_size: 100000,
-  industry: "Computer Software"
-  })
-
-Education.create!({
-  organization: "ESSEC Business School",
-  job_application: JobApplication.first,
-  start_date: "1-6-1992",
-  degree_type: "Master",
-  degree_field: "Grande Ecole",
-  end_date: "1-8-1995",
-  description: "I graduated from this business school which belongs to the top 10 in Europe.",
-  })
-
-####################################################
-
-Candidate.create!({
-  first_name: "Isabelle",
-  last_name: "Cheminet",
-  email: "isa@gmail.com",
-  password: "123456",
-  phone_number: "+33 6 78 94 35 66",
-  })
-
-JobApplication.create!({
-  candidate: Candidate.second,
-  job_offer: JobOffer.first,
-  submit: true,
-  motivation_letter: "Dear Sir or Madam, I am very interested by your proposition. I have worked for more than ten years in the IT field, so I think I have enough experience to get this position.",
-  created_at: "31-8-2016",
-  fit: rand(50.0..99.9).round(1)
-  })
-
-Language.create!({
-  job_application: JobApplication.second,
-  name: "French",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.second,
-  name: "English",
-  proficiency: "TOEIC 950"
-  })
-
-Language.create!({
-  job_application: JobApplication.second,
-  name: "Chinese",
-  proficiency: "Intermediate"
-  })
-
-Experience.create!({
-  organization: "Publicis",
-  job_application: JobApplication.second,
-  title: "Communication Assistant",
-  start_date: "1-6-2002",
-  end_date: "1-6-2016",
-  description: "I was charged of the middle market clients.",
-  company_size: 100000,
-  industry: "Computer Software"
-  })
-
-Education.create!({
-  organization: "Université Paris Dauphine",
-  job_application: JobApplication.second,
-  start_date: "1-6-1996",
-  degree_type: "Master",
-  degree_field: "in Finance",
-  end_date: "1-6-2001",
-  description: "I have a specialization in IT services.",
-  })
-
-#######
-########
-
-
-
-Candidate.create!({
-  first_name: "Edouard",
-  last_name: "Foussier",
-  email: "edf@gmail.com",
-  password: "123456",
-  phone_number: "+33 9 31 94 88 66",
-  })
-
-JobApplication.create!({
-  candidate: Candidate.find_by(last_name: "Foussier"),
-  job_offer: JobOffer.third,
-  submit: true,
-  motivation_letter: "Yolo",
-  fit: rand(50.0..99.9).round(1)
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "Yolo"),
-  name: "English",
-  proficiency: "Native"
-  })
-
-Language.create!({
-  job_application: JobApplication.find_by(motivation_letter: "Yolo"),
-  name: "French",
-  proficiency: "Fluent"
-  })
-
-Experience.create!({
-  organization: "Le Wagon",
-  job_application: JobApplication.find_by(motivation_letter: "Yolo"),
-  title: "All things community",
-  start_date: "1-6-2012",
-  end_date: "1-8-2016",
-  description: "Le Wagon Lover",
-  company_size: 100000,
-  industry: "Corporate Law"
-  })
-
-Education.create!({
-  organization: "ESCP Europe",
-  job_application: JobApplication.find_by(motivation_letter: "Yolo"),
-  start_date: "1-6-1996",
-  end_date: "1-6-2001",
-  description: "My specialization is about computer science.",
-  degree_type: "Master",
-  degree_field: "Computer Science",
+  created_at: "1-8-2016"
   })
 
 
@@ -366,7 +203,7 @@ Education.create!({
 ######## LOOPED JOB APPLICATION ######
 
 
-105.times do
+817.times do
 
   candidate = Candidate.create!({
   first_name: Faker::Name.name.split(" ")[0],
@@ -378,16 +215,16 @@ Education.create!({
 
   job_app = JobApplication.create!({
   candidate: Candidate.find(candidate),
-  job_offer: JobOffer.third,
+  job_offer: [JobOffer.first, JobOffer.second, JobOffer.third, JobOffer.fourth].sample,
   motivation_letter: "Dear Sir,
   I really want to work with you because i am the bezst fit for you, trust me !",
-  created_at: "1-9-2016",
+  created_at: rand(0..29).to_s + "-" + rand(1..9).to_s + "-2016",
   viewed: [true, nil].sample,
   submit: true,
   fit: rand(50.0..94.9).round(1)
   })
 
-  rand(1..5).times do
+  rand(0..5).times do
     Education.create!({
       organization: Faker::Educator.university,
       job_application: job_app,
