@@ -97,7 +97,7 @@
           <img src="http://26.media.tumblr.com/tumblr_lfwvh2sNGJ1qzkvmxo1_500.png" alt="Thierry Delas" class="avatar-large">
         </div>
         <div class="HR-agent-name-and-title">
-          <p class="HR-agent-name">Thierry Delas</p>
+          <p class="HR-agent-name">Thierry D.</p>
           <p class="HR-agent-title">Senior Recruiter</p>
         </div>
       </div>
@@ -163,26 +163,38 @@
 
         <!-- XP: years -->
         <td class="xp-years-col">
-          <% $years =  job_application.experiences.first.end_date.year  - job_application.experiences.first.start_date.year - 2 %>
-          <% $months = 12 - job_application.experiences.first.start_date.month + job_application.experiences.first.end_date.month %>
-          <% if $months >= 12 && $months < 24 %>
-            <%  $years += 1 %>
-            <%  $months -= 12 %>
-          <% end %>
+          <!-- max possible XP -->
 
-          <% unless job_application.experiences.second == nil %>
-            <% $years += (job_application.experiences.second.end_date.year - job_application.experiences.second.start_date.year) %>
-            <% $months += (12 - job_application.experiences.second.start_date.month + job_application.experiences.second.end_date.month) %>
-            <% if $months >= 12 && $months < 24 %>
-              <% $years += 1 %>
-              <% $months -= 12 %>
-            <% end %>
-          <% end %>
-
-          <% if $months != 0 %>
-            <%= $years.to_s %> <span class="no-spacing-single-char"> y</span> <%= $months.to_s %> <span class="no-spacing-single-char">m</span>
+          <% if job_application.experiences.empty? %>
+            -
           <% else %>
-            <%= $years.to_s %><span class="no-spacing-single-char"> y+</span>
+            <% min = 0 %>
+            <% max = 10^9 %>
+            <% months = 0 %>
+            <% job_application.experiences.each do |experience| %>
+
+              <!-- find total number of working months -->
+              <% months = months + ((experience.end_date.year * 12 + experience.end_date.month) - (experience.start_date.year * 12 + experience.start_date.month)) %>
+
+              <!-- find  min: earliest experience -->
+              <% ((Time.now.year * 12 + Time.now.month) - (experience.start_date.year * 12 + experience.start_date.month)) > min ? min = ((Time.now.year * 12 + Time.now.month) - (experience.start_date.year * 12 + experience.start_date.month)) : "" %>
+
+               <!-- find  max: lasted ending experience (present?) -->
+              <% ((Time.now.year * 12 + Time.now.month) - (experience.end_date.year * 12 + experience.end_date.month)) < max ? max = ((Time.now.year * 12 + Time.now.month) - (experience.end_date.year * 12 + experience.end_date.month)) : "" %>
+            <% end %>
+            <!-- take the lowest from diff max-min or total months -->
+            <% final_months = [(min - max), months].min %>
+
+            <% if final_months < 12 %>
+              <%= months.to_s %><span class="no-spacing-single-char"> m</span>
+            <% elsif final_months < 36 %>
+              <% months = final_months % 12 %>
+              <% years = (final_months / 12).round(0) %>
+              <%= years.to_s %> <span class="no-spacing-single-char"> y</span> <%= months == 0 ? "" : months.to_s %> <span class="no-spacing-single-char <%= months == 0 ? "hidden" : "" %>">m</span>
+            <% else %>
+              <% years = (final_months / 12).round(0) %>
+              <%= years.to_s %><span class="no-spacing-single-char"> y+</span>
+            <% end %>
           <% end %>
         </td>
 
@@ -211,7 +223,7 @@
         </td>
 
         <!-- Education: School -->
-        <td class="ed-uni-col">
+        <td class="ed-uni-col <%= job_application.educations.empty? ? "text-center-important" : "" %>">
           <% if job_application.educations.empty? %>
             -
           <% else %>
@@ -230,8 +242,20 @@
           <% if job_application.languages.first.nil? %>
             -
           <% else %>
+            <% languages = [] %>
             <% job_application.languages.each do |language| %>
-              <%= language.name + (language != job_application.languages.last ? ", " : "") %>
+              <% languages << (language.proficiency == ("Full professional proficiency" || "Native or bilingual proficiency") ? language.name + "*" : language.name) %>
+            <% end %>
+            <% languages = languages.uniq %>
+            <% case languages.size %>
+              <% when 1 %>
+                <%= languages[0] %>
+              <% when 2 %>
+                <%= languages.join(', ') %>
+              <% when 3 %>
+                <%= languages.join(', ') %>
+              <% else %>
+                <%= languages[0..2].join(', ') + ", +" + (languages.size - 3).to_s %>
             <% end %>
           <% end %>
         </td>
@@ -255,5 +279,7 @@
       </tr>
     <% end %>
   </tbody>
-
 </table>
+<% 5.times do %>
+  <br>
+<% end %>

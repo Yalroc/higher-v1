@@ -352,6 +352,7 @@ font-size: 13px
   bottom: -4px;
   width: 100%;
   font-size: 14px;
+  margin-left: -5px;
     span {
       padding: 2px;
     }
@@ -481,7 +482,7 @@ font-size: 13px
 .xp-years-col {
   border: 0.1px solid $gray-mid-lighter;
   font-size: 13px;
-  width: 36px;
+  width: 41px;
   padding-right: 10px !important;
   padding-left: 10px !important;
 }
@@ -508,7 +509,7 @@ font-size: 13px
 
 .languages-col {
   border: 0.1px solid $gray-mid-lighter;
-  width: 75px;
+  width: 92px;
 }
 
 .date-col {
@@ -565,5 +566,10 @@ font-size: 13px
   }
 }
 
+.text-center-important {
+  text-align: center !important;
+}
 
-
+.hidden {
+  display: none;
+}

@@ -218,13 +218,13 @@ Build effective relationships at all levels",
   job_offer: [JobOffer.first, JobOffer.second, JobOffer.third, JobOffer.fourth].sample,
   motivation_letter: "Dear Sir,
   I really want to work with you because i am the bezst fit for you, trust me !",
-  created_at: rand(0..29).to_s + "-" + rand(1..9).to_s + "-2016",
+  created_at: ["6-6-2016", "7-7-2016", "5-5-2016", "4-4-2016"].sample,
   viewed: [true, nil].sample,
   submit: true,
   fit: rand(50.0..94.9).round(1)
   })
 
-  rand(0..5).times do
+  rand(1..4).times do
     Education.create!({
       organization: Faker::Educator.university,
       job_application: job_app,
@@ -232,18 +232,18 @@ Build effective relationships at all levels",
       start_date: "1-6-2007",
       end_date: "1-8-2010",
       description: "Martial Arts Training",
-      degree_type: ["High School Diploma", "Bachelor", "Master", "PhD & equivalent", "Executive Education", "Other"].sample,
+      degree_type: ["High School Diploma", "Bachelor", "Bachelor", "Bachelor", "Master", "Master", "Master", "Master", "PhD & equivalent", "Other"].sample,
       degree_field: Faker::Book.genre,
       })
   end
 
-  rand(1..5).times do
+  rand(1..3).times do
     Experience.create!({
       organization: Faker::Company.name,
       job_application: job_app,
       title: Faker::Company.profession.capitalize,
-      start_date: "1-6-1999",
-      end_date: "1-6-2002",
+      start_date: ["1-6-1999", "1-8-1999", "1-2-1999", "1-1-1999"].sample,
+      end_date: "1-6-200" + rand(0..3).to_s,
       description: "I worked within a team of 12 collaborators. I was personally in charge of analyzing KPIs of several categories of products and writing reports and recommandations about it.",
       company_size: 100000,
       industry: "Marketing"
