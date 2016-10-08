@@ -82,6 +82,9 @@
     <div class="side-bar-content">
       <p><strong>All (<%= @job_applications.where(viewed: nil).length %>)</strong></p>
       <p>Contacted (<%= @job_applications.where(contact: true).length %>)</p>
+      <p>Phone Screen (<%= @job_applications.where(contact: true).length %>)</p>
+      <p>Interview (<%= @job_applications.where(contact: true).length %>)</p>
+      <p>Offer (<%= @job_applications.where(contact: true).length %>)</p>
       <p>New (<%= @job_applications.where(viewed: nil).length %>)</p>
       <br>
       <p>Keywords: </p>
@@ -127,10 +130,10 @@
       <th class="rank-col"></th>
       <th class="candidate-col">Candidate</th>
       <th class="fit-col"><span class="margin-left-neg-10px">Fit</span></th>
-      <th class="xp-years-col-col"><span class="margin-left-neg-8px">XP</span></th>
+      <th class="xp-years-col-col"><span class="margin-left-neg-8px">Years</span></th>
       <th class="xp-org-col">Companies</th>
       <th class="ed-lvl-col no-right-border"></th>
-      <th class="ed-uni-col no-left-border"><span class="margin-left-neg-22px">Education</span></th>
+      <th class="ed-uni-col no-left-border"><span class="margin-left-neg-28px">Education</span></th>
       <th class="languages-col"><span class="margin-left-neg-8px">Languages</span></th>
       <th class="date-col">Date</th>
     </tr>
@@ -165,7 +168,6 @@
           <% else %>
             <%= job_application.fit.to_s + "%" %>
           <% end %>
-
         </td>
 
         <!-- XP: years -->
@@ -192,15 +194,12 @@
             <!-- take the lowest from diff max-min or total months -->
             <% final_months = [(min - max), months].min %>
 
-            <% if final_months < 12 %>
-              <%= months.to_s %><span class="no-spacing-single-char"> m</span>
-            <% elsif final_months < 36 %>
-              <% months = final_months % 12 %>
-              <% years = (final_months / 12).round(0) %>
-              <%= years.to_s %> <span class="no-spacing-single-char"> y</span> <%= months == 0 ? "" : months.to_s %> <span class="no-spacing-single-char <%= months == 0 ? "hidden" : "" %>">m</span>
+            <% if final_months <= 42 %>
+              <% years = (final_months / 12.0).round(1) %>
+              <%= years %>
             <% else %>
-              <% years = (final_months / 12).round(0) %>
-              <%= years.to_s %><span class="no-spacing-single-char"> y+</span>
+              <% years = (final_months / 12.0).round(0) %>
+              <%= years %>
             <% end %>
           <% end %>
         </td>

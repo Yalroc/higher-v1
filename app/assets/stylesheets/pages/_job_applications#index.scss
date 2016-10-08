@@ -29,7 +29,7 @@
   z-index: 10;
   position: fixed;
   top: 57px;
-  left: 30px;
+  left: 31px;
     img {
       height: 19px;
     }
@@ -53,7 +53,7 @@
   z-index: 10;
   position: fixed;
   top: 55px;
-  right: 25px;
+  right: 20px;
     button {
       background-color: $gray-lighter;
       height: 26px;
@@ -67,7 +67,7 @@
   z-index: 10;
   position: fixed;
   top: 60px;
-  right: 126px;
+  right: 121px;
   font-size: 14px;
 }
 
@@ -325,6 +325,10 @@ font-size: 13px
 
 .btn-second-navbar-job-applications {
   width: 72px;
+    div {
+      font-size: 13px;
+
+    }
 }
 
 .btn-second-navbar-page-switch {
@@ -371,7 +375,7 @@ font-size: 13px
   border-collapse: collapse;
   top: 50px;
   left: 200px;
-  width: 84.4vw;
+  width: 84.74vw;
   min-width: 1000px;
   background-color: $gray-lighter !important;
   th {
@@ -391,7 +395,7 @@ font-size: 13px
 #job_application_table_filter {
   position: fixed;
   left: 40px;
-  top: 285px;
+  top: 373px;
   z-index: 10;
   label {
   }
@@ -535,8 +539,8 @@ font-size: 13px
   border-right: none !important;
 }
 
-.margin-left-neg-22px {
-  margin-left: -22px;
+.margin-left-neg-28px {
+  margin-left: -28px;
 }
 
 .margin-left-neg-10px {
@@ -549,6 +553,9 @@ font-size: 13px
 
 .viewed {
   background-color: $gray-lighter !important;
+  .candidate-col {
+    color: $blue-lighter !important;
+  }
 }
 
 .not-viewed {
@@ -558,6 +565,7 @@ font-size: 13px
   }
   .candidate-col {
     font-weight: bold;
+    color: $blue-lighter !important;
   }
   .fit-col {
     font-weight: bold;
