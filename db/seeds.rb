@@ -232,28 +232,35 @@ Build effective relationships at all levels",
       start_date: "1-6-2007",
       end_date: "1-8-2010",
       description: "Martial Arts Training",
-      degree_type: ["High School Diploma", "Bachelor", "Bachelor", "Bachelor", "Master", "Master", "Master", "Master", "PhD & equivalent", "Other"].sample,
+      degree_type: ["High School Diploma", "Bachelor", "Bachelor", "Bachelor", "Bachelor", "Master", "Master", "Master", "PhD & equivalent", "Other"].sample,
       degree_field: Faker::Book.genre,
       })
   end
 
-  rand(1..3).times do
+  rand(0..4).times do
     Experience.create!({
       organization: Faker::Company.name,
       job_application: job_app,
       title: Faker::Company.profession.capitalize,
-      start_date: ["1-6-1999", "1-8-1999", "1-2-1999", "1-1-1999"].sample,
-      end_date: "1-6-200" + rand(0..3).to_s,
+      start_date: ["1-6-1995", "1-8-1996", "1-2-1997", "1-1-1999"].sample,
+      end_date: ["1-6-2000", "1-8-2001", "1-2-2002", "1-1-2003"].sample,
       description: "I worked within a team of 12 collaborators. I was personally in charge of analyzing KPIs of several categories of products and writing reports and recommandations about it.",
       company_size: 100000,
       industry: "Marketing"
       })
   end
 
-  rand(1..5).times do
+  # Add English once
+  Language.create!({
+    job_application: job_app,
+    name: "English",
+    proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
+    })
+
+  rand(0..5).times do
     Language.create!({
       job_application: job_app,
-      name: ["French", "English", "Spanish", "Dutch", "German", "Danish", "Polish"].sample,
+      name: ["French", "Spanish", "Dutch", "German", "Danish", "Polish", "Arabic", "Portugese", "Italian"].sample,
       proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
       })
   end
