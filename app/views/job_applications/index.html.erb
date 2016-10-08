@@ -82,7 +82,10 @@
     <div class="side-bar-content">
       <p><strong>All (<%= @job_applications.where(viewed: nil).length %>)</strong></p>
       <p>Contacted (<%= @job_applications.where(contact: true).length %>)</p>
-      <p>New (<%= @job_applications.where(viewed: nil).length %>)</p>
+      <p>Phone Screen (<%= @job_applications.where(contact: true).length %>)</p>
+      <p>Interview (<%= @job_applications.where(contact: true).length %>)</p>
+      <p>Offer (<%= @job_applications.where(contact: true).length %>)</p>
+      <br>
       <br>
       <p>Keywords: </p>
       <br><br><br>
@@ -127,10 +130,10 @@
       <th class="rank-col"></th>
       <th class="candidate-col">Candidate</th>
       <th class="fit-col"><span class="margin-left-neg-10px">Fit</span></th>
-      <th class="xp-years-col-col"><span class="margin-left-neg-8px">XP</span></th>
+      <th class="xp-years-col"><div class="xp-years-th-box1">Years</div><div class="xp-years-th-box2">of XP</div></th>
       <th class="xp-org-col">Companies</th>
       <th class="ed-lvl-col no-right-border"></th>
-      <th class="ed-uni-col no-left-border"><span class="margin-left-neg-22px">Education</span></th>
+      <th class="ed-uni-col no-left-border"><span class="margin-left-neg-28px">Education</span></th>
       <th class="languages-col"><span class="margin-left-neg-8px">Languages</span></th>
       <th class="date-col">Date</th>
     </tr>
@@ -146,8 +149,22 @@
 
         <!-- Candidate -->
         <td class="candidate-col">
-          <%= link_to job_offer_job_application_path(@job_offer, job_application), class: "link-candidate" do %>
-            <%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %>
+          <% if job_application.contact %>
+            <%= link_to job_offer_job_application_path(@job_offer, job_application), class: "link-candidate text-decoration-none" do %>
+              <p id="candidate-col-name"> <%= job_application.candidate.first_name %> <%= job_application.candidate.last_name %> </p>
+              <p id="candidate-col-title"> <%= job_application.experiences.first.title %> @ <%= job_application.experiences.first.organization %> </p>
+            <% end %>
+          <% else %>
+            <%= link_to job_offer_job_application_path(@job_offer, job_application), class: "link-candidate text-decoration-none" do %>
+              <% if job_application.experiences.any? %>
+                <%= job_application.experiences.sort { |a,b| b.end_date <=> a.end_date }.first.title %> @ <%= job_application.experiences.sort { |a,b| b.end_date <=> a.end_date }.first.organization %>
+              <% elsif job_application.educations.any? %>
+                <%= "student" %> @ <%= job_application.educations.sort { |a,b| b.end_date <=> a.end_date }.first.organization %>
+              <% else %>
+                <!-- need to change this with something smart-->
+                <%= "Candidate with no experience and/or education" %>
+              <% end %>
+            <% end %>
           <% end %>
         </td>
 
@@ -158,7 +175,6 @@
           <% else %>
             <%= job_application.fit.to_s + "%" %>
           <% end %>
-
         </td>
 
         <!-- XP: years -->
@@ -166,7 +182,7 @@
           <!-- max possible XP -->
 
           <% if job_application.experiences.empty? %>
-            -
+           <%= 0 %>
           <% else %>
             <% min = 0 %>
             <% max = 10^9 %>
@@ -185,31 +201,30 @@
             <!-- take the lowest from diff max-min or total months -->
             <% final_months = [(min - max), months].min %>
 
-            <% if final_months < 12 %>
-              <%= months.to_s %><span class="no-spacing-single-char"> m</span>
-            <% elsif final_months < 36 %>
-              <% months = final_months % 12 %>
-              <% years = (final_months / 12).round(0) %>
-              <%= years.to_s %> <span class="no-spacing-single-char"> y</span> <%= months == 0 ? "" : months.to_s %> <span class="no-spacing-single-char <%= months == 0 ? "hidden" : "" %>">m</span>
+            <% if final_months <= 42 %>
+              <% years = (final_months / 12.0).round(1) %>
+              <%= years %>
             <% else %>
-              <% years = (final_months / 12).round(0) %>
-              <%= years.to_s %><span class="no-spacing-single-char"> y+</span>
+              <% years = (final_months / 12.0).round(0) %>
+              <%= years %>
             <% end %>
+
           <% end %>
         </td>
 
         <!-- XP: organizations -->
-        <td class="xp-org-col">
+        <td class="xp-org-col <%= job_application.experiences.empty? ? "text-center-important" : "" %>">
           <% if job_application.experiences.empty? %>
-            -
+           <span class="hidden"><%= 9.9 %></span> -
           <% else %>
             <% organizations = [] %>
-            <% job_application.experiences.each do |experience| %>
+            <% job_application.experiences.sort { |a,b| b.end_date <=> a.end_date }.each do |experience| %>
               <% organizations << experience.organization %>
             <% end %>
             <% organizations = organizations.uniq %>
             <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
-            <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
+            <% organizations_joined.size > 37 ? (orgs = organizations_joined[0..36] + "..") : orgs = organizations_joined %>
+            <span class="hidden"><%= (organizations.size / 4.0) - 10 %></span><%= orgs %>
           <% end %>
         </td>
 
@@ -218,7 +233,32 @@
           <% if job_application.educations.empty? %>
             -
           <% else %>
-            <%= ["2nd","B", "M", "PhD", "-"].sample %>
+            <% education_lvls = {} %>
+            <% job_application.educations.each do |education| %>
+              <% if education_lvls[education.degree_type] %>
+                <% education_lvls[education.degree_type] += 1  %>
+              <% else education_lvls[education.degree_type] = 1 %>
+              <% end %>
+            <% end %>
+            <% if education_lvls["PhD & equivalent"] %>
+              <span class="hidden">1</span> PhD
+            <% elsif education_lvls["Master"] %>
+              <% if education_lvls["Master"] >= 2 %>
+                <span class="hidden">3</span> M*
+              <% else %>
+                <span class="hidden">4</span> M
+              <% end %>
+            <% elsif education_lvls["Bachelor"] %>
+              <% if education_lvls["Bachelor"] >= 2 %>
+                <span class="hidden">5</span> B*
+              <% else %>
+                <span class="hidden">6</span> B
+              <% end %>
+            <% elsif education_lvls["High School Diploma"] %>
+              <span class="hidden">7</span> 2nd
+            <% else %>
+              <span class="hidden">9</span> -
+            <% end %>
           <% end %>
         </td>
 
@@ -228,12 +268,12 @@
             -
           <% else %>
             <% organizations = [] %>
-            <% job_application.educations.each do |education| %>
+            <% job_application.educations.sort { |a,b| b.end_date <=> a.end_date }.each do |education| %>
               <% organizations << education.organization %>
-              <% end %>
-              <% organizations = organizations.uniq %>
-              <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
-              <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
+            <% end %>
+            <% organizations = organizations.uniq %>
+            <% organizations_joined = (organizations.size > 1 ? organizations.join(', ') : organizations.first) %>
+            <span class="hidden"><%= (organizations.size - 100) %></span> <%= organizations_joined.size > 37 ? (organizations_joined[0..37] + "..") : organizations_joined %>
           <% end %>
         </td>
 
@@ -242,20 +282,30 @@
           <% if job_application.languages.first.nil? %>
             -
           <% else %>
-            <% languages = [] %>
+            <% languages_with_duplicates = [] %>
             <% job_application.languages.each do |language| %>
+              <% languages_with_duplicates << language %>
+            <% end %>
+            <% languages = [] %>
+            <% languages_clean = languages_with_duplicates.uniq { |l| l.name }%>
+            <% languages_clean.each do |language| %>
               <% languages << (language.proficiency == ("Full professional proficiency" || "Native or bilingual proficiency") ? language.name + "*" : language.name) %>
             <% end %>
-            <% languages = languages.uniq %>
             <% case languages.size %>
+              <% when 0 %>
+                -
               <% when 1 %>
-                <%= languages[0] %>
+                <span class="hidden">9</span><%= languages[0] %>
               <% when 2 %>
-                <%= languages.join(', ') %>
+                <span class="hidden">8</span><%= languages.join(', ') %>
               <% when 3 %>
-                <%= languages.join(', ') %>
+                <span class="hidden">7</span><%= languages[0..1].join(', ') %>
+                <br>
+                <%= languages[2] %>
               <% else %>
-                <%= languages[0..2].join(', ') + ", +" + (languages.size - 3).to_s %>
+                <span class="hidden"><%= (6 - (languages.size / 4.0)) %></span><%= languages[0..1].join(', ') %>
+                <br>
+                <%= languages[2] + ", +" + (languages.size - 3).to_s %>
             <% end %>
           <% end %>
         </td>

@@ -97,13 +97,11 @@
 
 /* Navbar logo */
 .navbar-higher-brand {
-
   top: 4px;
-}
-
-
-.navbar-higher-brand img {
-  height: 37px;
+  img {
+    height: 35px;
+    margin-bottom: -1px;
+  }
 }
 
 .navbar-higher-brand-funnel {

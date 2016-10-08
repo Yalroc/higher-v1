@@ -87,4 +87,18 @@ $(document).ready(function() {
   });
 
 
+  // script for 'Years of XP' column sorting
+  $('.xp-years-th-box1').addClass('active');
+  $('th.xp-years-col.sorting').on( "click", function(e) {
+      if ($('.xp-years-th-box1').hasClass('active')) {
+        $('.xp-years-th-box1').removeClass('active');
+        $(this).trigger( "click" );
+      }
+  });
+  $('th.sorting').not('.xp-years-col').on( "click", function(e) {
+      if (!$('.xp-years-th-box1').hasClass('active')) {
+        $('.xp-years-th-box1').addClass('active');
+      }
+  });
+
 }) // end of doc.function

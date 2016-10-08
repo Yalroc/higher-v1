@@ -29,7 +29,7 @@
   z-index: 10;
   position: fixed;
   top: 57px;
-  left: 30px;
+  left: 31px;
     img {
       height: 19px;
     }
@@ -53,7 +53,7 @@
   z-index: 10;
   position: fixed;
   top: 55px;
-  right: 25px;
+  right: 20px;
     button {
       background-color: $gray-lighter;
       height: 26px;
@@ -67,7 +67,7 @@
   z-index: 10;
   position: fixed;
   top: 60px;
-  right: 126px;
+  right: 121px;
   font-size: 14px;
 }
 
@@ -148,7 +148,7 @@
   padding-top: 3px;
   padding-bottom: 3px;
   border-radius: 0px;
-  width: 140px;
+  width: 127px;
   z-index: 0;
   background-color: $blue;
   font-size: 17px;
@@ -325,6 +325,10 @@ font-size: 13px
 
 .btn-second-navbar-job-applications {
   width: 72px;
+    div {
+      font-size: 13px;
+
+    }
 }
 
 .btn-second-navbar-page-switch {
@@ -371,11 +375,30 @@ font-size: 13px
   border-collapse: collapse;
   top: 50px;
   left: 200px;
-  width: 84.4vw;
+  width: 84.74vw;
   min-width: 1000px;
   background-color: $gray-lighter !important;
   th {
     text-align: center;
+    &.xp-years-col {
+      position: relative;
+      .xp-years-th-box1 {
+        position: absolute;
+        top: 1px;
+        left: 0px;
+        font-size: 13px;
+        padding-bottom: 11px;
+        padding-left: 9px;
+        padding-top: 0px;
+        padding-right: 17px;
+      }
+      .xp-years-th-box2 {
+        position: absolute;
+        top: 13px;
+        left: 10px;
+        font-size: 13px;
+      }
+    }
   }
   td {
     text-align: center;
@@ -391,7 +414,7 @@ font-size: 13px
 #job_application_table_filter {
   position: fixed;
   left: 40px;
-  top: 285px;
+  top: 373px;
   z-index: 10;
   label {
   }
@@ -440,6 +463,7 @@ font-size: 13px
 .row-col {
   font-size: 12px;
   height: 35px;
+  line-height: 1.3;
 }
 
 .rank-col {
@@ -467,7 +491,7 @@ font-size: 13px
 
 .candidate-col {
   border: 0.1px solid $gray-mid-lighter;
-  font-size: 14px;
+  font-size: 13px;
   text-align: left !important;
 }
 
@@ -509,7 +533,8 @@ font-size: 13px
 
 .languages-col {
   border: 0.1px solid $gray-mid-lighter;
-  width: 92px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .date-col {
@@ -534,8 +559,8 @@ font-size: 13px
   border-right: none !important;
 }
 
-.margin-left-neg-22px {
-  margin-left: -22px;
+.margin-left-neg-28px {
+  margin-left: -28px;
 }
 
 .margin-left-neg-10px {
@@ -548,6 +573,9 @@ font-size: 13px
 
 .viewed {
   background-color: $gray-lighter !important;
+  .candidate-col {
+    color: $blue-lighter !important;
+  }
 }
 
 .not-viewed {
@@ -557,6 +585,7 @@ font-size: 13px
   }
   .candidate-col {
     font-weight: bold;
+    color: $blue-lighter !important;
   }
   .fit-col {
     font-weight: bold;
@@ -572,4 +601,16 @@ font-size: 13px
 
 .hidden {
   display: none;
+}
+
+#candidate-col-name {
+  font-size: 15px;
+  margin: 0px;
+  text-decoration: none;
+}
+
+#candidate-col-title {
+  font-size: 11px;
+  margin: 0px;
+  text-decoration: none;
 }
