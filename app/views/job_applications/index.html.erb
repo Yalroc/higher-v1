@@ -35,7 +35,7 @@
           <%= link_to "Active >", "#", class: "text-decoration-none black" %>
         </div>
         <% if @folder_array != nil %>
-          <% @folder_array.each do |folder| %>
+          <% @folder_array.sort { |a,b| a <=> b }.each do |folder| %>
             <div class="inline">
               <%= link_to "#{folder.name} >", "#", class: "text-decoration-none black" %>
             </div>
@@ -330,6 +330,7 @@
     <% end %>
   </tbody>
 </table>
+
 <% 5.times do %>
   <br>
 <% end %>
