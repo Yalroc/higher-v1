@@ -170,7 +170,7 @@
 
         <!-- Fit -->
         <td class="fit-col">
-          <% if job_application.fit.nil? %>
+          <% if job_application.fit == nil %>
             -
           <% else %>
             <%= job_application.fit.to_s + "%" %>

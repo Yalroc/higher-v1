@@ -218,7 +218,7 @@ Build effective relationships at all levels",
   job_offer: [JobOffer.first, JobOffer.second, JobOffer.third, JobOffer.fourth].sample,
   motivation_letter: "Dear Sir,
   I really want to work with you because i am the bezst fit for you, trust me !",
-  created_at: [, "9-9-2016", "8-8-2016", "7-7-2016", "6-6-2016", "5-5-2016", "4-4-2016"].sample,
+  created_at: ["9-9-2016", "8-8-2016", "7-7-2016", "6-6-2016", "5-5-2016", "4-4-2016"].sample,
   viewed: [true, nil].sample,
   submit: true,
   fit: rand(50.0..94.9).round(1)
@@ -237,7 +237,7 @@ Build effective relationships at all levels",
       })
   end
 
-  rand(0..4).times do
+  rand(1..4).times do
     Experience.create!({
       organization: Faker::Company.name,
       job_application: job_app,

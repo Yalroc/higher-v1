@@ -1,2 +1,73 @@
 <h1><%= @job_offer.title %></h1>
 
+<div class="dropdown" style="position:relative">
+
+  <!-- loop over parent folders -->
+
+
+
+  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Active <span class="caret"></span></a>
+  <!-- level 1 -->
+  <ul class="dropdown-menu">
+    <% @parent_folders.each do |parent_folder| %>
+    <li>
+      <a class="trigger right-caret"><%= parent_folder.name %></a>
+
+      <!-- level 2 -->
+      <ul class="dropdown-menu sub-menu">
+        <% parent_folder.job_offer_folders.each do |folder_lvl2| %>
+        <li>
+          <a class="trigger right-caret"><%= folder_lvl2.name %></a>
+
+          <!-- level 3 -->
+          <ul class="dropdown-menu sub-menu">
+          <% folder_lvl2.job_offer_folders.each do |folder_lvl3| %>
+            <li>
+              <a class="trigger right-caret"><%= folder_lvl3.name %></a>
+
+              <!-- level 4 -->
+              <ul class="dropdown-menu sub-menu">
+              <% folder_lvl3.job_offer_folders.each do |folder_lvl4| %>
+                <li><a href="#">Level 4</a></li>
+              <% end %>
+              <li role="separator" class="divider"></li>
+              <% folder_lvl3.job_offers.each do |offer| %>
+                <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
+              <% end %>
+              </ul>
+            </li>
+            <% end %>
+            <% if folder_lvl2.job_offers.empty? %>
+            <% else %>
+              <li role="separator" class="divider"></li>
+              <% folder_lvl2.job_offers.each do |offer| %>
+                <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
+        <% end %>
+        <% if parent_folder.job_offers.empty? %>
+        <% else %>
+          <li role="separator" class="divider"></li>
+          <% parent_folder.job_offers.each do |offer| %>
+            <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+    <% end %>
+    <% if @orphan_offers == nil %>
+    <% else %>
+      <li role="separator" class="divider"></li>
+      <% @orphan_offers.each do |offer| %>
+        <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+</div>
+
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+

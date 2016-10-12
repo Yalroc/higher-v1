@@ -1,3 +1,5 @@
+<!-- second navbar
+ -->
 <div id="job_offers_index_wrapper">
   <div class="row">
     <div class="tableau-offer">
@@ -11,7 +13,7 @@
           <div class="btn-group navbar-higher-btn-group-recruiter dropdown closed" role="group" aria-label="...">
             <!-- Folder icon dropdown -->
             <div class="btn-group">
-              <button type="button" class="btn btn-default btn-second-navbar-job-offers" id="folderDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder" %></div></button>
+              <button type="button" class="btn btn-default btn-second-navbar-job-offers" id="folderDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div><%= image_tag "folder_gray_plus.svg", class: "cv-icon-navbar-folder-1" %></div></button>
                 <ul class="dropdown-menu" aria-labelledby="folderDropdownMenuButton">
                   <li class="dropdown-item"><%= link_to "#", data: {toggle: "modal", target: "#AddFolderModal"} do %><i class="fa fa-plus margin-right-2px margin-left-neg-4px"></i> Add folder<% end %></li>
                   <li class="dropdown-item"><%= link_to "#", id: "collapse-all-folders-btn" do %><i class="fa fa-compress margin-left-neg-4px"></i> Collapse all<% end %></li>
@@ -410,65 +412,4 @@
     </div>
   </div>
 </div>
-
-
-
-<div class="dropdown" style="position:relative">
-
-  <!-- loop over parent folders -->
-
-
-
-  <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Active <span class="caret"></span></a>
-  <!-- level 1 -->
-  <ul class="dropdown-menu">
-    <% @parent_folders.each do |parent_folder| %>
-    <li>
-      <a class="trigger right-caret"><%= parent_folder.name %></a>
-
-      <!-- level 2 -->
-      <ul class="dropdown-menu sub-menu">
-        <% parent_folder.job_offer_folders.each do |folder_lvl2| %>
-        <li>
-          <a class="trigger right-caret"><%= folder_lvl2.name %></a>
-
-          <!-- level 3 -->
-          <ul class="dropdown-menu sub-menu">
-          <% folder_lvl2.job_offer_folders.each do |folder_lvl3| %>
-            <li>
-              <a class="trigger right-caret"><%= folder_lvl3.name %></a>
-
-              <!-- level 4 -->
-              <ul class="dropdown-menu sub-menu">
-              <% folder_lvl3.job_offer_folders.each do |folder_lvl4| %>
-                <li><a href="#">Level 4</a></li>
-              <% end %>
-              <% folder_lvl3.job_offers.each do |offer| %>
-                <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
-              <% end %>
-              </ul>
-            </li>
-            <% end %>
-            <% folder_lvl2.job_offers.each do |offer| %>
-              <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
-            <% end %>
-          </ul>
-        </li>
-        <% end %>
-        <% parent_folder.job_offers.each do |offer| %>
-          <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
-        <% end %>
-      </ul>
-    </li>
-    <% end %>
-    <% @orphan_offers.each do |offer| %>
-      <li><%= link_to offer.title, job_offer_job_applications_path(offer) %></li>
-    <% end %>
-  </ul>
-
-</div>
-
-<br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 
