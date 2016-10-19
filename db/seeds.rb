@@ -230,7 +230,7 @@ Sincerely,",
   created_at: ["9-9-2016", "8-8-2016", "7-7-2016", "6-6-2016", "5-5-2016", "4-4-2016"].sample,
   submit: true,
   viewed: [true, nil].sample,
-  contact: (rand(1..10) > 9 ? true : nil ),
+  contact: (rand(1..100) > 97 ? true : nil ),
   fit: rand(50.0..94.9).round(1)
   })
 

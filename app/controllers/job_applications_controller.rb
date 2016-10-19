@@ -7,7 +7,6 @@ class JobApplicationsController < ApplicationController
 
   skip_before_action :authenticate_recruiter!, only: [:edit, :update, :submit, :new, :conversation, :job_applications, :show]
   skip_before_action :authenticate_candidate!, only: [:index, :destroy, :batch_deletion, :conversation, :job_applications, :show]
-
   skip_after_action :verify_authorized, only: [:batch_deletion, :job_applications]
 
 
@@ -15,8 +14,14 @@ class JobApplicationsController < ApplicationController
   def index
     @job_applications = policy_scope(JobApplication)
     @job_applications = set_job_offer.job_applications.where(rejected: nil, submit: true)
-    @job_applications_sorted_fit = @job_applications.sort { |a,b| b.fit <=> a.fit }
 
+    # sort job applications
+    @job_applications_pre_sorted_fit = @job_applications.sort { |a,b| b.fit <=> a.fit }
+    @job_applications_contacted = @job_applications_pre_sorted_fit.select { |job_application| job_application.contact == true }
+    @job_applications_not_contacted = @job_applications_pre_sorted_fit.reject { |job_application| job_application.contact == true }
+    @job_applications_sorted_fit_not_flatten = []
+    @job_applications_sorted_fit_not_flatten << @job_applications_contacted << @job_applications_not_contacted
+    @job_applications_sorted_fit = @job_applications_sorted_fit_not_flatten.flatten
 
     @job_offer_for_navbar = JobOffer.where(recruiter: current_recruiter).first # for crappy navbar link
 
