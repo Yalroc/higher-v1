@@ -2,12 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2">
-
         <div class="banner-core">
-
           <!-- banner title -->
           <h1 class="banner-title">Find a Job. No Excuses.</h1>
-
           <!-- search bar -->
           <form action="/search" class="navbar-higher-search" id="search">
             <input type="text" class="banner-search-input" placeholder="Search for job" name="query">
@@ -16,13 +13,75 @@
             </button>
           </form>
         </div>
-
       </div>
     </div>
   </div>  <!-- end of bootstrap -->
 </div> <!-- end of banner -->
-<%= image_path 'homepage_job_offers.png' %>
-<%= image_path 'homepage_job_applications.png' %>
-<%= image_path 'homepage_cv.png' %>
+<div>
+  <h1 class="text-center underbanner">The Superior Way to Hire</h1>
+</div>
 
-
+<div class="homepage-wrapper text-center">
+  <h3>WHY CHOOSE HIGHER?</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="light-background">
+          <div><h2><i class="fa fa-eur" aria-hidden="true"></i></h2></div>
+          <h4>100% Free Software</h4>
+          <p class="box-padding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere iste et tempore numquam animi reiciendis. In veniam eligendi quas, numquam quod. Possimus qui natus quo, illo nihil iure autem non.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="light-background">
+          <div><h2><i class="fa fa-cogs" aria-hidden="true"></i></h2></div>
+          <h4>Filter Algorithms</h4>
+          <p class="box-padding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere iste et tempore numquam animi reiciendis. In veniam eligendi quas, numquam quod. Possimus qui natus quo, illo nihil iure autem non.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="light-background">
+          <div><h2><i class="fa fa-balance-scale" aria-hidden="true"></i></h2></div>
+          <h4>Non-Discrimination</h4>
+          <p class="box-padding">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere iste et tempore numquam animi reiciendis. In veniam eligendi quas, numquam quod. Possimus qui natus quo, illo nihil iure autem non.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h3>Centralize all your job offers</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere iste et tempore numquam animi reiciendis. In veniam eligendi quas, numquam quod. Possimus qui natus quo, illo nihil iure autem non.</p>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= image_tag 'homepage_job_offers.png', class: "max-width-100" %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <%= image_tag 'homepage_job_applications.png', class: "max-width-100" %>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h3>Manage all candidates in one place</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere iste et tempore numquam animi reiciendis. In veniam eligendi quas, numquam quod. Possimus qui natus quo, illo nihil iure autem non.</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h3>Generate HR reports automatically</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere iste et tempore numquam animi reiciendis. In veniam eligendi quas, numquam quod. Possimus qui natus quo, illo nihil iure autem non.</p>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= image_tag 'homepage_cv.png', class: "max-width-100" %>
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <p>Higher © <%= Time.now.year %> | Terms and Conditions | Contact us | English </p>
+</div>
