@@ -350,31 +350,31 @@
           <% else %>
             <div class="cv-separator"></div>
             <h3><i class="fa fa-file-text padding-3px" aria-hidden="true"></i> EXPERIENCE </h3>
-              <div class="margin-left">
-                <% @experiences_sorted.each do |experience| %>
-                  <div class="cv-tab">
-                    <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
-                    <!-- experience dates -->
-                    <% months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
-                    <p class="color-mid-gray margin-top-1px"><%= months[experience.start_date.month - 1] + " " + experience.start_date.year.to_s + " - " + months[experience.end_date.month - 1] + " " + experience.end_date.year.to_s + " (" %>
-                      <!-- years xp calculation -->
-                      <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) >= 2 %>
-                        <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " years" %>
-                      <% elsif (((experience.end_date - experience.start_date)/30.5).to_i/12) > 0 %>
-                        <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year" %>
-                      <% end %>
-                      <!-- month xp calculation -->
-                      <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) >= 2 %>
-                        <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " months" %>
-                      <% elsif (((experience.end_date - experience.start_date)/30.5).to_i%12) > 0 %>
-                        <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month" %>
-                      <% end %>
-                      <%= experience.location ? ") | #{experience.location}" : ")" %>
-                    </p>
-                    <p class="tab-description"><%= experience.description %></p>
-                  </div>
-                <% end %>
-              </div>
+            <div class="margin-left">
+              <% @experiences_sorted.each do |experience| %>
+                <div class="cv-tab">
+                  <h4 class="inline"><%= experience.title + " @ " + experience.organization %></h4>
+                  <!-- experience dates -->
+                  <% months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] %>
+                  <p class="color-mid-gray margin-top-1px"><%= months[experience.start_date.month - 1] + " " + experience.start_date.year.to_s + " - " + months[experience.end_date.month - 1] + " " + experience.end_date.year.to_s + " (" %>
+                    <!-- years xp calculation -->
+                    <% if (((experience.end_date - experience.start_date)/30.5).to_i/12) >= 2 %>
+                      <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " years" %>
+                    <% elsif (((experience.end_date - experience.start_date)/30.5).to_i/12) > 0 %>
+                      <%= (((experience.end_date - experience.start_date)/30.5).to_i/12).to_s + " year" %>
+                    <% end %>
+                    <!-- month xp calculation -->
+                    <% if (((experience.end_date - experience.start_date)/30.5).to_i%12) >= 2 %>
+                      <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " months" %>
+                    <% elsif (((experience.end_date - experience.start_date)/30.5).to_i%12) > 0 %>
+                      <%= (((experience.end_date - experience.start_date)/30.5).to_i%12).to_s + " month" %>
+                    <% end %>
+                    <%= experience.location ? ") | #{experience.location}" : ")" %>
+                  </p>
+                  <p class="tab-description"><%= experience.description %></p>
+                </div>
+              <% end %>
+            </div>
           <% end %>
 
           <!-- educations -->
@@ -382,15 +382,15 @@
           <% else %>
             <div class="cv-separator"></div>
             <h3><i class="fa fa-graduation-cap" aria-hidden="true"></i> EDUCATION</h3>
-              <div class="margin-left">
-                <% @educations_sorted.each do |education| %>
-                  <div class="cv-tab">
-                    <h4 class="inline"><%= education.degree_field + ' @ ' + education.organization %></h4>
-                    <p class="color-mid-gray margin-top-1px"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></p>
-                    <p class="tab-description"><%= education.description %></p>
-                  </div>
-                <% end %>
-              </div>
+            <div class="margin-left">
+              <% @educations_sorted.each do |education| %>
+                <div class="cv-tab">
+                  <h4 class="inline"><%= education.degree_field + ' @ ' + education.organization %></h4>
+                  <p class="color-mid-gray margin-top-1px"><%= education.start_date.year.to_s + " - " + education.end_date.year.to_s %></p>
+                  <p class="tab-description"><%= education.description %></p>
+                </div>
+              <% end %>
+            </div>
           <% end %>
 
           <!-- languages -->
@@ -399,17 +399,15 @@
             <div class="cv-separator"></div>
             <div class="">
               <h3><i class="fa fa-globe" aria-hidden="true"></i> LANGUAGES</h3>
-
-                <div class="row language-blocks">
-                  <% @languages.each do |language| %>
-
-                    <div class="col-xs-6">
-                      <h4 class="inline"><%= language.name %></h4>
-                      <p class="small-text margin-bottom-20px"><%= language.proficiency %></p>
-                    </div>
-                  <% end %>
-                </div>
+              <div class="row language-blocks">
+                <% @languages.each do |language| %>
+                  <div class="col-xs-6">
+                    <h4 class="inline"><%= language.name %></h4>
+                    <p class="small-text margin-bottom-20px"><%= language.proficiency %></p>
+                  </div>
+                <% end %>
               </div>
+            </div>
           <% end %>
 
         <!-- motivation letter -->
@@ -418,6 +416,7 @@
         <div id="motivation-letter-in-modal">
           <p class="small-text"><%= simple_format @job_application.motivation_letter %></p>
         </div>
+
         <!-- footer de modal -->
         <div class="text-right">
           <div class="btn-group">

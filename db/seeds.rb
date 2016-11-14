@@ -216,13 +216,28 @@ Build effective relationships at all levels",
   job_app = JobApplication.create!({
   candidate: Candidate.find(candidate),
   job_offer: [JobOffer.first, JobOffer.second, JobOffer.third, JobOffer.fourth].sample,
-  motivation_letter: "Dear Sir,
-  I really want to work with you because i am the bezst fit for you, trust me !",
+  motivation_letter: "Dear Sir or Madam,
+
+I was excited to see your opening for a customer service rep, and I hope to be invited for an interview.My background includes serving as a customer service associate within both call-center and retail environments. Most recently, I worked on the customer service desk for Discount-Mart, where my responsibilities included handling customer merchandise returns, issuing refunds/store credits, flagging damaged merchandise for shipment back to vendors and providing back-up cashiering during busy periods.
+
+Previously, I worked within two high-volume customer-support call centers for a major telecommunications carrier and a satellite television services provider. In these positions, I demonstrated the ability to resolve a variety of issues and complaints (such as billing disputes, service interruptions or cutoffs, repair technician delays/no-shows and equipment malfunctions). I consistently met my call-volume goals, handling an average of 56 to 60 calls per day.
+
+In addition to this experience, I gained considerable customer service skills during my part-time employment as a waitress and restaurant hostess while in high school.
+
+I also bring to the table strong computer proficiencies in MS Word, MS Excel and CRM database applications and a year of college (business major). Please see the accompanying resume for details of my experience and education.
+
+Sincerely,",
   created_at: ["9-9-2016", "8-8-2016", "7-7-2016", "6-6-2016", "5-5-2016", "4-4-2016"].sample,
-  viewed: [true, nil].sample,
   submit: true,
+  viewed: [true, nil].sample,
+  contact: (rand(1..100) > 97 ? true : nil ),
   fit: rand(50.0..94.9).round(1)
   })
+
+  if job_app.contact == true
+    job_app.viewed = true
+    job_app.save
+  end
 
   rand(1..4).times do
     Education.create!({
@@ -231,13 +246,13 @@ Build effective relationships at all levels",
       title: Faker::Educator.course,
       start_date: "1-6-2007",
       end_date: "1-8-2010",
-      description: "Martial Arts Training",
+      description: "Leading University in the Chickasaw county",
       degree_type: ["High School Diploma", "Bachelor", "Bachelor", "Bachelor", "Bachelor", "Master", "Master", "Master", "PhD & equivalent", "Other"].sample,
       degree_field: Faker::Book.genre,
       })
   end
 
-  rand(0..4).times do
+  rand(1..4).times do
     Experience.create!({
       organization: Faker::Company.name,
       job_application: job_app,

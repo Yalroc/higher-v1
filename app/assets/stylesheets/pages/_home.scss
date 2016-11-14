@@ -1,12 +1,15 @@
 .banner {
   color: white;
   text-align: center;
-  min-height: 95vh;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  width: 114vw;
+  margin-left: -7vw;
+  min-height: 70vh;
   background-size: cover !important;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom-left-radius: 50% 25%;
+  border-bottom-right-radius: 50% 25%;
 }
 .btn-inscription{
   padding-top: 100px;
@@ -61,3 +64,35 @@
   font-size: 14px;
 }
 
+.underbanner {
+  min-height: 13vh;
+}
+
+.max-width-100 {
+  max-width: 100%;
+}
+
+.homepage-wrapper {
+  background-color: $gray-lighter;
+}
+
+.box-padding {
+  padding: 15px 30px;
+}
+
+.light-background {
+  background-color: white;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-bottom: 20px;
+}
+
+.homepage-arguments-title {
+ padding: 25px;
+ margin-bottom: -5px;
+}
+
+.margin-top-neg-6px {
+  margin-top: -6px;
+  padding-bottom: 12px;
+}

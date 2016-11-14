@@ -145,5 +145,24 @@
   right: 65px;
   font-size: 15px;
   text-align: right;
+}
 
+.height-50px {
+  height: 58px;
+  margin-top: -8px;
+}
+
+.cv-show-header-left {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  font-size: 15px;
+}
+
+.cv-show-header-right {
+  position: absolute;
+  top: 0px;
+  right: 5px;
+  font-size: 15px;
+  text-align: right;
 }
