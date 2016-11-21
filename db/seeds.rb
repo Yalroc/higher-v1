@@ -25,10 +25,16 @@ loreal = Organization.create!({
 t_delas = Recruiter.create!({
   email: "t.delas@loreal.com",
   password: "123456",
-  title: "Thierry Delas Senior Recruiter",
+  title: "Senior Recruiter",
   organization: loreal,
   })
 
+b_golden = Recruiter.create!({
+  email: "b.golden@loreal.com",
+  password: "123456",
+  title: "Senior Recruiter",
+  organization: loreal,
+  })
 
 
 # 3 JOB OFFERS & FOLDERS
@@ -39,11 +45,17 @@ digital_folder = JobOfferFolder.create!({
   organization: loreal,
   })
 
-social_folder = JobOfferFolder.create!({
-  name: "Social",
+  social_folder = JobOfferFolder.create!({
+    name: "Social",
+    open: true,
+    organization: loreal,
+    parent: digital_folder,
+    })
+
+marketing_folder = JobOfferFolder.create!({
+  name: "Marketing",
   open: true,
   organization: loreal,
-  parent: digital_folder,
   })
 
 finance_folder = JobOfferFolder.create!({
@@ -64,7 +76,7 @@ JobOffer.create!({
   salary: 35,
   job_offer_folder: social_folder,
   published: true,
-  created_at: "10-8-2016"
+  created_at: "29-09-2016"
   })
 
 JobOffer.create!({
@@ -96,7 +108,7 @@ JobOffer.create!({
   max_xp: 10,
   salary: 52,
   published: true,
-  created_at: "20-8-2016"
+  created_at: "29-10-2016"
   })
 
 JobOffer.create!({
@@ -145,7 +157,56 @@ Build effective relationships at all levels",
   max_xp: 12,
   salary: 70,
   published: true,
-  created_at: "15-8-2016"
+  created_at: "20-10-2016"
+  })
+
+JobOffer.create!({
+  organization: loreal,
+  recruiter: t_delas,
+  job_offer_folder: marketing_folder,
+  title: "Brand Manager",
+  description: "This is not your typical Internal Audit position. As an Internal Auditor for the country's leading nuclear organisation, you will have the opportunity to take part in incredibly varied and highly complex audits, within an extremely visible role in the business.
+
+
+Details about the Client
+
+Sellafield is the company responsible for safely delivering decommissioning of the UK's nuclear legacy as well as fuel recycling and the management of low, high and intermediate level nuclear waste activities. With a number of significant developments taking place across the business you will gain rare insight into an organisation going through substantial change. The projects they're involved with are globally significant and they take pride of the high standards they keep to, encouraging responsible actions and ensuring a positive reflection on the nuclear industry as a whole.
+
+
+Detailed Job Description
+
+A recent change in ownership means an increased focus on the importance of Internal Audit's role in helping to shape and guide Sellafield's future direction. These changes have encouraged more emphasis on strategy and transformation within the Audit Plan. Engaging with senior stakeholders across the business requires a talented auditor who is not afraid to be proactive and challenge influential individuals on a regular basis. Identifying individuals who are autonomous as well as innovative is vital.
+
+Sellafield's Internal Audit function has a remit to provide assurance and advice across all areas of the business from corporate governance to project management and human resources to shared services. The calibre of the team has seen Internal Audit become well respected across the organisation ensuring that all levels are receptive to their input.
+
+From day one you will take full responsibility for a varied portfolio of risk based audit reviews; using your ability to think strategically and outside of the box, you will be challenged to identify commercial and practical solutions to control issues and then present back to the business. You will also be tasked with proactively identifying potential areas for further review within the business, and then feed this into the planning process. You will have exposure to individuals at all levels but particularly at Executive and Board level, with all reviews having an Executive sponsor with whom you would be partnering.
+
+The interaction you will have across disciplines allows you the opportunity to use the experience gained in this role as a springboard to a variety of internal opportunities. Exceptional performers have moved to senior roles in finance, commercial and operations across the Sellafield business and have also had the opportunity to gain international experience.
+
+
+Candidate's Profile
+
+Our client is looking for talented auditors who are proactive, innovative and autonomous.
+
+The successful candidate should meet the following criteria:
+
+Qualified Chartered Accountant or Auditor (ACA or CMIIA) with 3 years post qualification experience (PQE)
+Ideally your PQE will be in Internal Audit, or External Audit dealing with large, complex clients
+A demonstrable, strong academic track record
+Self-motivated and keen to use their initiative to problem-solve
+Excellent interpersonal and communication skills with an ability to build strong relationships and influence senior stakeholders across all levels
+Your success in the role will be determined by your ability to:
+
+Think strategically
+Work proactively
+Build effective relationships at all levels",
+
+  location: "Paris",
+  min_xp: 8,
+  max_xp: 12,
+  salary: 70,
+  published: true,
+  created_at: "01-11-2016"
   })
 
 JobOffer.create!({
@@ -194,7 +255,7 @@ Build effective relationships at all levels",
   max_xp: 12,
   salary: 70,
   published: true,
-  created_at: "1-8-2016"
+  created_at: "7-11-2016"
   })
 
 
@@ -202,8 +263,9 @@ Build effective relationships at all levels",
 
 ######## LOOPED JOB APPLICATION ######
 
+# MOST OF THE OFFERS
 
-817.times do
+437.times do
 
   candidate = Candidate.create!({
   first_name: Faker::Name.name.split(" ")[0],
@@ -239,7 +301,7 @@ Sincerely,",
     job_app.save
   end
 
-  rand(1..4).times do
+  rand(0..3).times do
     Education.create!({
       organization: Faker::Educator.university,
       job_application: job_app,
@@ -272,7 +334,7 @@ Sincerely,",
     proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
     })
 
-  rand(0..5).times do
+  rand(0..3).times do
     Language.create!({
       job_application: job_app,
       name: ["French", "Spanish", "Dutch", "German", "Danish", "Polish", "Arabic", "Portugese", "Italian"].sample,
@@ -280,9 +342,170 @@ Sincerely,",
       })
   end
 
+end
+
+# Community Manager
+
+432.times do
+
+  candidate = Candidate.create!({
+  first_name: Faker::Name.name.split(" ")[0],
+  last_name: Faker::Name.name.split(" ")[0],
+  email: Faker::Internet.email,
+  password: "123456",
+  phone_number: "+33 9 31 94 88 66",
+  })
+
+  job_app = JobApplication.create!({
+  candidate: Candidate.find(candidate),
+  job_offer: JobOffer.fourth,
+  motivation_letter: "Dear Sir or Madam,
+
+I was excited to see your opening for a customer service rep, and I hope to be invited for an interview.My background includes serving as a customer service associate within both call-center and retail environments. Most recently, I worked on the customer service desk for Discount-Mart, where my responsibilities included handling customer merchandise returns, issuing refunds/store credits, flagging damaged merchandise for shipment back to vendors and providing back-up cashiering during busy periods.
+
+Previously, I worked within two high-volume customer-support call centers for a major telecommunications carrier and a satellite television services provider. In these positions, I demonstrated the ability to resolve a variety of issues and complaints (such as billing disputes, service interruptions or cutoffs, repair technician delays/no-shows and equipment malfunctions). I consistently met my call-volume goals, handling an average of 56 to 60 calls per day.
+
+In addition to this experience, I gained considerable customer service skills during my part-time employment as a waitress and restaurant hostess while in high school.
+
+I also bring to the table strong computer proficiencies in MS Word, MS Excel and CRM database applications and a year of college (business major). Please see the accompanying resume for details of my experience and education.
+
+Sincerely,",
+  created_at: ["9-9-2016", "8-8-2016", "7-7-2016", "6-6-2016", "5-5-2016", "4-4-2016"].sample,
+  submit: true,
+  viewed: [true, nil].sample,
+  contact: (rand(1..100) > 97 ? true : nil ),
+  fit: rand(50.0..94.9).round(1)
+  })
+
+  if job_app.contact == true
+    job_app.viewed = true
+    job_app.save
+  end
+
+  rand(1..3).times do
+    Education.create!({
+      organization: Faker::Educator.university,
+      job_application: job_app,
+      title: Faker::Educator.course,
+      start_date: "1-6-2007",
+      end_date: "1-8-2010",
+      description: "Leading University in the Chickasaw county",
+      degree_type: ["High School Diploma", "Bachelor", "Bachelor", "Bachelor", "Bachelor", "Master", "Master", "Master", "PhD & equivalent", "Other"].sample,
+      degree_field: Faker::Book.genre,
+      })
+  end
+
+  rand(1..4).times do
+    Experience.create!({
+      organization: Faker::Company.name,
+      job_application: job_app,
+      title: Faker::Company.profession.capitalize,
+      start_date: ["1-6-1995", "1-8-1996", "1-2-1997", "1-1-1999"].sample,
+      end_date: ["1-6-2000", "1-8-2001", "1-2-2002", "1-1-2003"].sample,
+      description: "I worked within a team of 12 collaborators. I was personally in charge of analyzing KPIs of several categories of products and writing reports and recommandations about it.",
+      company_size: 100000,
+      industry: "Marketing"
+      })
+  end
+
+  # Add English once
+  Language.create!({
+    job_application: job_app,
+    name: "English",
+    proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
+    })
+
+  rand(0..3).times do
+    Language.create!({
+      job_application: job_app,
+      name: ["French", "Spanish", "Dutch", "German", "Danish", "Polish", "Arabic", "Portugese", "Italian"].sample,
+      proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
+      })
+  end
 
 end
 
+
+# M&A analyst
+
+87.times do
+
+  candidate = Candidate.create!({
+  first_name: Faker::Name.name.split(" ")[0],
+  last_name: Faker::Name.name.split(" ")[0],
+  email: Faker::Internet.email,
+  password: "123456",
+  phone_number: "+33 9 31 94 88 66",
+  })
+
+  job_app = JobApplication.create!({
+  candidate: Candidate.find(candidate),
+  job_offer: JobOffer.fifth,
+  motivation_letter: "Dear Sir or Madam,
+
+I was excited to see your opening for a customer service rep, and I hope to be invited for an interview.My background includes serving as a customer service associate within both call-center and retail environments. Most recently, I worked on the customer service desk for Discount-Mart, where my responsibilities included handling customer merchandise returns, issuing refunds/store credits, flagging damaged merchandise for shipment back to vendors and providing back-up cashiering during busy periods.
+
+Previously, I worked within two high-volume customer-support call centers for a major telecommunications carrier and a satellite television services provider. In these positions, I demonstrated the ability to resolve a variety of issues and complaints (such as billing disputes, service interruptions or cutoffs, repair technician delays/no-shows and equipment malfunctions). I consistently met my call-volume goals, handling an average of 56 to 60 calls per day.
+
+In addition to this experience, I gained considerable customer service skills during my part-time employment as a waitress and restaurant hostess while in high school.
+
+I also bring to the table strong computer proficiencies in MS Word, MS Excel and CRM database applications and a year of college (business major). Please see the accompanying resume for details of my experience and education.
+
+Sincerely,",
+  created_at: ["9-9-2016", "8-8-2016", "7-7-2016", "6-6-2016", "5-5-2016", "4-4-2016"].sample,
+  submit: true,
+  viewed: [true, nil].sample,
+  contact: (rand(1..100) > 97 ? true : nil ),
+  fit: rand(50.0..94.9).round(1)
+  })
+
+  if job_app.contact == true
+    job_app.viewed = true
+    job_app.save
+  end
+
+  rand(1..3).times do
+    Education.create!({
+      organization: Faker::Educator.university,
+      job_application: job_app,
+      title: Faker::Educator.course,
+      start_date: "1-6-2007",
+      end_date: "1-8-2010",
+      description: "Leading University in the Chickasaw county",
+      degree_type: ["High School Diploma", "Bachelor", "Bachelor", "Bachelor", "Bachelor", "Master", "Master", "Master", "PhD & equivalent", "Other"].sample,
+      degree_field: Faker::Book.genre,
+      })
+  end
+
+  rand(1..4).times do
+    Experience.create!({
+      organization: Faker::Company.name,
+      job_application: job_app,
+      title: Faker::Company.profession.capitalize,
+      start_date: ["1-6-1995", "1-8-1996", "1-2-1997", "1-1-1999"].sample,
+      end_date: ["1-6-2000", "1-8-2001", "1-2-2002", "1-1-2003"].sample,
+      description: "I worked within a team of 12 collaborators. I was personally in charge of analyzing KPIs of several categories of products and writing reports and recommandations about it.",
+      company_size: 100000,
+      industry: "Marketing"
+      })
+  end
+
+  # Add English once
+  Language.create!({
+    job_application: job_app,
+    name: "English",
+    proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
+    })
+
+  rand(0..3).times do
+    Language.create!({
+      job_application: job_app,
+      name: ["French", "Spanish", "Dutch", "German", "Danish", "Polish", "Arabic", "Portugese", "Italian"].sample,
+      proficiency: ["Elementary proficiency", "Limited working proficieny", "Professional working proficiency", "Full professional proficiency", "Native or bilingual proficiency"].sample
+      })
+  end
+
+end
 
 
 
