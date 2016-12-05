@@ -10,7 +10,6 @@ class JobApplicationsController < ApplicationController
   skip_after_action :verify_authorized, only: [:batch_deletion, :job_applications]
 
 
-
   def index
     @job_applications = policy_scope(JobApplication)
     @job_applications = set_job_offer.job_applications.where(rejected: nil, submit: true)
