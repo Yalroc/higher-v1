@@ -30,7 +30,7 @@ t_delas = Recruiter.create!({
   })
 
 b_golden = Recruiter.create!({
-  email: "b.golden@loreal.com",
+  email: "a.gentes@loreal.com",
   password: "123456",
   title: "Senior Recruiter",
   organization: loreal,
